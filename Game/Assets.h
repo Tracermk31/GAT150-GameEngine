@@ -2,10 +2,12 @@
 
 #include "Model.h"
 
+#include <memory>
+
 using namespace ChiefEngine;
 
 namespace Assets {
-	extern Model playerModel;
-	extern Model enemyModel;
-	extern Model bulletModel;
+	extern std::shared_ptr<Model> playerModel;
+	extern std::shared_ptr<Model> enemyModel;
+	extern std::shared_ptr<Model> bulletModel;
 }

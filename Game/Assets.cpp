@@ -4,11 +4,11 @@ using namespace ChiefEngine;
 
 namespace Assets {
 
-	Model shipModel = std::vector<Mesh> {
+	std::shared_ptr<Model> shipModel = std::make_shared<Model>( std::vector<Mesh> {
 		{{ Vector2{-1.5f, -1.0f,}, Vector2{ 1.5f, 0.0f }, Vector2{-1.5f, 1.0f}, Vector2{-1.5f, -1.0f} } , Color{255.0f, 255.0f, 255.0f} },
 		{{ Vector2 {-1.5f, -1.0f}, Vector2 {0.0f, -1.0f}, Vector2 {0.0f, -1.5f}, Vector2 {-1.5f, -1.5f}, Vector2 {-1.5f, -1.0f}}, Color{ 0.0f, 0.0f, 200.0f } },
 		{{ Vector2 {-1.5f, 1.0f}, Vector2 {0.0f, 1.0f}, Vector2 {0.0f, 1.5f}, Vector2 {-1.5f, 1.5f}, Vector2 {-1.5f, 1.0f}}, Color{ 0.0f, 0.0f, 200.0f } }
-	};
+	});
 
 	Mesh playerMesh(
 		{
@@ -18,8 +18,8 @@ namespace Assets {
 			Vector2{-1.5f, -1.0f} },
 			Color{ 255.0f, 255.0f, 255.0f }
 	);
-	//Model playerModel = std::vector<Mesh>{ playerMesh };
-	Model playerModel = shipModel;
+	//std::shared_ptr<Model> playerModel = std::make_shared<Model>( std::vector<Mesh>{ playerMesh } );
+	std::shared_ptr<Model> playerModel = shipModel;
 
 	Mesh enemyMesh(
 		{
@@ -30,7 +30,7 @@ namespace Assets {
 			Color{ 255.0f, 255.0f, 255.0f
 		}
 	);
-	Model enemyModel = std::vector<Mesh>{ enemyMesh };
+	std::shared_ptr<Model> enemyModel = std::make_shared<Model>( std::vector<Mesh>{ enemyMesh } );
 
 	Mesh bulletMesh { 
 		{
@@ -41,5 +41,6 @@ namespace Assets {
 		},
 	Color{ 255.0f, 0.0f, 0.0f }
 	};
-	Model bulletModel = std::vector<Mesh>{ bulletMesh };
+
+	std::shared_ptr<Model> bulletModel = std::make_shared<Model>( std::vector<Mesh>{ bulletMesh } );
 }

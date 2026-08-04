@@ -4,6 +4,7 @@
 #include "Model.h"
 
 #include <string>
+#include <memory>
 
 namespace ChiefEngine {
     class Scene;
@@ -15,7 +16,7 @@ namespace ChiefEngine {
         Vector2 velocity = 0.0f;
         float damping = 0.0f;
         float lifespan = -1.0f;
-        Model model;
+        std::shared_ptr<Model> model;
     };
 
     class Actor {
@@ -29,15 +30,13 @@ namespace ChiefEngine {
             m_model{ actorDesc.model },
             m_damping{ actorDesc.damping },
             m_lifespan{ actorDesc.lifespan }
-        {
-        };
+        { };
 
-        Actor(const Transform& transform) : m_transform{ transform } {};
-        Actor(const Transform& transform, const Model& model) :
-            m_transform{ transform },
-            m_model{ model }
-        {
-        };
+        //Actor(const Transform& transform) : m_transform{ transform } {};
+        //Actor(const Transform& transform, const std::shared_ptr<Model> model) :
+        //    m_transform{ transform },
+        //    m_model{ model }
+        //{ };
 
         virtual void Update(float dt, float maxY, float maxX);
         virtual void Draw(const class Renderer& renderer) const;
@@ -69,7 +68,7 @@ namespace ChiefEngine {
         float m_damping{ 0.0f };
         float m_lifespan{ -1.0f };
         bool m_destroyed{ false };
-        Model m_model;
+        std::shared_ptr<Model> m_model;
         Scene* m_scene{ nullptr };
     };
 }

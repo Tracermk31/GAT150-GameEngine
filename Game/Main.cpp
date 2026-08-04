@@ -11,14 +11,6 @@ using namespace ChiefEngine;
 float SCREEN_WIDTH = 1920.0f;
 float SCREEN_HEIGHT = 1200.0f;
 
-class Object {
-public: 
-    Object() { std::cout << "constructor\n"; }
-    ~Object() { std::cout << "destructor\n"; }
-    Object(const Object& object) { std::cout << "copystructor\n"; }
-    Object& operator = (const Object& object) { std::cout << "assignment\n"; return *this; }
-};
-
 int main() {
     srand((unsigned int)time(nullptr));
 
