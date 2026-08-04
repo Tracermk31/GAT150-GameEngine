@@ -21,7 +21,8 @@ int main() {
     SpaceGame* spaceGame = new SpaceGame(new Scene);
     spaceGame->Initialize();
 
-    std::vector<Vector2> points;
+    std::shared_ptr<Texture> texture = std::make_shared<Texture>();
+    texture->Load("Textures/BoomerangFlower_BC.png", Engine::Get().GetRenderer());
 
     // MAIN LOOP
     SDL_Event event;
@@ -50,6 +51,8 @@ int main() {
 
         spaceGame->Draw(Engine::Get().GetRenderer(), SCREEN_WIDTH, SCREEN_HEIGHT);
         Engine::Get().GetParticleSystem().Draw(Engine::Get().GetRenderer());
+
+        Engine::Get().GetRenderer().DrawTexture(texture.get(), 30, 30);
 
         Engine::Get().GetRenderer().Present(); // Render the screen
     }

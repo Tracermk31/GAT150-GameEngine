@@ -6,8 +6,11 @@
 #include <string>
 #include <SDL3/SDL.h>
 #include <SDL3_ttf/SDL_ttf.h>
+#include <SDL3_image/SDL_image.h>
 
 namespace ChiefEngine {
+	class Texture;
+
 	class Renderer {
 		public:
 			inline SDL_Window* GetWindow() { return this->m_window;}
@@ -31,15 +34,19 @@ namespace ChiefEngine {
 			void DrawRect(const SDL_FRect* rectangle) const;
 
 			void DrawText(float x, float y, std::string string) const;
+			void DrawTexture(Texture* texture, float x, float y);
 
 			void DrawMesh(const class Mesh& mesh, const struct Transform& transform) const;
 			void DrawModel(const class Model& model, const struct Transform& transform) const;
 
 			float getWindowWidth() const { return m_window_size.GetX(); }
 			float getWindowHeight() const { return m_window_size.GetY(); }
+
+			friend Texture;
 		private:
 			SDL_Window* m_window = nullptr;
 			SDL_Renderer* m_renderer = nullptr;
 			Vector2 m_window_size = { 0.0 };
+
 	};
 }

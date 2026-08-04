@@ -8,6 +8,7 @@
 #include "Random.h"
 #include "Font.h"
 #include "Text.h"
+#include "Texture.h"
 #include "Input.h"
 #include "EngineTime.h"
 #include "EngineMath.h"

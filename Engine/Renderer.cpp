@@ -1,7 +1,8 @@
 #include "pch.h"
 
-#include "Renderer.h"
 #include "Model.h"
+#include "Texture.h"
+#include "Renderer.h"
 #include "Transform.h"
 #include "EngineMath.h"
 
@@ -121,5 +122,18 @@ namespace ChiefEngine {
 
     void Renderer::DrawText(float x, float y, std::string string) const {
         SDL_RenderDebugText(m_renderer, x, y, string.c_str());
+    }
+
+    void Renderer::DrawTexture(Texture* texture, float x, float y) {
+        Vector2 size = texture->GetSize();
+
+        SDL_FRect destRect;
+        destRect.x = x;
+        destRect.y = y;
+        destRect.w = size.x;
+        destRect.h = size.y;
+
+        // https://wiki.libsdl.org/SDL3/SDL_RenderTexture
+        SDL_RenderTexture(m_renderer, texture->m_texture, NULL, &destRect);
     }
 }
