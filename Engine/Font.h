@@ -1,11 +1,13 @@
 #pragma once
 
-#include  <string>
+#include "Resource.h"
+
+#include <string>
 
 struct TTF_Font;
 
 namespace ChiefEngine {
-	class Font {
+	class Font : public Resource {
 	public:
 		Font() = default;
 		~Font();

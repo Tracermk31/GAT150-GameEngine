@@ -11,14 +11,14 @@ namespace ChiefEngine {
 	class Text {
 	public:
 		Text() = default;
-		Text(Font* font) : m_font{ font } {}
+		Text(resource_t<Font> font) : m_font{ font } {}
 		~Text();
 
 		bool Create(Renderer& renderer, const std::string& text, const Color& color);
 		void Draw(Renderer& renderer, float x, float y) const;
 
 	private:
-		Font* m_font{ nullptr };
+		resource_t<Font> m_font;
 		SDL_Texture* m_texture{ nullptr };
 	};
 

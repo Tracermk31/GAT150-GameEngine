@@ -1,6 +1,6 @@
 #include "pch.h"
 
-#include "texture.h"
+#include "Texture.h"
 #include "Renderer.h"
 
 #include <iostream>
@@ -31,12 +31,12 @@ namespace ChiefEngine {
             return false;
         }
 
+        SetSize();
+
         return true;
     }
 
-    Vector2 Texture::GetSize() {
-        Vector2 sizeToReturn;
-        SDL_GetTextureSize(m_texture, &sizeToReturn.x, &sizeToReturn.y);
-        return sizeToReturn;
+   void Texture::SetSize() {
+        SDL_GetTextureSize(m_texture, &m_size.x, &m_size.y);
     }
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Vector2.h"
+#include "Resource.h"
 
 #include <string>
 
@@ -10,20 +11,19 @@ namespace ChiefEngine {
 
 	class Renderer;
 
-	class Texture
-	{
+	class Texture : public Resource {
 	public:
 		Texture() = default;
 		~Texture();
 
 		bool Load(const std::string& filename, Renderer& renderer);
 
-		Vector2 GetSize();
+		const Vector2 GetSize() const { return m_size; }
+		void SetSize();
 
 		friend Renderer;
-
 	private:
 		SDL_Texture* m_texture{ nullptr };
+		Vector2 m_size{ 0.0f, 0.0f };
 	};
-
 }

@@ -34,7 +34,8 @@ namespace ChiefEngine {
 			void DrawRect(const SDL_FRect* rectangle) const;
 
 			void DrawText(float x, float y, std::string string) const;
-			void DrawTexture(Texture* texture, float x, float y);
+			void DrawTexture(const Texture& texture, float x, float y);
+			void DrawTexture(const Texture& texture, float x, float y, float angle, float scale = 1.0f, bool flipHorizontal = false, bool flipVertical = false);
 
 			void DrawMesh(const class Mesh& mesh, const struct Transform& transform) const;
 			void DrawModel(const class Model& model, const struct Transform& transform) const;

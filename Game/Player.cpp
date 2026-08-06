@@ -1,8 +1,8 @@
-#include "Player.h"
 #include "Input.h"
-#include "Engine.h"
 #include "Assets.h"
 #include "Bullet.h"
+#include "Engine.h"
+#include "Player.h"
 #include "SpaceGame.h"
 
 using namespace ChiefEngine;
@@ -10,12 +10,12 @@ using namespace ChiefEngine;
 void Player::Update(float dt, float maxX, float maxY) {
 
     float thrust = 0.0f;
-    if (Engine::Get().GetInput().GetKeyDown(SDL_SCANCODE_W)) thrust = +m_speed;
-    if (Engine::Get().GetInput().GetKeyDown(SDL_SCANCODE_S)) thrust = -m_speed;
+    if (G_Engine().GetInput().GetKeyDown(SDL_SCANCODE_W)) thrust = +m_speed;
+    if (G_Engine().GetInput().GetKeyDown(SDL_SCANCODE_S)) thrust = -m_speed;
 
     float rotate = 0.0f;
-    if (Engine::Get().GetInput().GetKeyDown(SDL_SCANCODE_A)) rotate = -180.0f;
-    if (Engine::Get().GetInput().GetKeyDown(SDL_SCANCODE_D)) rotate = +180.0f;
+    if (G_Engine().GetInput().GetKeyDown(SDL_SCANCODE_A)) rotate = -180.0f;
+    if (G_Engine().GetInput().GetKeyDown(SDL_SCANCODE_D)) rotate = +180.0f;
 
     SetRotation(m_transform.rotation + (rotate * dt));
 
@@ -34,12 +34,12 @@ void Player::Update(float dt, float maxX, float maxY) {
         thrusterFlame.lifespan = RandomFloat(0.5f, 1.5f);
         thrusterFlame.velocity = Vector2{ RandomFloat(-30.0f, -100.0f), 0 }.Rotate(m_transform.rotation * DEGREE_TO_RADIAN);
 
-        Engine::Get().GetParticleSystem().AddParticle(thrusterFlame);
+        G_Engine().GetParticleSystem().AddParticle(thrusterFlame);
     }
 
     //Shoot bullets
     m_shootDelay -= dt;
-    if (m_shootDelay <= 0 && Engine::Get().GetInput().GetKeyDown(SDL_SCANCODE_SPACE)) {
+    if (m_shootDelay <= 0 && G_Engine().GetInput().GetKeyDown(SDL_SCANCODE_SPACE)) {
         m_shootDelay = 0.25f;
 
         BulletDesc bulletDesc;
@@ -53,21 +53,21 @@ void Player::Update(float dt, float maxX, float maxY) {
 
         m_scene->AddActor(std::move(std::make_unique<Bullet>(bulletDesc)));
 
-        Engine::Get().GetAudio().PlaySound("Laser", Engine::Get().GetAudio().GetChannel(1));
+        G_Engine().GetAudio().PlaySound("Laser", G_Engine().GetAudio().GetChannel(1));
     }
 
-    if (Engine::Get().GetInput().GetKeyDown(SDL_SCANCODE_X)) {
-        Engine::Get().GetTime().SetTimeScale(0.5f);
+    if (G_Engine().GetInput().GetKeyDown(SDL_SCANCODE_X)) {
+        G_Engine().GetTime().SetTimeScale(0.5f);
     } else {
-        Engine::Get().GetTime().SetTimeScale(1.0f);
+        G_Engine().GetTime().SetTimeScale(1.0f);
     }
 
-    Actor::Update(dt, Engine::Get().GetRenderer().getWindowWidth(), Engine::Get().GetRenderer().getWindowHeight());
+    Actor::Update(dt, G_Engine().GetRenderer().getWindowWidth(), G_Engine().GetRenderer().getWindowHeight());
 }
 
 void Player::OnCollision(Actor* other) {
     if (other->GetTag() == "EnemyShip") {
-        //Engine::Get().GetAudio().PlaySound("Explosion", Engine::Get().GetAudio().GetChannel(2));
+        //G_Engine().GetAudio().PlaySound("Explosion", G_Engine().GetAudio().GetChannel(2));
         BeDestroyed();
         ((SpaceGame*)m_scene->GetGame())->OnPlayerDeath();
     }

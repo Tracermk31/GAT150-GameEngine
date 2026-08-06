@@ -1,7 +1,7 @@
-#include "Engine.h"
-#include "Player.h"
 #include "Enemy.h"
 #include "Assets.h"
+#include "Engine.h"
+#include "Player.h"
 #include "SpaceGame.h"
 
 #include <map>
@@ -15,14 +15,12 @@ int main() {
     srand((unsigned int)time(nullptr));
 
     SetWorkingDirectory("Assets");
+
     // INITIALIZATION
-    Engine::Get().Initialize(SCREEN_WIDTH, SCREEN_HEIGHT);
+    G_Engine().Initialize(SCREEN_WIDTH, SCREEN_HEIGHT);
     
     SpaceGame* spaceGame = new SpaceGame(new Scene);
     spaceGame->Initialize();
-
-    std::shared_ptr<Texture> texture = std::make_shared<Texture>();
-    texture->Load("Textures/BoomerangFlower_BC.png", Engine::Get().GetRenderer());
 
     // MAIN LOOP
     SDL_Event event;
@@ -39,25 +37,25 @@ int main() {
             }
         }
 
-        float dt = Engine::Get().GetTime().getDeltaTime();
+        float dt = G_Engine().GetTime().getDeltaTime();
 
-        Engine::Get().Update();
+        G_Engine().Update();
 
         spaceGame->Update(dt, SCREEN_WIDTH, SCREEN_HEIGHT);
 
         // RENDER
-        Engine::Get().GetRenderer().SetColor(0, 0, 0); // Set render draw color to black
-        Engine::Get().GetRenderer().Clear(); // Clear the renderer 
+        G_Engine().GetRenderer().SetColor(0, 0, 0); // Set render draw color to black
+        G_Engine().GetRenderer().Clear(); // Clear the renderer 
 
-        spaceGame->Draw(Engine::Get().GetRenderer(), SCREEN_WIDTH, SCREEN_HEIGHT);
-        Engine::Get().GetParticleSystem().Draw(Engine::Get().GetRenderer());
+        spaceGame->Draw(G_Engine().GetRenderer(), SCREEN_WIDTH, SCREEN_HEIGHT);
+        G_Engine().GetParticleSystem().Draw(G_Engine().GetRenderer());
 
-        Engine::Get().GetRenderer().DrawTexture(texture.get(), 30, 30);
+        G_Engine().GetRenderer().DrawTexture(*Resources().Get<Texture>("Textures/Player.png", G_Engine().GetRenderer()), 30, 30);
 
-        Engine::Get().GetRenderer().Present(); // Render the screen
+        G_Engine().GetRenderer().Present(); // Render the screen
     }
     // SHUTDOWN
-    Engine::Get().Shutdown();
+    G_Engine().Shutdown();
 
     return 0;
 }

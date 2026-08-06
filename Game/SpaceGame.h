@@ -1,9 +1,9 @@
 #pragma once
 
-#include "pch.h"
-#include "Game.h"
 #include "Font.h"
+#include "Game.h"
 #include "Text.h"
+#include "ResourceManager.h"
 
 class SpaceGame : public ChiefEngine::Game {
 public:
@@ -35,7 +35,7 @@ private:
 
 	GameState m_gameState = GameState::Title;
 
-	ChiefEngine::Font* m_font = nullptr;
+	ChiefEngine::resource_t<ChiefEngine::Font> m_font;
 
 	ChiefEngine::Text* m_titleText = nullptr;
 	ChiefEngine::Text* m_scoreText = nullptr;

@@ -15,16 +15,6 @@ public:
 		m_speed{ enemyDesc.speed }
 	{}
 
-	//Enemy(const ChiefEngine::Transform& transform, float speed) :
-	//	Actor{ transform },
-	//	m_speed { speed }
-	//{}
-
-	//Enemy(const ChiefEngine::Transform& transform, const ChiefEngine::Model& model, float speed) :
-	//	Actor{ transform, model },
-	//	m_speed{ speed }
-	//{}
-
 	void Update(float dt, float maxX, float maxY) override;
 	void OnCollision(Actor* other) override;
 private:

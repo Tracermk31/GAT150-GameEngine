@@ -124,8 +124,8 @@ namespace ChiefEngine {
         SDL_RenderDebugText(m_renderer, x, y, string.c_str());
     }
 
-    void Renderer::DrawTexture(Texture* texture, float x, float y) {
-        Vector2 size = texture->GetSize();
+    void Renderer::DrawTexture(const Texture& texture, float x, float y) {
+        Vector2 size = texture.GetSize();
 
         SDL_FRect destRect;
         destRect.x = x;
@@ -134,6 +134,20 @@ namespace ChiefEngine {
         destRect.h = size.y;
 
         // https://wiki.libsdl.org/SDL3/SDL_RenderTexture
-        SDL_RenderTexture(m_renderer, texture->m_texture, NULL, &destRect);
+        SDL_RenderTexture(m_renderer, texture.m_texture, nullptr, &destRect);
+    }
+
+    void Renderer::DrawTexture(const Texture& texture, float x, float y, float angle = 0.0f, float scale, bool flipHorizontal, bool flipVertical) {
+        Vector2 size = texture.GetSize();
+
+        SDL_FRect destRect;
+        destRect.x = x;
+        destRect.y = y;
+        destRect.w = size.x * scale;
+        destRect.h = size.y * scale;
+
+        // https://wiki.libsdl.org/SDL3/SDL_RenderTexture
+        SDL_RenderTextureRotated(m_renderer, texture.m_texture, nullptr, &destRect, angle, nullptr, 
+            (flipHorizontal && flipVertical) ? SDL_FLIP_HORIZONTAL_AND_VERTICAL : (flipHorizontal) ? SDL_FLIP_HORIZONTAL : (flipVertical) ? SDL_FLIP_VERTICAL : SDL_FLIP_NONE);
     }
 }

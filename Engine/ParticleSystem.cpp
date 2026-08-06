@@ -1,6 +1,7 @@
 #include "pch.h"
-#include "ParticleSystem.h"
+
 #include "Renderer.h"
+#include "ParticleSystem.h"
 
 namespace ChiefEngine{
 	bool ParticleSystem::Initialize(size_t poolSize) {

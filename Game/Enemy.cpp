@@ -18,12 +18,12 @@ void Enemy::Update(float dt, float maxX, float maxY) {
         AddVelocity(velocity * m_speed * dt);
     }
 
-    Actor::Update(dt, Engine::Get().GetRenderer().getWindowWidth(), Engine::Get().GetRenderer().getWindowHeight());
+    Actor::Update(dt, G_Engine().GetRenderer().getWindowWidth(), G_Engine().GetRenderer().getWindowHeight());
 }
 
 void Enemy::OnCollision(Actor* other) {
     if (other->GetTag() == "PlayerBullet") {
-        Engine::Get().GetAudio().PlaySound("Explosion", Engine::Get().GetAudio().GetChannel(2));
+        G_Engine().GetAudio().PlaySound("Explosion", G_Engine().GetAudio().GetChannel(2));
         BeDestroyed();
         other->BeDestroyed();
 
@@ -40,7 +40,7 @@ void Enemy::OnCollision(Actor* other) {
             particle.lifespan = RandomFloat(0.5f, 2.0f);
             particle.velocity = { RandomFloat(-600.0f, 600.0f), RandomFloat(-600.0f, 600.0f) };
 
-            Engine::Get().GetParticleSystem().AddParticle(particle);
+            G_Engine().GetParticleSystem().AddParticle(particle);
         }
     }
 }

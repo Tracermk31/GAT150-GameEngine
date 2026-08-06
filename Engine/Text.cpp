@@ -3,8 +3,8 @@
 #include "Text.h"
 #include "Renderer.h"
 
-#include <SDL3_ttf/SDL_ttf.h>
 #include <iostream>
+#include <SDL3_ttf/SDL_ttf.h>
 
 namespace ChiefEngine {
 	Text::~Text() {

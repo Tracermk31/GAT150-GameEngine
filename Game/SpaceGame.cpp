@@ -1,9 +1,8 @@
-#include "SpaceGame.h"
-
-#include "Engine.h"
-#include "Player.h"
 #include "Enemy.h"
 #include "Assets.h"
+#include "Engine.h"
+#include "Player.h"
+#include "SpaceGame.h"
 
 #include <iostream>
 
@@ -14,16 +13,15 @@ const float FONT_SIZE = 16.0f;
 bool SpaceGame::Initialize() {
 	Game::Initialize();
 
-	Engine::Get().GetAudio().AddSound("Laser", "audio/laser.wav");
-	//Engine::Get().GetAudio().AddSound("BGM", "audio/BackgroundMusic.wav");
-	//Engine::Get().GetAudio().setSoundLoop("BGM", true);
-	Engine::Get().GetAudio().AddSound("Explosion", "audio/explosion.wav");
+	G_Engine().GetAudio().AddSound("Laser", "audio/laser.wav");
+	//G_Engine().GetAudio().AddSound("BGM", "audio/BackgroundMusic.wav");
+	//G_Engine().GetAudio().setSoundLoop("BGM", true);
+	G_Engine().GetAudio().AddSound("Explosion", "audio/explosion.wav");
 
 	m_scene = new Scene();
 	m_scene->SetGame(this);
 
-	m_font = new Font();
-	m_font->Load("Fonts/ArcadeNormal.ttf", FONT_SIZE);
+	m_font = Resources().Get<Font>("Fonts/ArcadeNormal.ttf", 16.0f);
 	m_titleText = new Text(m_font);
 	m_scoreText = new Text(m_font);
 	m_livesText = new Text(m_font);
@@ -31,19 +29,19 @@ bool SpaceGame::Initialize() {
 	m_controlsText = new Text(m_font);
 	m_pressSpaceText = new Text(m_font);
 
-	m_titleText->Create(Engine::Get().GetRenderer(), "Space Game", {1.0f, 1.0f, 1.0f});
-	m_scoreText->Create(Engine::Get().GetRenderer(), "SCORE: " + std::to_string(m_score), {1.0f, 1.0f, 1.0f});
-	m_livesText->Create(Engine::Get().GetRenderer(), "LIVES: " + std::to_string(m_lives), {1.0f, 1.0f, 1.0f});
-	m_gameOverText->Create(Engine::Get().GetRenderer(), "YOU DIED", {1.0f, 1.0f, 1.0f});
-	m_controlsText->Create(Engine::Get().GetRenderer(), "CONTROLS SPACE: SHOOT | X: BULLET TIME | WA: Thrust Forward/Backwards | SD: Rotate Left/Right", {1.0f, 1.0f, 1.0f});
-	m_pressSpaceText->Create(Engine::Get().GetRenderer(), "Press Space", {1.0f, 1.0f, 1.0f});
+	m_titleText->Create(G_Engine().GetRenderer(), "Space Game", {1.0f, 1.0f, 1.0f});
+	m_scoreText->Create(G_Engine().GetRenderer(), "SCORE: " + std::to_string(m_score), {1.0f, 1.0f, 1.0f});
+	m_livesText->Create(G_Engine().GetRenderer(), "LIVES: " + std::to_string(m_lives), {1.0f, 1.0f, 1.0f});
+	m_gameOverText->Create(G_Engine().GetRenderer(), "YOU DIED", {1.0f, 1.0f, 1.0f});
+	m_controlsText->Create(G_Engine().GetRenderer(), "CONTROLS SPACE: SHOOT | X: BULLET TIME | WA: Thrust Forward/Backwards | SD: Rotate Left/Right", {1.0f, 1.0f, 1.0f});
+	m_pressSpaceText->Create(G_Engine().GetRenderer(), "Press Space", {1.0f, 1.0f, 1.0f});
 	return true;
 }
 
 void SpaceGame::Update(float dt, float maxX, float maxY) {
 	switch (m_gameState) {
 	case GameState::Title:
-		if (Engine::Get().GetInput().GetKeyPressed(SDL_SCANCODE_SPACE)) {
+		if (G_Engine().GetInput().GetKeyPressed(SDL_SCANCODE_SPACE)) {
 			m_gameState = GameState::StartGame;
 		}
 		break;
@@ -61,7 +59,7 @@ void SpaceGame::Update(float dt, float maxX, float maxY) {
 		m_gameState = GameState::GamePlay;
 		break;
 	case GameState::GamePlay:
-		//Engine::Get().GetAudio().PlaySound("BGM", Engine::Get().GetAudio().GetChannel(2));
+		//G_Engine().GetAudio().PlaySound("BGM", G_Engine().GetAudio().GetChannel(2));
 		m_spawnTimer -= dt; 
 		if (m_spawnTimer <= 0) {
 			SpawnEnemy(maxX, maxY);
@@ -76,7 +74,7 @@ void SpaceGame::Update(float dt, float maxX, float maxY) {
 		break;
 	case GameState::GameOver:
 		m_scene->DeleteActors();
-		if (Engine::Get().GetInput().GetKeyPressed(SDL_SCANCODE_SPACE)) {
+		if (G_Engine().GetInput().GetKeyPressed(SDL_SCANCODE_SPACE)) {
 			m_gameState = GameState::Title;
 		}
 		break;
@@ -96,9 +94,9 @@ void SpaceGame::Draw(ChiefEngine::Renderer& renderer, float maxX, float maxY) {
 	case GameState::StartLevel:
 		break;
 	case GameState::GamePlay:
-		m_scoreText->Create(Engine::Get().GetRenderer(), "SCORE: " + std::to_string(m_score), { 1.0f, 1.0f, 1.0f });
+		m_scoreText->Create(G_Engine().GetRenderer(), "SCORE: " + std::to_string(m_score), { 1.0f, 1.0f, 1.0f });
 		m_scoreText->Draw(renderer, 40, 40);
-		m_livesText->Create(Engine::Get().GetRenderer(), "LIVES: " + std::to_string(m_lives), { 1.0f, 1.0f, 1.0f });
+		m_livesText->Create(G_Engine().GetRenderer(), "LIVES: " + std::to_string(m_lives), { 1.0f, 1.0f, 1.0f });
 		m_livesText->Draw(renderer, 40, 80);
 		break;
 	case GameState::GameOver:

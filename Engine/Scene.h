@@ -2,9 +2,9 @@
 
 #include "Actor.h"
 
-#include <vector>
-#include <string>
 #include <memory>
+#include <string>
+#include <vector>
 
 namespace ChiefEngine {
 	class Game;

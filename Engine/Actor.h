@@ -1,14 +1,17 @@
 #pragma once
 
-#include "Transform.h"
 #include "Model.h"
+#include "Transform.h"
 
-#include <string>
 #include <memory>
+#include <string>
 
 namespace ChiefEngine {
     class Scene;
 
+    /// <summary>
+    /// Struct used to contain the information to build an Actor.
+    /// </summary>
     struct ActorDesc {
         std::string name;
         std::string tag;
@@ -19,9 +22,20 @@ namespace ChiefEngine {
         std::shared_ptr<Model> model;
     };
 
+    /// <summary>
+    /// Parent class for all actors inside of a Scene.
+    /// </summary>
     class Actor {
     public:
+        /// <summary>
+        /// Default constructor for the Actor class.
+        /// </summary>
         Actor() = default;
+
+        /// <summary>
+        /// Utilizes the predefined ActorDesc struct to assign all necessary variables to create an Actor
+        /// </summary>
+        /// <param name="actorDesc"> Predefined struct containing all info to create an Actor</param>
         Actor(const ActorDesc& actorDesc) :
             m_name{ actorDesc.name },
             m_tag{ actorDesc.tag },
@@ -31,12 +45,6 @@ namespace ChiefEngine {
             m_damping{ actorDesc.damping },
             m_lifespan{ actorDesc.lifespan }
         { };
-
-        //Actor(const Transform& transform) : m_transform{ transform } {};
-        //Actor(const Transform& transform, const std::shared_ptr<Model> model) :
-        //    m_transform{ transform },
-        //    m_model{ model }
-        //{ };
 
         virtual void Update(float dt, float maxY, float maxX);
         virtual void Draw(const class Renderer& renderer) const;
