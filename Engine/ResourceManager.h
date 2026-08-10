@@ -5,6 +5,7 @@
 
 #include <map>
 #include <string>
+#include <iostream>
 
 namespace ChiefEngine {
 	class ResourceManager : public Singleton<ResourceManager> {

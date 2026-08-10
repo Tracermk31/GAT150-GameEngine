@@ -21,7 +21,7 @@ namespace ChiefEngine {
 		void Shutdown();
 		void Update();
 
-		FMOD::Channel* GetChannel(unsigned short channelNumber) {
+		inline FMOD::Channel* GetChannel(unsigned short channelNumber) {
 			switch (channelNumber) {
 			case 1:
 				return m_channel_1;
@@ -33,7 +33,7 @@ namespace ChiefEngine {
 
 		bool AddSound(const std::string& name, const std::string filepath);
 
-		void ClearSounds() {
+		inline void ClearSounds() {
 			m_sounds.clear();
 		}
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Model.h"
+#include "Resource.h"
 #include "Transform.h"
 
 #include <memory>
@@ -8,6 +9,7 @@
 
 namespace ChiefEngine {
     class Scene;
+    class Texture;
 
     /// <summary>
     /// Struct used to contain the information to build an Actor.
@@ -19,7 +21,8 @@ namespace ChiefEngine {
         Vector2 velocity = 0.0f;
         float damping = 0.0f;
         float lifespan = -1.0f;
-        std::shared_ptr<Model> model;
+        resource_t<Model> model;
+        resource_t<Texture> texture;
     };
 
     /// <summary>
@@ -41,9 +44,10 @@ namespace ChiefEngine {
             m_tag{ actorDesc.tag },
             m_transform{ actorDesc.transform },
             m_velocity{ actorDesc.velocity },
-            m_model{ actorDesc.model },
             m_damping{ actorDesc.damping },
-            m_lifespan{ actorDesc.lifespan }
+            m_lifespan{ actorDesc.lifespan },
+            m_model{ actorDesc.model },
+            m_texture { actorDesc.texture}
         { };
 
         virtual void Update(float dt, float maxY, float maxX);
@@ -72,11 +76,15 @@ namespace ChiefEngine {
         std::string m_name;
         std::string m_tag;
         Transform m_transform;
+
         Vector2 m_velocity{ 0.0f };
         float m_damping{ 0.0f };
         float m_lifespan{ -1.0f };
         bool m_destroyed{ false };
-        std::shared_ptr<Model> m_model;
+
+        resource_t<Model> m_model;
+        resource_t<Texture> m_texture;
+
         Scene* m_scene{ nullptr };
     };
 }

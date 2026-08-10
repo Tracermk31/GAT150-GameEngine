@@ -25,16 +25,16 @@ void Player::Update(float dt, float maxX, float maxY) {
 
     if (thrust) {
         Particle thrusterFlame;
-        Vector2 offset = { -1.5f * m_transform.scale, 0.0f };
+     
+        Vector2 offset = { -20.0f * m_transform.scale, 0.0f };
         offset = offset.Rotate(m_transform.rotation * DEGREE_TO_RADIAN);
         thrusterFlame.position = m_transform.position + offset;
 
-        Color colors[3] = { {1.0f, 1.0f, 0.0f}, {1.0f, 0.0f, 0.0f}, {1.0f, 0.5f, 0.0f} };
-        thrusterFlame.color = colors[RandomInt(3)];
         thrusterFlame.lifespan = RandomFloat(0.5f, 1.5f);
-        thrusterFlame.velocity = Vector2{ RandomFloat(-30.0f, -100.0f), 0 }.Rotate(m_transform.rotation * DEGREE_TO_RADIAN);
+        thrusterFlame.velocity = Vector2{ RandomFloat(-100.0f, -30.0f), 0 }.Rotate(m_transform.rotation * DEGREE_TO_RADIAN);
+        thrusterFlame.scale = 0.075f;
 
-        G_Engine().GetParticleSystem().AddParticle(thrusterFlame);
+        G_Engine().GetParticleSystem().AddParticleAsTexture(thrusterFlame, "Textures/ThrusterFlame.png", G_Engine().GetRenderer());
     }
 
     //Shoot bullets
@@ -45,9 +45,10 @@ void Player::Update(float dt, float maxX, float maxY) {
         BulletDesc bulletDesc;
         bulletDesc.name = "Bullet";
         bulletDesc.tag = "PlayerBullet";
-        bulletDesc.model = Assets::bulletModel;
+        //bulletDesc.model = Assets::bulletModel;
+        bulletDesc.texture = Resources().Get<Texture>("Textures/Laser.png", G_Engine().GetRenderer());
         bulletDesc.transform = m_transform;
-        bulletDesc.transform.scale = m_transform.scale / 4;
+        bulletDesc.transform.scale = m_transform.scale*0.5f;
         bulletDesc.speed = 200.0f;
         bulletDesc.lifespan = 0.1f;
 
@@ -66,7 +67,7 @@ void Player::Update(float dt, float maxX, float maxY) {
 }
 
 void Player::OnCollision(Actor* other) {
-    if (other->GetTag() == "EnemyShip") {
+    if (other->GetTag() == "EnemyShip" || other->GetTag() == "EnemyBoss") {
         //G_Engine().GetAudio().PlaySound("Explosion", G_Engine().GetAudio().GetChannel(2));
         BeDestroyed();
         ((SpaceGame*)m_scene->GetGame())->OnPlayerDeath();

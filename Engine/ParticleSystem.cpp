@@ -2,6 +2,7 @@
 
 #include "Renderer.h"
 #include "ParticleSystem.h"
+#include "ResourceManager.h"
 
 namespace ChiefEngine{
 	bool ParticleSystem::Initialize(size_t poolSize) {
@@ -32,8 +33,12 @@ namespace ChiefEngine{
 	void ParticleSystem::Draw(Renderer& renderer) {
 		for (auto& particle : m_particles) {
 			if (particle.active) {
-				renderer.SetColorVector(particle.color);
-				renderer.DrawPoint(particle.position.x, particle.position.y);
+				if (particle.particleTexture) {
+					renderer.DrawTexture(*particle.particleTexture, particle.position.x, particle.position.y, 0.0f, particle.scale);
+				} else {
+					renderer.SetColorVector(particle.color);
+					renderer.DrawPoint(particle.position.x, particle.position.y);
+				}
 			}
 		}
 	}
@@ -43,6 +48,15 @@ namespace ChiefEngine{
 		if (freeParticle) {
 			*freeParticle = particle;
 			freeParticle->active = true;
+		}
+	}
+
+	void ParticleSystem::AddParticleAsTexture(const Particle& particle, const std::string& particleTexturePath, Renderer& renderer) {
+		Particle* freeParticle = GetFreeParticle();
+		if (freeParticle) {
+			*freeParticle = particle;
+			freeParticle->active = true;
+			freeParticle->particleTexture = Resources().Get<Texture>(particleTexturePath, renderer);
 		}
 	}
 

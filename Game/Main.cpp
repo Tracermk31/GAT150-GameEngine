@@ -5,6 +5,7 @@
 #include "SpaceGame.h"
 
 #include <map>
+#include <fstream>
 
 using namespace ChiefEngine;
 
@@ -12,7 +13,7 @@ float SCREEN_WIDTH = 1920.0f;
 float SCREEN_HEIGHT = 1200.0f;
 
 int main() {
-    srand((unsigned int)time(nullptr));
+    SeedRandom((unsigned int)time(nullptr));
 
     SetWorkingDirectory("Assets");
 
@@ -49,8 +50,6 @@ int main() {
 
         spaceGame->Draw(G_Engine().GetRenderer(), SCREEN_WIDTH, SCREEN_HEIGHT);
         G_Engine().GetParticleSystem().Draw(G_Engine().GetRenderer());
-
-        G_Engine().GetRenderer().DrawTexture(*Resources().Get<Texture>("Textures/Player.png", G_Engine().GetRenderer()), 30, 30);
 
         G_Engine().GetRenderer().Present(); // Render the screen
     }

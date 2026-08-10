@@ -83,6 +83,7 @@ void SpaceGame::Update(float dt, float maxX, float maxY) {
 }
 
 void SpaceGame::Draw(ChiefEngine::Renderer& renderer, float maxX, float maxY) {
+	renderer.DrawTexture(*Resources().Get<Texture>("Textures/Background.jpg", G_Engine().GetRenderer()), maxX/2, maxY/2, 1.0f, 0.5f);
 	switch (m_gameState) {
 	case GameState::Title:
 		m_titleText->Draw(renderer, maxX/2 - 180 / 2, 100.0f);
@@ -113,8 +114,9 @@ void SpaceGame::SpawnEnemy(float maxX, float maxY) {
 	enemyDesc.tag = "EnemyShip";
 	enemyDesc.speed = 1000.0f;
 	enemyDesc.damping = 3.0f;
-	enemyDesc.transform = Transform{ Vector2{ RandomFloat(0, maxX), RandomFloat(0, maxY)}, 0.0f, 20.0f };
-	enemyDesc.model = Assets::enemyModel;
+	enemyDesc.transform = Transform{ Vector2{ RandomFloat(0, maxX), RandomFloat(0, maxY)}, 0.0f, 1.0f };
+	//enemyDesc.model = Assets::enemyModel;
+	enemyDesc.texture = Resources().Get<Texture>("Textures/Enemy.png", G_Engine().GetRenderer());
 
 	m_scene->AddActor(std::move(std::make_unique<Enemy>(enemyDesc)));
 }
@@ -125,8 +127,9 @@ void SpaceGame::SpawnBoss(float maxX, float maxY) {
 	enemyDesc.tag = "EnemyBoss";
 	enemyDesc.speed = 1500.0f;
 	enemyDesc.damping = 3.0f;
-	enemyDesc.transform = Transform{ Vector2{ RandomFloat(0, maxX), RandomFloat(0, maxY)}, 0.0f, 40.0f };
-	enemyDesc.model = Assets::enemyModel;
+	enemyDesc.transform = Transform{ Vector2{ RandomFloat(0, maxX), RandomFloat(0, maxY)}, 0.0f, 2.5f };
+	//enemyDesc.model = Assets::enemyModel;
+	enemyDesc.texture = Resources().Get<Texture>("Textures/Enemy.png", G_Engine().GetRenderer());
 
 	m_scene->AddActor(std::move(std::make_unique<Enemy>(enemyDesc)));
 }
@@ -137,8 +140,9 @@ void SpaceGame::SpawnPlayer(float maxX, float maxY) {
 	playerDesc.tag = "PlayerShip";
 	playerDesc.speed = 2000.0f;
 	playerDesc.damping = 3.0f;
-	playerDesc.transform = Transform{ Vector2{ maxX / 2.0f, maxY / 2.0f }, 0.0f, 50.0f };
-	playerDesc.model = Assets::playerModel;
+	playerDesc.transform = Transform{ Vector2{ maxX / 2.0f, maxY / 2.0f }, 0.0f, 2.0f };
+	//playerDesc.model = Assets::playerModel;
+	playerDesc.texture = Resources().Get<Texture>("Textures/player.png", G_Engine().GetRenderer());
 
 	m_scene->AddActor(std::move(std::make_unique<Player>(playerDesc)));
 }

@@ -1,6 +1,7 @@
 #include "pch.h"
 
 #include "Actor.h"
+#include "Texture.h"
 #include "Renderer.h"
 #include "EngineMath.h"
 
@@ -32,6 +33,9 @@ namespace ChiefEngine {
         if (m_model) {
             renderer.DrawModel(*m_model, m_transform);
         }
+        else if (m_texture) {
+            renderer.DrawTexture(*m_texture, m_transform.position.x, m_transform.position.y, m_transform.rotation, m_transform.scale);
+        }
     }
 
     /// <summary>
@@ -39,6 +43,11 @@ namespace ChiefEngine {
     /// </summary>
     /// <returns>The models radius multipled by the Actor's scale and reduced slightly</returns>
     float Actor::GetRadius() const {
-        return m_model->GetRadius() * m_transform.scale * 0.9f;
+        if (m_model) {
+            return m_model->GetRadius() * m_transform.scale * 0.9f;
+        } else if (m_texture) {
+            return m_texture->GetSize().Length() * 0.5f * 0.9f;
+        }
+        return 0.0f;
     }
 }

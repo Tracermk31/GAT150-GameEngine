@@ -1,18 +1,22 @@
 #pragma once
 
+#include "Texture.h"
 #include "Vector2.h"
 #include "Vector3.h"
 
 #include <vector>
 
 namespace ChiefEngine {
-	struct Particle {
+	class Particle {
+	public:
 		bool active{ false };
 		float lifespan{ 1 };
+		float scale = 1.0f;
 
 		Vector2 position{ 0.0f, 0.0f };
 		Vector2 velocity{ 0.0f, 0.0f };
 		Color color{ 0.0f, 0.0f, 0.0f };
+		resource_t<Texture> particleTexture;
 	};
 
 	class ParticleSystem {
@@ -26,6 +30,7 @@ namespace ChiefEngine {
 		void Draw(class Renderer& renderer);
 
 		void AddParticle(const Particle& particle);
+		void AddParticleAsTexture(const Particle& particle, const std::string& particleTexturePath, Renderer& renderer);
 
 	private:
 		Particle* GetFreeParticle();
