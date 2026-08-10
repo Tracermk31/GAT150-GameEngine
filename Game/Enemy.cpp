@@ -34,13 +34,14 @@ void Enemy::OnCollision(Actor* other) {
         }
 
         for (short index = 0; index < 100; index++) {
-            Particle particle;
-            particle.position = m_transform.position;
-            particle.color = { 1.0f, 1.0f, 1.0f };
-            particle.lifespan = RandomFloat(0.5f, 2.0f);
-            particle.velocity = { RandomFloat(-600.0f, 600.0f), RandomFloat(-600.0f, 600.0f) };
+            Particle shipDebris;
+            shipDebris.position = m_transform.position;
+            shipDebris.color = { 1.0f, 1.0f, 1.0f };
+            shipDebris.lifespan = RandomFloat(0.5f, 2.0f);
+            shipDebris.velocity = { RandomFloat(-600.0f, 600.0f), RandomFloat(-600.0f, 600.0f) };
+            shipDebris.scale = 0.02f * m_transform.scale;
 
-            G_Engine().GetParticleSystem().AddParticle(particle);
+            G_Engine().GetParticleSystem().AddParticleAsTexture(shipDebris, "Textures/ShipDebris.png", G_Engine().GetRenderer());
         }
     }
 }

@@ -10,8 +10,52 @@ using namespace ChiefEngine;
 void Player::Update(float dt, float maxX, float maxY) {
 
     float thrust = 0.0f;
-    if (G_Engine().GetInput().GetKeyDown(SDL_SCANCODE_W)) thrust = +m_speed;
-    if (G_Engine().GetInput().GetKeyDown(SDL_SCANCODE_S)) thrust = -m_speed;
+    if (G_Engine().GetInput().GetKeyDown(SDL_SCANCODE_W)) {
+        thrust = +m_speed;
+
+        Particle thrusterFlame;
+
+        Vector2 offset = { -20.0f * m_transform.scale, 0.0f };
+        offset = offset.Rotate(m_transform.rotation * DEGREE_TO_RADIAN);
+        thrusterFlame.position = m_transform.position + offset;
+
+        thrusterFlame.color = { 1.0f, 0.0f, 0.0f };
+        thrusterFlame.lifespan = RandomFloat(0.5f, 1.0f);
+        thrusterFlame.velocity = Vector2{ RandomFloat(-100.0f, -30.0f), 0 }.Rotate(m_transform.rotation * DEGREE_TO_RADIAN);
+        thrusterFlame.scale = 0.075f;
+
+        G_Engine().GetParticleSystem().AddParticleAsTexture(thrusterFlame, "Textures/ThrusterFlame.png", G_Engine().GetRenderer());
+    }
+
+    if (G_Engine().GetInput().GetKeyDown(SDL_SCANCODE_S)) {
+        thrust = -m_speed;
+
+        Particle thrusterFlame;
+        Particle thrusterFlameTwo;
+
+        Vector2 offset = { 11.5f * m_transform.scale, -10.0f * m_transform.scale };
+        offset = offset.Rotate(m_transform.rotation * DEGREE_TO_RADIAN);
+        thrusterFlame.position = m_transform.position + offset;
+
+        Vector2 offsetTwo = { 11.5f * m_transform.scale, 10.0f * m_transform.scale};
+        offsetTwo = offsetTwo.Rotate(m_transform.rotation * DEGREE_TO_RADIAN);
+        thrusterFlameTwo.position = m_transform.position + offsetTwo;
+
+        thrusterFlame.color = { 1.0f, 0.0f, 0.0f };
+        thrusterFlameTwo.color = { 1.0f, 0.0f, 0.0f };
+
+        thrusterFlame.lifespan = RandomFloat(0.25f, 0.5f);
+        thrusterFlameTwo.lifespan = RandomFloat(0.25f, 0.5f);
+
+        thrusterFlame.velocity = Vector2{ RandomFloat(-100.0f, -30.0f), 0 }.Rotate(m_transform.rotation * DEGREE_TO_RADIAN);
+        thrusterFlameTwo.velocity = Vector2{ RandomFloat(-100.0f, -30.0f), 0 }.Rotate(m_transform.rotation * DEGREE_TO_RADIAN);
+
+        thrusterFlame.scale = 0.0375f;
+        thrusterFlameTwo.scale = 0.0375f;
+
+        G_Engine().GetParticleSystem().AddParticleAsTexture(thrusterFlame, "Textures/ThrusterFlame.png", G_Engine().GetRenderer());
+        G_Engine().GetParticleSystem().AddParticleAsTexture(thrusterFlameTwo, "Textures/ThrusterFlame.png", G_Engine().GetRenderer());
+    }
 
     float rotate = 0.0f;
     if (G_Engine().GetInput().GetKeyDown(SDL_SCANCODE_A)) rotate = -180.0f;
@@ -22,20 +66,6 @@ void Player::Update(float dt, float maxX, float maxY) {
     Vector2 forward{ 1.0f, 0.0f };
     Vector2 velocity = forward.Rotate(m_transform.rotation * DEGREE_TO_RADIAN) * thrust;
     AddVelocity(velocity * dt);
-
-    if (thrust) {
-        Particle thrusterFlame;
-     
-        Vector2 offset = { -20.0f * m_transform.scale, 0.0f };
-        offset = offset.Rotate(m_transform.rotation * DEGREE_TO_RADIAN);
-        thrusterFlame.position = m_transform.position + offset;
-
-        thrusterFlame.lifespan = RandomFloat(0.5f, 1.5f);
-        thrusterFlame.velocity = Vector2{ RandomFloat(-100.0f, -30.0f), 0 }.Rotate(m_transform.rotation * DEGREE_TO_RADIAN);
-        thrusterFlame.scale = 0.075f;
-
-        G_Engine().GetParticleSystem().AddParticleAsTexture(thrusterFlame, "Textures/ThrusterFlame.png", G_Engine().GetRenderer());
-    }
 
     //Shoot bullets
     m_shootDelay -= dt;
@@ -48,6 +78,11 @@ void Player::Update(float dt, float maxX, float maxY) {
         //bulletDesc.model = Assets::bulletModel;
         bulletDesc.texture = Resources().Get<Texture>("Textures/Laser.png", G_Engine().GetRenderer());
         bulletDesc.transform = m_transform;
+
+        Vector2 offset = { 20.0f * m_transform.scale, 0.0f };
+        offset = offset.Rotate(m_transform.rotation * DEGREE_TO_RADIAN);
+        bulletDesc.transform.position += offset;
+
         bulletDesc.transform.scale = m_transform.scale*0.5f;
         bulletDesc.speed = 200.0f;
         bulletDesc.lifespan = 0.1f;
