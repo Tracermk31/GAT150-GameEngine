@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Model.h"
+#include "Object.h"
 #include "Resource.h"
 #include "Transform.h"
 
@@ -28,7 +29,7 @@ namespace ChiefEngine {
     /// <summary>
     /// Parent class for all actors inside of a Scene.
     /// </summary>
-    class Actor {
+    class Actor : public Object {
     public:
         /// <summary>
         /// Default constructor for the Actor class.
@@ -40,6 +41,7 @@ namespace ChiefEngine {
         /// </summary>
         /// <param name="actorDesc"> Predefined struct containing all info to create an Actor</param>
         Actor(const ActorDesc& actorDesc) :
+            //SetName(actorDesc.name),
             m_name{ actorDesc.name },
             m_tag{ actorDesc.tag },
             m_transform{ actorDesc.transform },

@@ -2,17 +2,20 @@
 
 #include "File.h"
 #include "Font.h"
+#include "JSON.h"
 #include "Text.h"
 #include "Actor.h"
 #include "Audio.h"
 #include "Input.h"
 #include "Scene.h"
 #include "Random.h"
+#include "Factory.h"
 #include "Texture.h"
 #include "Renderer.h"
 #include "Singleton.h"
 #include "EngineMath.h"
 #include "EngineTime.h"
+#include "EngineStrings.h"
 #include "ParticleSystem.h"
 
 #include <vector>
