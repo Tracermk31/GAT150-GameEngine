@@ -16,6 +16,8 @@ public:
 	{}
 
 	void Update(float dt, float maxX, float maxY) override;
+
+	void Read(const ChiefEngine::JSON::value_t& value) override;
 private:
 	float m_speed = 0.0f;
 };

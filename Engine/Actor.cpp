@@ -50,4 +50,18 @@ namespace ChiefEngine {
         }
         return 0.0f;
     }
+
+    void Actor::Read(const JSON::value_t& value) {
+        Object::Read(value);
+
+        if (JSON_HAS_BY_NAME(value, "transform")) {
+            m_transform.Read(value["transform"]);
+        }
+
+        JSON_READ_MEMBER(value, "tag", m_tag);
+        JSON_READ_MEMBER(value, "damping", m_damping);
+        JSON_READ_MEMBER(value, "velocity", m_velocity);
+        JSON_READ_MEMBER(value, "lifespan", m_lifespan);
+        JSON_READ_MEMBER(value, "destroyed", m_destroyed);
+    }
 }

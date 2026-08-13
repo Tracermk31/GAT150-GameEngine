@@ -19,7 +19,7 @@ namespace ChiefEngine {
     class Creator : public ICreator {
     public:
         ~Creator() = default;
-        std::unique_ptr<T> Create() override { return std::make_unique<T>(); }
+        std::unique_ptr<Object> Create() override { return std::make_unique<T>(); }
     };
 
     class Factory : public Singleton<Factory> {

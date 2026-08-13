@@ -1,0 +1,22 @@
+{
+    "name": "Michael Y. Kinney Perez",
+    "tag": "Student",
+    "transform": {
+        "position": [
+          1.0,
+          0.0
+        ],
+        "rotation": 1.7,
+        "scale": 1.5
+    },
+    "lifespan": 100.0,
+    "destroyed" : false,
+    "active": true,
+    "damping": 0.8,
+    "velocity": [
+      0.0,
+      0.0
+    ],
+    "speed" : 20.0,
+    "shoot delay" : 0.8
+}

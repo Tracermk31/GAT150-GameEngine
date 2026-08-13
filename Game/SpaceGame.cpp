@@ -137,7 +137,7 @@ void SpaceGame::SpawnBoss(float maxX, float maxY) {
 void SpaceGame::SpawnPlayer(float maxX, float maxY) {
 	PlayerDesc playerDesc;
 	playerDesc.name = "Player";
-	playerDesc.tag = "PlayerShip";
+	playerDesc.tag = "PlayerCharacter";
 	playerDesc.speed = 2000.0f;
 	playerDesc.damping = 3.0f;
 	playerDesc.transform = Transform{ Vector2{ maxX / 2.0f, maxY / 2.0f }, 0.0f, 2.0f };

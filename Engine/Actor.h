@@ -41,8 +41,6 @@ namespace ChiefEngine {
         /// </summary>
         /// <param name="actorDesc"> Predefined struct containing all info to create an Actor</param>
         Actor(const ActorDesc& actorDesc) :
-            //SetName(actorDesc.name),
-            m_name{ actorDesc.name },
             m_tag{ actorDesc.tag },
             m_transform{ actorDesc.transform },
             m_velocity{ actorDesc.velocity },
@@ -57,9 +55,11 @@ namespace ChiefEngine {
 
         virtual void OnCollision(Actor* other) {}
 
+        virtual void Read(const JSON::value_t& value) override;
+
         float GetRadius() const;
 
-        inline const Transform& GetTransform() const { return this->m_transform; }
+        const Transform& GetTransform() const { return this->m_transform; }
         void SetPosition(const Vector2& position) { m_transform.position = position; }
         void SetRotation(float rotation) { m_transform.rotation = rotation; }
         void SetScale(float scale) { m_transform.scale = scale; }
@@ -75,8 +75,7 @@ namespace ChiefEngine {
 
         friend Scene;
     protected:
-        std::string m_name;
-        std::string m_tag;
+        std::string m_tag = "[UNDECIDED]";
         Transform m_transform;
 
         Vector2 m_velocity{ 0.0f };

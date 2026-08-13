@@ -11,3 +11,7 @@ void Bullet::Update(float dt, float maxX, float maxY) {
 
 	Actor::Update(dt, maxX, maxY);
 }
+
+void Bullet::Read(const JSON::value_t& value) {
+	Actor::Read(value);
+}

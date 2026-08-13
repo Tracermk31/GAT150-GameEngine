@@ -99,6 +99,7 @@ void Player::Update(float dt, float maxX, float maxY) {
     }
 
     Actor::Update(dt, G_Engine().GetRenderer().getWindowWidth(), G_Engine().GetRenderer().getWindowHeight());
+
 }
 
 void Player::OnCollision(Actor* other) {
@@ -107,4 +108,11 @@ void Player::OnCollision(Actor* other) {
         BeDestroyed();
         ((SpaceGame*)m_scene->GetGame())->OnPlayerDeath();
     }
+}
+
+void Player::Read(const JSON::value_t& value) {
+    Actor::Read(value);
+
+    JSON_READ_MEMBER(value, "speed", m_speed);
+    JSON_READ_MEMBER(value, "shoot delay", m_shootDelay);
 }

@@ -36,5 +36,16 @@ namespace ChiefEngine {
 			}
 			return nullptr;
 		}
+
+		template<typename T = Actor>
+		inline T* GetActorByTag(const std::string& tag) {
+			for (auto& actor : m_actors) {
+				T* tempActor = dynamic_cast<T*>(actor.get());
+				if (tempActor && tempActor->m_tag._Equal(tag)) {
+					return tempActor;
+				}
+			}
+			return nullptr;
+		}
 	};
 }

@@ -12,59 +12,26 @@ using namespace ChiefEngine;
 float SCREEN_WIDTH = 1920.0f;
 float SCREEN_HEIGHT = 1200.0f;
 
-class Animal {
-public:
-    virtual void Speak() { std::cout << "noise\n"; }
-};
-
-class Cat : public Animal {
-    void Speak() override { std::cout << "meow\n"; }
-};
-
-class Dog : public Animal {
-    void Speak() override { std::cout << "woof\n"; }
-};
-
-class Bird : public Animal {
-    void Speak() override { std::cout << "caw\n"; }
-};
-
 int main() {
-    //Factory::Instance().Register<Actor>("Actor");
-    //auto actor = Factory::Instance().Create("Actor");
+    Factory::Instance().Register<Object>("Object");
+    Factory::Instance().Register<Actor>("Actor");
+    Factory::Instance().Register<Player>("Player");
+
+    auto object = Factory::Instance().Create<Object>("Object");
+    auto actor = Factory::Instance().Create<Actor>("Actor");
+    auto player = Factory::Instance().Create<Player>("Player");
 
     SeedRandom((unsigned int)time(nullptr));
 
     SetWorkingDirectory("Assets");
 
-    std::string name;
-    int age;
-    float speed;
-    bool isAwake;
-    Vector2 position;
-    Vector3 color;
+    JSON::document_t document;
+    if (JSON::Load("Data/Scene.json", document)) {
+        player->Read(document);
 
-    // load the json data from a file
-    std::string buffer;
-    if (ReadTextFile("data/data.json", buffer)) {
-        // show the contents of the json file (debug)
-        std::cout << buffer << std::endl;
-
-        // create json document from the json file contents
-        rapidjson::Document document;
-        if (JSON::Load("data/data.json", document)) {
-            JSON_READ(document, name);
-            JSON_READ(document, age);
-            JSON_READ(document, speed);
-            JSON_READ(document, isAwake);
-            JSON_READ(document, position);
-            JSON_READ(document, color);
-
-            // show the data
-            std::cout << name << " " << age << " " << speed << " " << isAwake << std::endl;
-            std::cout << position.x << " " << position.y << std::endl;
-            std::cout << color.r << " " << color.g << " " << color.b << " " << std::endl;
-        }
+        std::cout << player->GetName() << std::endl;
+        std::cout << player->GetTag() << std::endl;
+        std::cout << player->GetTransform().rotation << std::endl;
     }
 
     return 0;

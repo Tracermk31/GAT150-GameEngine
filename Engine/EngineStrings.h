@@ -1,26 +1,23 @@
 #pragma once
 
-#include <string>
 #include <iostream>
 
 namespace ChiefEngine {
 	inline std::string ToLower(const std::string& stringToLower) {
-		std::string lowerString;
+		std::string lowerString = stringToLower;
 
 		for (auto& character : lowerString) {
 			character = std::tolower(character);
 		}
-		std::cout << lowerString << std::endl;
 		return lowerString;
 	}
 
 	inline std::string ToUpper(const std::string& stringToUpper) {
-		std::string upperString;
+		std::string upperString = stringToUpper;
 
 		for (auto& character : upperString) {
 			character = std::toupper(character);
 		}
-		std::cout << upperString << std::endl;
 		return upperString;
 	}
 

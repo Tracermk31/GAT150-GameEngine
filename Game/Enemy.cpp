@@ -8,7 +8,7 @@ using namespace ChiefEngine;
 void Enemy::Update(float dt, float maxX, float maxY) {
     Vector2 forward{ 1.0f, 0.0f };
 
-    Actor* player = m_scene->GetActorByName("Player");
+    Actor* player = m_scene->GetActorByTag("PlayerCharacter");
     if (player) {
         Vector2 direction = player->GetTransform().position - m_transform.position;
         float rotation = direction.Angle();
@@ -44,4 +44,8 @@ void Enemy::OnCollision(Actor* other) {
             G_Engine().GetParticleSystem().AddParticleAsTexture(shipDebris, "Textures/ShipDebris.png", G_Engine().GetRenderer());
         }
     }
+}
+
+void Enemy::Read(const JSON::value_t& value) {
+    Actor::Read(value);
 }
