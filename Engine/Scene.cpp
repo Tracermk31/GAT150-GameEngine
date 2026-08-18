@@ -3,6 +3,7 @@
 #include "Scene.h"
 #include "Factory.h"
 #include "Renderer.h"
+#include "Components/ColliderComponent.h"
 
 namespace ChiefEngine {
 	void Scene::AddActor(std::unique_ptr <Actor> actor) {
@@ -35,8 +36,14 @@ namespace ChiefEngine {
 				if (thisActor == otherActor || thisActor->m_destroyed || otherActor->m_destroyed) {
 					continue;
 				}
-				float distance = (thisActor->m_transform.position - otherActor->m_transform.position).Length();
-				if (distance <= (thisActor->GetRadius() + otherActor->GetRadius())) {
+				auto thisCollider = thisActor->GetComponent<ColliderComponent>();
+				auto otherCollider = otherActor->GetComponent<ColliderComponent>();
+
+				if (!thisCollider || !otherCollider) {
+					continue;
+				}
+
+				if (thisCollider->CheckCollision(*otherCollider)) {
 					thisActor->OnCollision(otherActor.get());
 					otherActor->OnCollision(thisActor.get());
 				}

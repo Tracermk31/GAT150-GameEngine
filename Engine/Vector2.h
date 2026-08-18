@@ -24,6 +24,8 @@ namespace ChiefEngine {
 		float LengthSqr() const { return (x * x) + (y * y); }
 		float Length() const { return std::sqrt(LengthSqr()); }
 
+		float Distance(const Vector2& other) const { return (other - *this).Length(); }
+
 		float Dot(const Vector2& other) const { return (this->x * other.x) + (this->y * other.y); }
 		float AngleBetween(const Vector2& other) const { return std::acos(Dot(other)); }
 		float Angle() const { return std::atan2(this->y, this->x); }

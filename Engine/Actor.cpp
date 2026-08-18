@@ -57,15 +57,15 @@ namespace ChiefEngine {
     /// Gets the radius of an actor. Used for basic collision checks.
     /// </summary>
     /// <returns>The models radius multipled by the Actor's scale and reduced slightly</returns>
-    float Actor::GetRadius() const {
-        for (auto& component : m_components) {
-            auto rendererComponent = dynamic_cast<SpriteRendererComponent*>(component.get());
-            if (rendererComponent && rendererComponent->GetTexture()) {
-                return rendererComponent->GetTexture()->GetSize().Length() * 0.5f * 0.9f;
-            }
-        }
-        return 0.0f;
-    }
+    //float Actor::GetRadius() const {
+    //    for (auto& component : m_components) {
+    //        auto spriteRendererComponent = dynamic_cast<SpriteRendererComponent*>(component.get());
+    //        if (spriteRendererComponent && spriteRendererComponent->GetTexture()) {
+    //            return spriteRendererComponent->GetTexture()->GetSize().Length() * 0.5f * 0.9f;
+    //        }
+    //    }
+    //    return 0.0f;
+    //}
 
     void Actor::Read(const JSON::value_t& value) {
         Object::Read(value);

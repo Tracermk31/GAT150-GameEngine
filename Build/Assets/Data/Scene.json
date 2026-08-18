@@ -25,6 +25,10 @@
         {
           "type": "SpriteRendererComponent",
           "texture": "Textures/Player.png"
+        },
+        {
+          "type": "CircleColliderComponent",
+          "radius" : 32.0
         }
       ]
     },
@@ -54,6 +58,10 @@
         {
           "type": "SpriteRendererComponent",
           "texture": "Textures/Enemy.png"
+        },
+        {
+          "type": "CircleColliderComponent",
+          "radius": 24.0
         }
       ]
     },
@@ -83,6 +91,10 @@
         {
           "type": "SpriteRendererComponent",
           "texture": "Textures/Enemy.png"
+        },
+        {
+          "type": "CircleColliderComponent",
+          "radius": 48.0
         }
       ]
     },
@@ -111,6 +123,10 @@
         {
           "type": "SpriteRendererComponent",
           "texture": "Textures/Laser.png"
+        },
+        {
+          "type": "CircleColliderComponent",
+          "radius": 8.0
         }
       ]
     }

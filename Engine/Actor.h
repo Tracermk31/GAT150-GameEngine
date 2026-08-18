@@ -61,6 +61,8 @@ namespace ChiefEngine {
         float GetRadius() const;
 
         const Transform& GetTransform() const { return this->m_transform; }
+        void SetTransform(const Transform& transform) { m_transform = transform; }
+
         void SetPosition(const Vector2& position) { m_transform.position = position; }
         void SetRotation(float rotation) { m_transform.rotation = rotation; }
         void SetScale(float scale) { m_transform.scale = scale; }
@@ -86,6 +88,9 @@ namespace ChiefEngine {
 
         void AddComponent(std::unique_ptr<Component> component);
 
+        template<std::derived_from<Component> T>
+        T* GetComponent();
+
         friend Scene;
     protected:
         std::string m_tag = "[UNDECIDED]";
@@ -100,4 +105,15 @@ namespace ChiefEngine {
 
         Scene* m_scene{ nullptr };
     };
+
+    template<std::derived_from<Component> T>
+    inline T* Actor::GetComponent() {
+        for (auto& component : m_components) {
+            auto componentType = dynamic_cast<T*>(component.get());
+            if (componentType) {
+                return componentType;
+            }
+        }
+        return nullptr;
+    }
 }
