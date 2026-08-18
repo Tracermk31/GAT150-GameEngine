@@ -19,6 +19,8 @@ namespace ChiefEngine {
 		void AddActor(std::unique_ptr <Actor> actor);
 		void DeleteActors();
 
+		bool Load(const std::string& sceneName);
+
 		void Update(float dt, float maxX, float maxY);
 		void UpdateCollisions();
 		void Draw(const class Renderer& renderer);

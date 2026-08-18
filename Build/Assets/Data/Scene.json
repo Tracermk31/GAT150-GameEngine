@@ -1,22 +1,118 @@
 {
-    "name": "Michael Y. Kinney Perez",
-    "tag": "Student",
-    "transform": {
+  "actors": [
+    {
+      "name": "PlayerPrototype",
+      "type": "Player",
+      "prototype": true,
+      "tag": "PlayerCharacter",
+      "active": true,
+      "speed": 2000.0,
+      "damping": 3.0,
+      "shoot delay": 0.8,
+      "velocity": [
+        0.0,
+        0.0
+      ],
+      "transform": {
         "position": [
-          1.0,
-          0.0
+          0,
+          0
         ],
-        "rotation": 1.7,
-        "scale": 1.5
+        "rotation": -90.0,
+        "scale": 2.0
+      },
+      "components": [
+        {
+          "type": "SpriteRendererComponent",
+          "texture": "Textures/Player.png"
+        }
+      ]
     },
-    "lifespan": 100.0,
-    "destroyed" : false,
-    "active": true,
-    "damping": 0.8,
-    "velocity": [
-      0.0,
-      0.0
-    ],
-    "speed" : 20.0,
-    "shoot delay" : 0.8
+    {
+      "name": "EnemyPrototype",
+      "type": "Enemy",
+      "prototype": true,
+      "tag": "Enemy",
+      "active": true,
+      "speed": 1000.0,
+      "damping": 3.0,
+      "point value": 100,
+      "shoot delay": 1.5,
+      "velocity": [
+        0.0,
+        0.0
+      ],
+      "transform": {
+        "position": [
+          0,
+          0
+        ],
+        "rotation": -90.0,
+        "scale": 1.0
+      },
+      "components": [
+        {
+          "type": "SpriteRendererComponent",
+          "texture": "Textures/Enemy.png"
+        }
+      ]
+    },
+    {
+      "name": "EnemyBossPrototype",
+      "type": "Enemy",
+      "prototype": true,
+      "tag": "EnemyBoss",
+      "active": true,
+      "speed": 1500.0,
+      "damping": 3.0,
+      "point vlaue": 500,
+      "shoot delay": 0.5,
+      "velocity": [
+        0.0,
+        0.0
+      ],
+      "transform": {
+        "position": [
+          0,
+          0
+        ],
+        "rotation": -90.0,
+        "scale": 2.0
+      },
+      "components": [
+        {
+          "type": "SpriteRendererComponent",
+          "texture": "Textures/Enemy.png"
+        }
+      ]
+    },
+    {
+      "name": "BulletPrototype",
+      "type": "Bullet",
+      "prototype": true,
+      "tag": "Bullet",
+      "active": true,
+      "speed": 200.0,
+      "damping": 3.0,
+      "lifespan": 0.1,
+      "velocity": [
+        0.0,
+        0.0
+      ],
+      "transform": {
+        "position": [
+          0,
+          0
+        ],
+        "rotation": -90.0,
+        "scale": 0.5
+      },
+      "components": [
+        {
+          "type": "SpriteRendererComponent",
+          "texture": "Textures/Laser.png"
+        }
+      ]
+    }
+  ]
 }

@@ -1,12 +1,14 @@
 #include "pch.h"
 
 #include "Actor.h"
+#include "Engine.h"
 #include "Texture.h"
-#include "Renderer.h"
+#include "Components/SpriteRendererComponent.h"
 #include "EngineMath.h"
 
 namespace ChiefEngine {
-    /// <summary>
+    FACTORY_REGISTER(Actor)
+
     /// Update function that determines the actor's position and whether they are still alive.
     /// </summary>
     /// <param name="dt"> Delta Time for a given Scene.</param>
@@ -18,11 +20,12 @@ namespace ChiefEngine {
             m_destroyed = (m_lifespan <= 0.0f);
         }
 
+        for (auto component : m_components) {
+            component->Update(dt);
+        }
+
         m_transform.position += (m_velocity * dt);
         m_velocity *= (1.0f/(1.0f + (m_damping * dt)));
-
-        Wrap(0.0f, maxX, m_transform.position.x);
-        Wrap(0.0f, maxY, m_transform.position.y);
     }
 
     /// <summary>
@@ -30,23 +33,32 @@ namespace ChiefEngine {
     /// </summary>
     /// <param name="renderer"> The renderer being used to draw</param>
     void Actor::Draw(const Renderer& renderer) const {
-        if (m_model) {
-            renderer.DrawModel(*m_model, m_transform);
-        }
-        else if (m_texture) {
-            renderer.DrawTexture(*m_texture, m_transform.position.x, m_transform.position.y, m_transform.rotation, m_transform.scale);
+        for (auto& component : m_components) {
+            auto rendererComponent = dynamic_cast<RendererComponent*>(component.get());
+            if (rendererComponent) {
+                rendererComponent->Draw(renderer);
+            }
         }
     }
+
+    //    if (m_model) {
+    //        renderer.DrawModel(*m_model, m_transform);
+    //    }
+    //    else if (m_texture) {
+    //        renderer.DrawTexture(*m_texture, m_transform.position.x, m_transform.position.y, m_transform.rotation, m_transform.scale);
+    //    }
+    //}
 
     /// <summary>
     /// Gets the radius of an actor. Used for basic collision checks.
     /// </summary>
     /// <returns>The models radius multipled by the Actor's scale and reduced slightly</returns>
     float Actor::GetRadius() const {
-        if (m_model) {
-            return m_model->GetRadius() * m_transform.scale * 0.9f;
-        } else if (m_texture) {
-            return m_texture->GetSize().Length() * 0.5f * 0.9f;
+        for (auto& component : m_components) {
+            auto rendererComponent = dynamic_cast<SpriteRendererComponent*>(component.get());
+            if (rendererComponent && rendererComponent->GetTexture()) {
+                return rendererComponent->GetTexture()->GetSize().Length() * 0.5f * 0.9f;
+            }
         }
         return 0.0f;
     }
@@ -63,5 +75,20 @@ namespace ChiefEngine {
         JSON_READ_MEMBER(value, "velocity", m_velocity);
         JSON_READ_MEMBER(value, "lifespan", m_lifespan);
         JSON_READ_MEMBER(value, "destroyed", m_destroyed);
+
+        if (JSON_HAS_BY_NAME(value, "components")) {
+            for (auto& componentValue : JSON_GET_BY_NAME(value, "components").GetArray()) {
+                std::string type;
+                JSON_READ_BY_DATA(componentValue, type);
+
+                auto component = Factory::Instance().Create<Component>(type);
+
+                if (component) {
+                    component->Read(componentValue);
+                    component->SetOwner(this);
+                    m_components.push_back(move(component));
+                }
+            }
+        }
     }
 }

@@ -78,12 +78,24 @@ namespace ChiefEngine {
 		return true;
 	}
 
+	bool Audio::PlaySound(std::string name) {
+		if (!m_sounds.contains(name)) {
+			std::cerr << "Audio System : name doesn't exist " << name << std::endl;
+			return false;
+		}
+
+		FMOD_RESULT result = m_audio->playSound(m_sounds[name], nullptr, false, nullptr);
+		if (!CheckFMODResult(result))
+			return false;
+
+		return true;
+	}
+
 	bool Audio::CheckFMODResult(FMOD_RESULT result) {
 		if (result != FMOD_OK) {
 			std::cerr << FMOD_ErrorString(result) << std::endl;
 			return false;
 		}
-
 		return true;
 	}
 }

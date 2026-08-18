@@ -1,9 +1,12 @@
 #include "Enemy.h"
+#include "Bullet.h"
 #include "Player.h"
 #include "Engine.h"
 #include "SpaceGame.h"
 
 using namespace ChiefEngine;
+
+FACTORY_REGISTER(Enemy);
 
 void Enemy::Update(float dt, float maxX, float maxY) {
     Vector2 forward{ 1.0f, 0.0f };
@@ -18,7 +21,37 @@ void Enemy::Update(float dt, float maxX, float maxY) {
         AddVelocity(velocity * m_speed * dt);
     }
 
+    m_shootDelay -= dt;
+    if (m_shootDelay <= 0) {
+        if (m_tag == "Enemy") {
+            m_shootDelay = 1.5f;
+        }
+        else if (m_tag == "EnemyBoss") {
+            m_shootDelay = 0.5f;
+        }
+
+        auto bullet = Factory::Instance().Create<Bullet>("BulletPrototype");
+
+        Vector2 offset = { 20.0f * m_transform.scale, 0.0f };
+        offset = offset.Rotate(m_transform.rotation * DEGREE_TO_RADIAN);
+        bullet->SetPosition(m_transform.position + offset);
+
+        bullet->SetRotation(m_transform.rotation);
+        bullet->SetScale(m_transform.scale * 2.0f);
+        bullet->SetSpeed(10);
+        bullet->SetLifespan(1.5f);
+
+        bullet->SetTag("EnemyBullet");
+
+        m_scene->AddActor(std::move(bullet));
+
+        G_Engine().GetAudio().PlaySound("Laser");
+    }
+
     Actor::Update(dt, G_Engine().GetRenderer().getWindowWidth(), G_Engine().GetRenderer().getWindowHeight());
+
+    Wrap(0.0f, maxX, m_transform.position.x);
+    Wrap(0.0f, maxY, m_transform.position.y);
 }
 
 void Enemy::OnCollision(Actor* other) {
@@ -26,12 +59,7 @@ void Enemy::OnCollision(Actor* other) {
         G_Engine().GetAudio().PlaySound("Explosion", G_Engine().GetAudio().GetChannel(2));
         BeDestroyed();
         other->BeDestroyed();
-
-        if (this->GetTag() == "EnemyShip") {
-            ((SpaceGame*)m_scene->GetGame())->AddPoints(100);
-        } else {
-            ((SpaceGame*)m_scene->GetGame())->AddPoints(500);
-        }
+        ((SpaceGame*)m_scene->GetGame())->AddPoints(m_pointValue);
 
         for (short index = 0; index < 100; index++) {
             Particle shipDebris;
@@ -48,4 +76,8 @@ void Enemy::OnCollision(Actor* other) {
 
 void Enemy::Read(const JSON::value_t& value) {
     Actor::Read(value);
+
+    JSON_READ_MEMBER(value, "point value", m_pointValue);
+    JSON_READ_MEMBER(value, "shoot delay", m_shootDelay);
+    JSON_READ_MEMBER(value, "speed", m_speed);
 }

@@ -1,4 +1,5 @@
 #include "Enemy.h"
+#include "Bullet.h"
 #include "Assets.h"
 #include "Engine.h"
 #include "Player.h"
@@ -14,12 +15,11 @@ bool SpaceGame::Initialize() {
 	Game::Initialize();
 
 	G_Engine().GetAudio().AddSound("Laser", "audio/laser.wav");
-	//G_Engine().GetAudio().AddSound("BGM", "audio/BackgroundMusic.wav");
-	//G_Engine().GetAudio().setSoundLoop("BGM", true);
 	G_Engine().GetAudio().AddSound("Explosion", "audio/explosion.wav");
 
 	m_scene = new Scene();
 	m_scene->SetGame(this);
+	m_scene->Load("Data/Scene.json");
 
 	m_font = Resources().Get<Font>("Fonts/ArcadeNormal.ttf", 16.0f);
 	m_titleText = new Text(m_font);
@@ -59,7 +59,6 @@ void SpaceGame::Update(float dt, float maxX, float maxY) {
 		m_gameState = GameState::GamePlay;
 		break;
 	case GameState::GamePlay:
-		//G_Engine().GetAudio().PlaySound("BGM", G_Engine().GetAudio().GetChannel(2));
 		m_spawnTimer -= dt; 
 		if (m_spawnTimer <= 0) {
 			SpawnEnemy(maxX, maxY);
@@ -109,42 +108,21 @@ void SpaceGame::Draw(ChiefEngine::Renderer& renderer, float maxX, float maxY) {
 }
 
 void SpaceGame::SpawnEnemy(float maxX, float maxY) {
-	EnemyDesc enemyDesc;
-	enemyDesc.name = "Enemy";
-	enemyDesc.tag = "EnemyShip";
-	enemyDesc.speed = 1000.0f;
-	enemyDesc.damping = 3.0f;
-	enemyDesc.transform = Transform{ Vector2{ RandomFloat(0, maxX), RandomFloat(0, maxY)}, 0.0f, 1.0f };
-	//enemyDesc.model = Assets::enemyModel;
-	enemyDesc.texture = Resources().Get<Texture>("Textures/Enemy.png", G_Engine().GetRenderer());
-
-	m_scene->AddActor(std::move(std::make_unique<Enemy>(enemyDesc)));
+	auto enemy = Factory::Instance().Create<Actor>("EnemyPrototype");
+	enemy->SetPosition({ RandomFloat(0, maxX), RandomFloat(0, maxY) });
+	m_scene->AddActor(std::move(enemy));
 }
 
 void SpaceGame::SpawnBoss(float maxX, float maxY) {
-	EnemyDesc enemyDesc;
-	enemyDesc.name = "Boss";
-	enemyDesc.tag = "EnemyBoss";
-	enemyDesc.speed = 1500.0f;
-	enemyDesc.damping = 3.0f;
-	enemyDesc.transform = Transform{ Vector2{ RandomFloat(0, maxX), RandomFloat(0, maxY)}, 0.0f, 2.5f };
-	//enemyDesc.model = Assets::enemyModel;
-	enemyDesc.texture = Resources().Get<Texture>("Textures/Enemy.png", G_Engine().GetRenderer());
-
-	m_scene->AddActor(std::move(std::make_unique<Enemy>(enemyDesc)));
+	auto enemy = Factory::Instance().Create<Actor>("EnemyBossPrototype");
+	enemy->SetPosition({ RandomFloat(0, maxX), RandomFloat(0, maxY) });
+	m_scene->AddActor(std::move(enemy));
 }
 
 void SpaceGame::SpawnPlayer(float maxX, float maxY) {
-	PlayerDesc playerDesc;
-	playerDesc.name = "Player";
-	playerDesc.tag = "PlayerCharacter";
-	playerDesc.speed = 2000.0f;
-	playerDesc.damping = 3.0f;
-	playerDesc.transform = Transform{ Vector2{ maxX / 2.0f, maxY / 2.0f }, 0.0f, 2.0f };
-	//playerDesc.model = Assets::playerModel;
-	playerDesc.texture = Resources().Get<Texture>("Textures/player.png", G_Engine().GetRenderer());
-
-	m_scene->AddActor(std::move(std::make_unique<Player>(playerDesc)));
+		auto player = Factory::Instance().Create<Actor>("PlayerPrototype");
+		player->SetPosition({ maxX / 2, maxY / 2 });
+		m_scene->AddActor(std::move(player));
 }
 
 void SpaceGame::OnPlayerDeath() {

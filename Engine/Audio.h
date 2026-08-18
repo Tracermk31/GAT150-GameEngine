@@ -39,6 +39,7 @@ namespace ChiefEngine {
 
 		bool setSoundLoop(const std::string& name, bool willLoop);
 
+		bool PlaySound(std::string name);
 		bool PlaySound(std::string name, FMOD::Channel* channelToPlayOn);
 	};
 }

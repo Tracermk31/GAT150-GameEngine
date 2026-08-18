@@ -7,6 +7,8 @@
 
 using namespace ChiefEngine;
 
+FACTORY_REGISTER(Player);
+
 void Player::Update(float dt, float maxX, float maxY) {
 
     float thrust = 0.0f;
@@ -72,24 +74,20 @@ void Player::Update(float dt, float maxX, float maxY) {
     if (m_shootDelay <= 0 && G_Engine().GetInput().GetKeyDown(SDL_SCANCODE_SPACE)) {
         m_shootDelay = 0.25f;
 
-        BulletDesc bulletDesc;
-        bulletDesc.name = "Bullet";
-        bulletDesc.tag = "PlayerBullet";
-        //bulletDesc.model = Assets::bulletModel;
-        bulletDesc.texture = Resources().Get<Texture>("Textures/Laser.png", G_Engine().GetRenderer());
-        bulletDesc.transform = m_transform;
+        auto bullet = Factory::Instance().Create<Bullet>("BulletPrototype");
 
         Vector2 offset = { 20.0f * m_transform.scale, 0.0f };
         offset = offset.Rotate(m_transform.rotation * DEGREE_TO_RADIAN);
-        bulletDesc.transform.position += offset;
+        bullet->SetPosition(m_transform.position + offset);
 
-        bulletDesc.transform.scale = m_transform.scale*0.5f;
-        bulletDesc.speed = 200.0f;
-        bulletDesc.lifespan = 0.1f;
+        bullet->SetRotation(m_transform.rotation);
+        bullet->SetScale(m_transform.scale*0.5f);
 
-        m_scene->AddActor(std::move(std::make_unique<Bullet>(bulletDesc)));
+        bullet->SetTag("PlayerBullet");
 
-        G_Engine().GetAudio().PlaySound("Laser", G_Engine().GetAudio().GetChannel(1));
+        m_scene->AddActor(std::move(bullet));
+
+        G_Engine().GetAudio().PlaySound("Laser");
     }
 
     if (G_Engine().GetInput().GetKeyDown(SDL_SCANCODE_X)) {
@@ -100,10 +98,12 @@ void Player::Update(float dt, float maxX, float maxY) {
 
     Actor::Update(dt, G_Engine().GetRenderer().getWindowWidth(), G_Engine().GetRenderer().getWindowHeight());
 
+    Wrap(0.0f, maxX, m_transform.position.x);
+    Wrap(0.0f, maxY, m_transform.position.y);
 }
 
 void Player::OnCollision(Actor* other) {
-    if (other->GetTag() == "EnemyShip" || other->GetTag() == "EnemyBoss") {
+    if (other->GetTag() == "Enemy" || other->GetTag() == "EnemyBoss" || other->GetTag() == "EnemyBullet") {
         //G_Engine().GetAudio().PlaySound("Explosion", G_Engine().GetAudio().GetChannel(2));
         BeDestroyed();
         ((SpaceGame*)m_scene->GetGame())->OnPlayerDeath();

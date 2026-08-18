@@ -17,6 +17,7 @@
 #include "EngineTime.h"
 #include "EngineStrings.h"
 #include "ParticleSystem.h"
+#include "ResourceManager.h"
 
 #include <vector>
 #include <fmod.hpp>

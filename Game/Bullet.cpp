@@ -1,7 +1,10 @@
 #include "Bullet.h"
+#include "Factory.h"
 #include "EngineMath.h"
 
 using namespace ChiefEngine;
+
+FACTORY_REGISTER(Bullet)
 
 void Bullet::Update(float dt, float maxX, float maxY) {
 	Vector2 forward{ 1.0f, 0.0f };
@@ -10,8 +13,18 @@ void Bullet::Update(float dt, float maxX, float maxY) {
 	AddVelocity(velocity);
 
 	Actor::Update(dt, maxX, maxY);
+
+	Clamp(0.0f, maxX, m_transform.position.x);
+	Clamp(0.0f, maxY, m_transform.position.y);
+
+	if (m_transform.position.x >= maxX || m_transform.position.x <= 0.0f || m_transform.position.y >= maxY || m_transform.position.y <= 0.0f) {
+		BeDestroyed();
+	}
+
 }
 
 void Bullet::Read(const JSON::value_t& value) {
 	Actor::Read(value);
+
+	JSON_READ_MEMBER(value, "speed", m_speed);
 }

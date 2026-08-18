@@ -3,6 +3,7 @@
 #include "Model.h"
 #include "Object.h"
 #include "Resource.h"
+#include "Component.h"
 #include "Transform.h"
 
 #include <memory>
@@ -45,10 +46,12 @@ namespace ChiefEngine {
             m_transform{ actorDesc.transform },
             m_velocity{ actorDesc.velocity },
             m_damping{ actorDesc.damping },
-            m_lifespan{ actorDesc.lifespan },
-            m_model{ actorDesc.model },
-            m_texture { actorDesc.texture}
+            m_lifespan{ actorDesc.lifespan }
+            //m_model{ actorDesc.model },
+            //m_texture { actorDesc.texture}
         { };
+
+        CLASS_PROTOTYPE(Actor)
 
         virtual void Update(float dt, float maxY, float maxX);
         virtual void Draw(const class Renderer& renderer) const;
@@ -70,21 +73,33 @@ namespace ChiefEngine {
         void SetVelocity(const Vector2& velocity) { m_velocity = velocity; }
         void AddVelocity(const Vector2& velocity) { m_velocity += velocity; }
 
+        inline float GetDamping() const { return m_damping; }
+
         std::string GetTag() { return m_tag; }
         Scene* GetScene() { return m_scene; }
+
+        void SetTag(const std::string& tag) {
+            m_tag = tag;
+        }
+
+        void SetLifespan(float lifespan) {
+            m_lifespan = lifespan;
+        }
 
         friend Scene;
     protected:
         std::string m_tag = "[UNDECIDED]";
-        Transform m_transform;
 
+        std::vector<resource_t<Component>> m_components;
+
+        Transform m_transform;
         Vector2 m_velocity{ 0.0f };
         float m_damping{ 0.0f };
         float m_lifespan{ -1.0f };
         bool m_destroyed{ false };
 
-        resource_t<Model> m_model;
-        resource_t<Texture> m_texture;
+        //resource_t<Model> m_model;
+        //resource_t<Texture> m_texture;
 
         Scene* m_scene{ nullptr };
     };

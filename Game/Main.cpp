@@ -1,6 +1,7 @@
 #include "Enemy.h"
 #include "Assets.h"
 #include "Engine.h"
+#include "Bullet.h"
 #include "Player.h"
 #include "SpaceGame.h"
 
@@ -9,32 +10,13 @@
 
 using namespace ChiefEngine;
 
-float SCREEN_WIDTH = 1920.0f;
-float SCREEN_HEIGHT = 1200.0f;
+const float SCREEN_WIDTH = 1920.0f;
+const float SCREEN_HEIGHT = 1200.0f;
 
 int main() {
-    Factory::Instance().Register<Object>("Object");
-    Factory::Instance().Register<Actor>("Actor");
-    Factory::Instance().Register<Player>("Player");
-
-    auto object = Factory::Instance().Create<Object>("Object");
-    auto actor = Factory::Instance().Create<Actor>("Actor");
-    auto player = Factory::Instance().Create<Player>("Player");
-
-    SeedRandom((unsigned int)time(nullptr));
-
     SetWorkingDirectory("Assets");
 
-    JSON::document_t document;
-    if (JSON::Load("Data/Scene.json", document)) {
-        player->Read(document);
-
-        std::cout << player->GetName() << std::endl;
-        std::cout << player->GetTag() << std::endl;
-        std::cout << player->GetTransform().rotation << std::endl;
-    }
-
-    return 0;
+    SeedRandom((unsigned int)time(nullptr));
 
     // INITIALIZATION
     G_Engine().Initialize(SCREEN_WIDTH, SCREEN_HEIGHT);
