@@ -65,8 +65,8 @@
       "active": true,
       "speed": 1500.0,
       "damping": 3.0,
-      "point vlaue": 500,
-      "shoot delay": 0.5,
+      "point value": 500,
+      "shoot delay": 1.0,
       "velocity": [
         0.0,
         0.0

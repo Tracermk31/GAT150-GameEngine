@@ -27,7 +27,7 @@ void Enemy::Update(float dt, float maxX, float maxY) {
             m_shootDelay = 1.5f;
         }
         else if (m_tag == "EnemyBoss") {
-            m_shootDelay = 0.5f;
+            m_shootDelay = 1.0f;
         }
 
         auto bullet = Factory::Instance().Create<Bullet>("BulletPrototype");
@@ -38,7 +38,7 @@ void Enemy::Update(float dt, float maxX, float maxY) {
 
         bullet->SetRotation(m_transform.rotation);
         bullet->SetScale(m_transform.scale * 2.0f);
-        bullet->SetSpeed(10);
+        bullet->SetSpeed(4);
         bullet->SetLifespan(1.5f);
 
         bullet->SetTag("EnemyBullet");

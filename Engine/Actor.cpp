@@ -9,6 +9,18 @@
 namespace ChiefEngine {
     FACTORY_REGISTER(Actor)
 
+    Actor::Actor(const Actor& other) : 
+        Object{ other }
+        ,m_tag{ other.m_tag } 
+        ,m_damping{ other.m_damping } 
+        ,m_lifespan{ other.m_lifespan} 
+        ,m_transform{ other.m_transform } {
+        for (const auto& component : other.m_components) {
+            auto clone = std::unique_ptr<Component>(dynamic_cast<Component*>(component->Clone().release()));
+            AddComponent(move(clone));
+        }
+    }
+
     /// Update function that determines the actor's position and whether they are still alive.
     /// </summary>
     /// <param name="dt"> Delta Time for a given Scene.</param>
@@ -20,7 +32,7 @@ namespace ChiefEngine {
             m_destroyed = (m_lifespan <= 0.0f);
         }
 
-        for (auto component : m_components) {
+        for (auto& component : m_components) {
             component->Update(dt);
         }
 
@@ -40,14 +52,6 @@ namespace ChiefEngine {
             }
         }
     }
-
-    //    if (m_model) {
-    //        renderer.DrawModel(*m_model, m_transform);
-    //    }
-    //    else if (m_texture) {
-    //        renderer.DrawTexture(*m_texture, m_transform.position.x, m_transform.position.y, m_transform.rotation, m_transform.scale);
-    //    }
-    //}
 
     /// <summary>
     /// Gets the radius of an actor. Used for basic collision checks.
@@ -85,10 +89,14 @@ namespace ChiefEngine {
 
                 if (component) {
                     component->Read(componentValue);
-                    component->SetOwner(this);
-                    m_components.push_back(move(component));
+                    AddComponent(std::move(component));
                 }
             }
         }
+    }
+
+    void Actor::AddComponent(std::unique_ptr<Component> component) {
+        component->SetOwner(this);
+        m_components.push_back(std::move(component));
     }
 }

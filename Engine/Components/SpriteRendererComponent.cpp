@@ -17,7 +17,7 @@ namespace ChiefEngine {
 	}
 
 	void SpriteRendererComponent::Read(const JSON::value_t& value) {
-		Object::Read(value);
+		RendererComponent::Read(value);
 
 		std::string textureName;
 		JSON_READ_MEMBER(value, "texture", textureName);

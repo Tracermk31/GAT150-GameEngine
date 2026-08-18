@@ -1,6 +1,6 @@
 #include "Enemy.h"
-#include "Bullet.h"
 #include "Assets.h"
+#include "Bullet.h"
 #include "Engine.h"
 #include "Player.h"
 #include "SpaceGame.h"

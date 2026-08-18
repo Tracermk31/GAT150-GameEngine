@@ -23,8 +23,6 @@ namespace ChiefEngine {
         Vector2 velocity = 0.0f;
         float damping = 0.0f;
         float lifespan = -1.0f;
-        resource_t<Model> model;
-        resource_t<Texture> texture;
     };
 
     /// <summary>
@@ -47,9 +45,9 @@ namespace ChiefEngine {
             m_velocity{ actorDesc.velocity },
             m_damping{ actorDesc.damping },
             m_lifespan{ actorDesc.lifespan }
-            //m_model{ actorDesc.model },
-            //m_texture { actorDesc.texture}
         { };
+
+        Actor(const Actor& other);
 
         CLASS_PROTOTYPE(Actor)
 
@@ -86,20 +84,19 @@ namespace ChiefEngine {
             m_lifespan = lifespan;
         }
 
+        void AddComponent(std::unique_ptr<Component> component);
+
         friend Scene;
     protected:
         std::string m_tag = "[UNDECIDED]";
 
-        std::vector<resource_t<Component>> m_components;
+        std::vector<std::unique_ptr<Component>> m_components;
 
         Transform m_transform;
         Vector2 m_velocity{ 0.0f };
         float m_damping{ 0.0f };
         float m_lifespan{ -1.0f };
         bool m_destroyed{ false };
-
-        //resource_t<Model> m_model;
-        //resource_t<Texture> m_texture;
 
         Scene* m_scene{ nullptr };
     };
