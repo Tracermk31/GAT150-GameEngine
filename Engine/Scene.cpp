@@ -51,6 +51,28 @@ namespace ChiefEngine {
 		}
 	}
 
+	bool Scene::CheckActorPlacement(const ColliderComponent* thisCollider) {
+		for (auto& other : m_actors) {
+			auto otherCollider = other->GetComponent<ColliderComponent>();
+			if (!thisCollider || !otherCollider) {
+				continue;
+			}
+			if (otherCollider->CheckCollision(*thisCollider)) {
+				return false;
+			}
+		}
+		for (auto& other : m_pendingActors) {
+			auto otherCollider = other->GetComponent<ColliderComponent>();
+			if (!thisCollider || !otherCollider) {
+				continue;
+			}
+			if (otherCollider->CheckCollision(*thisCollider)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	void Scene::DeleteActors() {
 		m_actors.clear();
 	}

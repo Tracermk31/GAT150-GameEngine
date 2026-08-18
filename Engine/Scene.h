@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Actor.h"
+#include "Components/ColliderComponent.h"
 
 #include <memory>
 #include <string>
@@ -24,6 +25,8 @@ namespace ChiefEngine {
 		void Update(float dt, float maxX, float maxY);
 		void UpdateCollisions();
 		void Draw(const class Renderer& renderer);
+
+		bool CheckActorPlacement(const ColliderComponent* thisCollider);
 
 		void SetGame(Game* game) { m_game = game; }
 		Game* GetGame() { return m_game; }

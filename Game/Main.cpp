@@ -1,7 +1,7 @@
 #include "Enemy.h"
 #include "Assets.h"
-#include "Engine.h"
 #include "Bullet.h"
+#include "Engine.h"
 #include "Player.h"
 #include "SpaceGame.h"
 

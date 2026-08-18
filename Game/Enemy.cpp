@@ -39,7 +39,7 @@ void Enemy::Update(float dt, float maxX, float maxY) {
         bullet->SetRotation(m_transform.rotation);
         bullet->SetScale(m_transform.scale * 2.0f);
         bullet->SetSpeed(4);
-        bullet->SetLifespan(1.5f);
+        bullet->SetLifespan(1.0f);
 
         bullet->SetTag("EnemyBullet");
 

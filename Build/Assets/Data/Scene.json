@@ -28,7 +28,7 @@
         },
         {
           "type": "CircleColliderComponent",
-          "radius" : 32.0
+          "radius" : 24.0
         }
       ]
     },
@@ -51,7 +51,7 @@
           0,
           0
         ],
-        "rotation": -90.0,
+        "rotation": 0.0,
         "scale": 1.0
       },
       "components": [
@@ -61,7 +61,7 @@
         },
         {
           "type": "CircleColliderComponent",
-          "radius": 24.0
+          "radius": 28.0
         }
       ]
     },
@@ -84,7 +84,7 @@
           0,
           0
         ],
-        "rotation": -90.0,
+        "rotation": 0.0,
         "scale": 2.0
       },
       "components": [
@@ -106,7 +106,7 @@
       "active": true,
       "speed": 200.0,
       "damping": 3.0,
-      "lifespan": 0.1,
+      "lifespan": 0.075,
       "velocity": [
         0.0,
         0.0
@@ -116,7 +116,7 @@
           0,
           0
         ],
-        "rotation": -90.0,
+        "rotation": 0.0,
         "scale": 0.5
       },
       "components": [

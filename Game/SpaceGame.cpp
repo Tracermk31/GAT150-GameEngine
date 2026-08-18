@@ -109,13 +109,20 @@ void SpaceGame::Draw(ChiefEngine::Renderer& renderer, float maxX, float maxY) {
 
 void SpaceGame::SpawnEnemy(float maxX, float maxY) {
 	auto enemy = Factory::Instance().Create<Actor>("EnemyPrototype");
+
 	enemy->SetPosition({ RandomFloat(0, maxX), RandomFloat(0, maxY) });
+	while (!m_scene->CheckActorPlacement(enemy->GetComponent<ColliderComponent>())) {
+		enemy->SetPosition({ RandomFloat(0, maxX), RandomFloat(0, maxY) });
+	}
 	m_scene->AddActor(std::move(enemy));
 }
 
 void SpaceGame::SpawnBoss(float maxX, float maxY) {
 	auto enemy = Factory::Instance().Create<Actor>("EnemyBossPrototype");
 	enemy->SetPosition({ RandomFloat(0, maxX), RandomFloat(0, maxY) });
+	while (!m_scene->CheckActorPlacement(enemy->GetComponent<ColliderComponent>())) {
+		enemy->SetPosition({ RandomFloat(0, maxX), RandomFloat(0, maxY) });
+	}
 	m_scene->AddActor(std::move(enemy));
 }
 
