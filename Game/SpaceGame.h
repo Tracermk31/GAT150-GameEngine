@@ -26,6 +26,10 @@ public:
 	void Draw(class ChiefEngine::Renderer& renderer, float maxX, float maxY) override;
 
 	void OnPlayerDeath();
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="points"></param>
 	void AddPoints(short points) { m_score += points; }
 
 private:

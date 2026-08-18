@@ -33,6 +33,9 @@ namespace ChiefEngine {
 
 		bool AddSound(const std::string& name, const std::string filepath);
 
+		/// <summary>
+		/// 
+		/// </summary>
 		inline void ClearSounds() {
 			m_sounds.clear();
 		}

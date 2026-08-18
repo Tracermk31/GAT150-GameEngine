@@ -31,6 +31,12 @@ namespace ChiefEngine {
 		void SetGame(Game* game) { m_game = game; }
 		Game* GetGame() { return m_game; }
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="name"></param>
+		/// <returns></returns>
 		template<typename T = Actor>
 		inline T* GetActorByName(const std::string& name) {
 			for (auto& actor : m_actors) {
@@ -42,6 +48,12 @@ namespace ChiefEngine {
 			return nullptr;
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="tag"></param>
+		/// <returns></returns>
 		template<typename T = Actor>
 		inline T* GetActorByTag(const std::string& tag) {
 			for (auto& actor : m_actors) {

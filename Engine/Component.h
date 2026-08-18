@@ -12,10 +12,18 @@ namespace ChiefEngine {
 		Component() = default;
 		virtual ~Component() = default;
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		inline Actor* GetOwner() const {
 			return m_owner;
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="owner"></param>
 		inline void SetOwner(Actor* owner) { m_owner = owner; }
 
 		virtual void Start() {}

@@ -21,6 +21,15 @@ namespace ChiefEngine {
 		std::map<std::string, resource_t<Resource>> m_resources;
 	};
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <typeparam name="T"></typeparam>
+	/// <typeparam name="...Args"></typeparam>
+	/// <param name="id"></param>
+	/// <param name="name"></param>
+	/// <param name="...args"></param>
+	/// <returns></returns>
 	template<typename T, typename ...Args>
 		requires std::derived_from<T, Resource>
 	inline resource_t<T> ResourceManager::GetWithID(const std::string& id, const std::string& name, Args&& ... args) {
@@ -54,11 +63,23 @@ namespace ChiefEngine {
 		return resource;
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <typeparam name="T"></typeparam>
+	/// <typeparam name="...Args"></typeparam>
+	/// <param name="name"></param>
+	/// <param name="...args"></param>
+	/// <returns></returns>
 	template<typename T, typename ... Args>
 		requires std::derived_from<T, Resource>
 	inline resource_t<T> ResourceManager::Get(const std::string& name, Args&& ... args) {
 		return GetWithID<T>(name, name, std::forward<Args>(args)...);
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <returns></returns>
 	inline ResourceManager& Resources() { return ResourceManager::Instance(); }
 }

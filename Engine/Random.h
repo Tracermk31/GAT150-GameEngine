@@ -4,6 +4,10 @@
 #include <cstdlib>
 
 namespace ChiefEngine {
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <returns></returns>
 	inline std::mt19937& Generator() {
 		static std::random_device randomDevice;
 		static std::mt19937 generator(randomDevice());
@@ -11,10 +15,18 @@ namespace ChiefEngine {
 		return generator;
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="seed"></param>
 	inline void SeedRandom(unsigned int seed) {
 		Generator().seed(seed);
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <returns></returns>
 	inline int RandomInt() {
 		static std::uniform_int_distribution<> dist;
 		return dist(Generator());
@@ -80,6 +92,10 @@ namespace ChiefEngine {
 		return dist(Generator());
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <returns></returns>
 	inline bool RandomBool() {
 		std::bernoulli_distribution dist(0.5f);
 		return dist(Generator());

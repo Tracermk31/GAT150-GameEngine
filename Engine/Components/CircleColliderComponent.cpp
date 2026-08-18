@@ -7,6 +7,11 @@
 namespace ChiefEngine {
 	FACTORY_REGISTER(CircleColliderComponent)
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="other"></param>
+	/// <returns></returns>
 	bool CircleColliderComponent::CheckCollision(const ColliderComponent& other) {
 		const CircleColliderComponent* circleCollider = dynamic_cast<const CircleColliderComponent*>(&other);
 		if (!circleCollider) {
@@ -15,6 +20,10 @@ namespace ChiefEngine {
 		return (GetOwner()->GetTransform().position.Distance(other.GetOwner()->GetTransform().position) <= (m_radius + circleCollider->GetRadius()));
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="value"></param>
 	void CircleColliderComponent::Read(const JSON::value_t& value) {
 		ColliderComponent::Read(value);
 

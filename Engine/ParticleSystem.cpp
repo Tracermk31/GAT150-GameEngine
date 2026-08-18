@@ -5,15 +5,27 @@
 #include "ResourceManager.h"
 
 namespace ChiefEngine{
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="poolSize"></param>
+	/// <returns></returns>
 	bool ParticleSystem::Initialize(size_t poolSize) {
 		m_particles.resize(poolSize);
 		return true;
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
 	void ParticleSystem::Shutdown() {
 		m_particles.clear();
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="dt"></param>
 	void ParticleSystem::Update(float dt) {
 		for (auto& particle : m_particles) {
 			if (!particle.active) { 
@@ -30,6 +42,10 @@ namespace ChiefEngine{
 		}
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="renderer"></param>
 	void ParticleSystem::Draw(Renderer& renderer) {
 		for (auto& particle : m_particles) {
 			if (particle.active) {
@@ -43,6 +59,10 @@ namespace ChiefEngine{
 		}
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="particle"></param>
 	void ParticleSystem::AddParticle(const Particle& particle) {
 		Particle* freeParticle = GetFreeParticle();
 		if (freeParticle) {

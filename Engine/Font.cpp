@@ -12,6 +12,12 @@ namespace ChiefEngine {
 		}
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="name"></param>
+	/// <param name="fontSize"></param>
+	/// <returns></returns>
 	bool Font::Load(const std::string& name, float fontSize) {
 		m_ttfFont = TTF_OpenFont(name.c_str(), fontSize);
 		if (m_ttfFont == nullptr) {

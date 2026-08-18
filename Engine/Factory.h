@@ -8,8 +8,7 @@
 #include <memory>
 
 #define FACTORY_REGISTER(className)                                             \
-    class Register##className                                                   \
-    {                                                                           \
+    class Register##className {                                                 \
     public:                                                                     \
         Register##className() {                                                 \
             ChiefEngine::Factory::Instance().Register<##className>(#className); \
@@ -29,6 +28,10 @@ namespace ChiefEngine {
     class Creator : public ICreator {
     public:
         ~Creator() = default;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         std::unique_ptr<Object> Create() override { return std::make_unique<T>(); }
     };
 
@@ -41,6 +44,10 @@ namespace ChiefEngine {
             m_prototype{ std::move(prototype) }
         {}
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         std::unique_ptr<Object> Create() override { 
             return m_prototype->Clone();
         }
@@ -65,6 +72,11 @@ namespace ChiefEngine {
         std::map<std::string, std::unique_ptr<ICreator>> m_registry;
     };
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="name"></param>
     template <typename T>
         requires std::derived_from<T, Object>
     inline void Factory::Register(const std::string& name) {
@@ -78,6 +90,12 @@ namespace ChiefEngine {
         m_registry[id] = std::make_unique<Creator<T>>();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="name"></param>
+    /// <param name="prototype"></param>
     template <typename T>
         requires std::derived_from<T, Object>
     inline void Factory::RegisterPrototype(const std::string& name, std::unique_ptr<T> prototype) {
@@ -89,6 +107,12 @@ namespace ChiefEngine {
         m_registry[id] = std::make_unique<PrototypeCreator<T>>(std::move(prototype));
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="name"></param>
+    /// <returns></returns>
     template <typename T>
         requires std::derived_from<T, Object>
     inline std::unique_ptr<T> Factory::Create(const std::string& name) {

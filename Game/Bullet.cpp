@@ -6,6 +6,12 @@ using namespace ChiefEngine;
 
 FACTORY_REGISTER(Bullet)
 
+/// <summary>
+/// 
+/// </summary>
+/// <param name="dt"></param>
+/// <param name="maxX"></param>
+/// <param name="maxY"></param>
 void Bullet::Update(float dt, float maxX, float maxY) {
 	Vector2 forward{ 1.0f, 0.0f };
 	Vector2 velocity = forward.Rotate(m_transform.rotation * DEGREE_TO_RADIAN) * m_speed;
@@ -23,6 +29,10 @@ void Bullet::Update(float dt, float maxX, float maxY) {
 
 }
 
+/// <summary>
+/// 
+/// </summary>
+/// <param name="value"></param>
 void Bullet::Read(const JSON::value_t& value) {
 	Actor::Read(value);
 

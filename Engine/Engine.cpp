@@ -6,6 +6,12 @@
 #include <iostream>
 
 namespace ChiefEngine {
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="screenWidth"></param>
+	/// <param name="screenHeight"></param>
+	/// <returns></returns>
 	bool Engine::Initialize(float screenWidth, float screenHeight) {
 		m_renderer.Initialize("Chief Engine", (short)screenWidth, (short)screenHeight);
 		m_input.Initialize();
@@ -15,6 +21,9 @@ namespace ChiefEngine {
 		return true;
 	};
 
+	/// <summary>
+	/// 
+	/// </summary>
 	void Engine::Shutdown() {
 		m_input.Shutdown();
 		m_renderer.ShutDown();
@@ -22,6 +31,9 @@ namespace ChiefEngine {
 		m_particleSystem.Shutdown();
 	};
 
+	/// <summary>
+	/// 
+	/// </summary>
 	void Engine::Update() {
 		m_input.Update();
 		m_audioSystem.Update();

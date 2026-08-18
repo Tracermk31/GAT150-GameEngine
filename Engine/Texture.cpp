@@ -7,6 +7,9 @@
 #include <SDL3_image/SDL_image.h>
 
 namespace ChiefEngine {
+    /// <summary>
+    /// 
+    /// </summary>
     Texture::~Texture() {
         // if texture exists, destroy texture
         if (m_texture) {
@@ -14,6 +17,12 @@ namespace ChiefEngine {
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="filename"></param>
+    /// <param name="renderer"></param>
+    /// <returns></returns>
     bool Texture::Load(const std::string& filename, Renderer& renderer) {
         // load image onto surface
         SDL_Surface* surface = IMG_Load(filename.c_str());
@@ -36,6 +45,9 @@ namespace ChiefEngine {
         return true;
     }
 
+   /// <summary>
+   /// 
+   /// </summary>
    void Texture::SetSize() {
         SDL_GetTextureSize(m_texture, &m_size.x, &m_size.y);
     }

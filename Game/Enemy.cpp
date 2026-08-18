@@ -8,6 +8,12 @@ using namespace ChiefEngine;
 
 FACTORY_REGISTER(Enemy);
 
+/// <summary>
+/// 
+/// </summary>
+/// <param name="dt"></param>
+/// <param name="maxX"></param>
+/// <param name="maxY"></param>
 void Enemy::Update(float dt, float maxX, float maxY) {
     Vector2 forward{ 1.0f, 0.0f };
 
@@ -54,6 +60,10 @@ void Enemy::Update(float dt, float maxX, float maxY) {
     Wrap(0.0f, maxY, m_transform.position.y);
 }
 
+/// <summary>
+/// 
+/// </summary>
+/// <param name="other"></param>
 void Enemy::OnCollision(Actor* other) {
     if (other->GetTag() == "PlayerBullet") {
         G_Engine().GetAudio().PlaySound("Explosion", G_Engine().GetAudio().GetChannel(2));
@@ -74,6 +84,10 @@ void Enemy::OnCollision(Actor* other) {
     }
 }
 
+/// <summary>
+/// 
+/// </summary>
+/// <param name="value"></param>
 void Enemy::Read(const JSON::value_t& value) {
     Actor::Read(value);
 

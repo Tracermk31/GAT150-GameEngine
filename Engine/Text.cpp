@@ -7,12 +7,22 @@
 #include <SDL3_ttf/SDL_ttf.h>
 
 namespace ChiefEngine {
+	/// <summary>
+	/// 
+	/// </summary>
 	Text::~Text() {
 		if (m_texture != nullptr) {
 			SDL_DestroyTexture(m_texture);
 		}
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="renderer"></param>
+	/// <param name="text"></param>
+	/// <param name="color"></param>
+	/// <returns></returns>
 	bool Text::Create(Renderer& renderer, const std::string& text, const Color& color) {
 		// create a surface using the font, text string and color
 		SDL_Color c{ (uint8_t)(color.r * 255), (uint8_t)(color.g * 255), (uint8_t)(color.b * 255), 255 };
@@ -36,6 +46,12 @@ namespace ChiefEngine {
 		return true;
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="renderer"></param>
+	/// <param name="x"></param>
+	/// <param name="y"></param>
 	void Text::Draw(Renderer& renderer, float x, float y) const {
 		// get the texture width and height
 		float width, height;

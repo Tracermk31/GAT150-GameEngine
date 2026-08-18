@@ -3,6 +3,11 @@
 #include <iostream>
 
 namespace ChiefEngine {
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="stringToLower"></param>
+	/// <returns></returns>
 	inline std::string ToLower(const std::string& stringToLower) {
 		std::string lowerString = stringToLower;
 
@@ -12,6 +17,11 @@ namespace ChiefEngine {
 		return lowerString;
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="stringToUpper"></param>
+	/// <returns></returns>
 	inline std::string ToUpper(const std::string& stringToUpper) {
 		std::string upperString = stringToUpper;
 
@@ -21,6 +31,12 @@ namespace ChiefEngine {
 		return upperString;
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="thisString"></param>
+	/// <param name="otherString"></param>
+	/// <returns></returns>
 	inline bool EqualsIgnoreCase(const std::string& thisString, const std::string& otherString) {
 		if (thisString.size() != otherString.size()) { 
 			return false; 

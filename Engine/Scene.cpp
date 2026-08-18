@@ -6,11 +6,21 @@
 #include "Components/ColliderComponent.h"
 
 namespace ChiefEngine {
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="actor"></param>
 	void Scene::AddActor(std::unique_ptr <Actor> actor) {
 		actor->m_scene = this;
 		m_pendingActors.push_back(std::move(actor));
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="dt"></param>
+	/// <param name="maxX"></param>
+	/// <param name="maxY"></param>
 	void Scene::Update(float dt, float maxX, float maxY) {
 		for (auto& actor : m_actors) {
 			actor->Update(dt, maxX, maxY);
@@ -24,12 +34,19 @@ namespace ChiefEngine {
 		m_pendingActors.clear();
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="renderer"></param>
 	void Scene::Draw(const Renderer& renderer) {
 		for (const auto& actor : m_actors) {
 			actor->Draw(renderer);
 		}
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
 	void Scene::UpdateCollisions() {
 		for (auto& thisActor : m_actors) {
 			for (auto& otherActor : m_actors) {
@@ -51,6 +68,11 @@ namespace ChiefEngine {
 		}
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="thisCollider"></param>
+	/// <returns></returns>
 	bool Scene::CheckActorPlacement(const ColliderComponent* thisCollider) {
 		for (auto& other : m_actors) {
 			auto otherCollider = other->GetComponent<ColliderComponent>();
@@ -73,10 +95,18 @@ namespace ChiefEngine {
 		return true;
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
 	void Scene::DeleteActors() {
 		m_actors.clear();
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="sceneName"></param>
+	/// <returns></returns>
 	bool Scene::Load(const std::string& sceneName) {
 		JSON::document_t document;
 		if (JSON::Load(sceneName, document)) {

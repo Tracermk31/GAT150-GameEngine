@@ -6,6 +6,10 @@
 namespace ChiefEngine {
 	FACTORY_REGISTER(SpriteRendererComponent)
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="renderer"></param>
 	void SpriteRendererComponent::Draw(const Renderer& renderer) const {
 		if (m_texture) {
 			renderer.DrawTexture(*m_texture,
@@ -16,6 +20,10 @@ namespace ChiefEngine {
 		}
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="value"></param>
 	void SpriteRendererComponent::Read(const JSON::value_t& value) {
 		RendererComponent::Read(value);
 

@@ -13,7 +13,15 @@ namespace ChiefEngine {
 
 	class Renderer {
 		public:
+			/// <summary>
+			/// 
+			/// </summary>
+			/// <returns></returns>
 			inline SDL_Window* GetWindow() { return this->m_window;}
+			/// <summary>
+			/// 
+			/// </summary>
+			/// <returns></returns>
 			inline SDL_Renderer* GetRenderer() { return this->m_renderer;}
 
 			bool Initialize(const char* name, short windowWidth, short windowHeight);
@@ -39,7 +47,15 @@ namespace ChiefEngine {
 			void DrawMesh(const class Mesh& mesh, const struct Transform& transform) const;
 			void DrawModel(const class Model& model, const struct Transform& transform) const;
 
+			/// <summary>
+			/// 
+			/// </summary>
+			/// <returns></returns>
 			float getWindowWidth() const { return m_window_size.GetX(); }
+			/// <summary>
+			/// 
+			/// </summary>
+			/// <returns></returns>
 			float getWindowHeight() const { return m_window_size.GetY(); }
 
 			friend Texture;

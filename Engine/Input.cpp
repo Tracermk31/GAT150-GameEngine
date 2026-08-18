@@ -5,6 +5,10 @@
 #include <SDL3/SDL.h>
 
 namespace ChiefEngine {
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <returns></returns>
 	bool Input::Initialize() {
 		const bool* keyState = SDL_GetKeyboardState(&m_numKeys);
 		m_keyStates.resize(m_numKeys);
@@ -14,10 +18,16 @@ namespace ChiefEngine {
 		return true;
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
 	void Input::Shutdown() {
-
+		return;
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
 	void Input::Update() {
 		m_prevKeyStates = m_keyStates;
 		const bool* keyState = SDL_GetKeyboardState(&m_numKeys);

@@ -9,6 +9,12 @@ using namespace ChiefEngine;
 
 FACTORY_REGISTER(Player);
 
+/// <summary>
+/// 
+/// </summary>
+/// <param name="dt"></param>
+/// <param name="maxX"></param>
+/// <param name="maxY"></param>
 void Player::Update(float dt, float maxX, float maxY) {
 
     float thrust = 0.0f;
@@ -102,6 +108,10 @@ void Player::Update(float dt, float maxX, float maxY) {
     Wrap(0.0f, maxY, m_transform.position.y);
 }
 
+/// <summary>
+/// 
+/// </summary>
+/// <param name="other"></param>
 void Player::OnCollision(Actor* other) {
     if (other->GetTag() == "Enemy" || other->GetTag() == "EnemyBoss" || other->GetTag() == "EnemyBullet") {
         //G_Engine().GetAudio().PlaySound("Explosion", G_Engine().GetAudio().GetChannel(2));
@@ -110,6 +120,10 @@ void Player::OnCollision(Actor* other) {
     }
 }
 
+/// <summary>
+/// 
+/// </summary>
+/// <param name="value"></param>
 void Player::Read(const JSON::value_t& value) {
     Actor::Read(value);
 

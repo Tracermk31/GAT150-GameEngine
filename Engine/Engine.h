@@ -26,6 +26,10 @@
 namespace ChiefEngine {
 	class Engine : public Singleton<Engine> {
 	public:
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		static Engine& Get() { static Engine engine; return engine; }
 
 		bool Initialize(float screenWidth, float screenHeight);
@@ -33,10 +37,34 @@ namespace ChiefEngine {
 
 		void Update();
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		Time& GetTime() { return m_time; }
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		Input& GetInput() { return m_input; }
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		Renderer& GetRenderer() { return m_renderer; }
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		Audio& GetAudio() { return m_audioSystem; }
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		ParticleSystem& GetParticleSystem() { return m_particleSystem; }
 	private:
 		ParticleSystem m_particleSystem;

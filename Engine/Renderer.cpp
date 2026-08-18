@@ -9,6 +9,13 @@
 #include <iostream>
 
 namespace ChiefEngine {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="windowWidth"></param>
+    /// <param name="windowHeight"></param>
+    /// <returns></returns>
     bool Renderer::Initialize(const char* name, short windowWidth, short windowHeight) {
         m_window_size.x = windowWidth;
         m_window_size.y = windowHeight;
@@ -43,30 +50,63 @@ namespace ChiefEngine {
         return true;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="red"></param>
+    /// <param name="green"></param>
+    /// <param name="blue"></param>
+    /// <param name="alpha"></param>
     void Renderer::SetColor(Uint8 red, Uint8 green, Uint8 blue, Uint8 alpha) const {
         SDL_SetRenderDrawColor(m_renderer, red, green, blue, alpha);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="red"></param>
+    /// <param name="green"></param>
+    /// <param name="blue"></param>
+    /// <param name="alpha"></param>
     void Renderer::SetColorFloat(float red, float green, float blue, float alpha) const {
         SDL_SetRenderDrawColorFloat(m_renderer, red, green, blue, alpha);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="color"></param>
+    /// <param name="alpha"></param>
     void Renderer::SetColorVector(Color color, float alpha) const {
         SDL_SetRenderDrawColorFloat(m_renderer, color.r, color.g, color.b, alpha);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     void Renderer::Clear() const {
         SDL_RenderClear(m_renderer);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     void Renderer::Present() const {
         SDL_RenderPresent(m_renderer);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
     void Renderer::DrawPoint(float x, float y) const {
         SDL_RenderPoint(m_renderer, x, y);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     void Renderer::ShutDown() const {
         TTF_Quit();
         SDL_DestroyRenderer(m_renderer);
@@ -74,23 +114,50 @@ namespace ChiefEngine {
         SDL_Quit();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="rectangle"></param>
     void Renderer::DrawRect(const SDL_FRect* rectangle) const {
         SDL_RenderRect(m_renderer, rectangle);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="rectangle"></param>
     void Renderer::DrawFillRect(const SDL_FRect* rectangle) const {
         SDL_RenderFillRect(m_renderer, rectangle);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    /// <param name="w"></param>
+    /// <param name="h"></param>
     void Renderer::DrawFillRect(float x, float y, float w, float h) const {
         SDL_FRect rectangle{ x, y, w, h };
         SDL_RenderFillRect(m_renderer, &rectangle);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="x1"></param>
+    /// <param name="y1"></param>
+    /// <param name="x2"></param>
+    /// <param name="y2"></param>
     void Renderer::DrawLine(float x1, float y1, float x2, float y2) const {
         SDL_RenderLine(m_renderer, x1, y1, x2, y2);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="mesh"></param>
+    /// <param name="transform"></param>
     void Renderer::DrawMesh(const class Mesh& mesh, const struct Transform& transform) const {
         SetColor((Uint8)mesh.GetColor().r, (Uint8)mesh.GetColor().g, (Uint8)mesh.GetColor().b);
 
@@ -114,16 +181,37 @@ namespace ChiefEngine {
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="model"></param>
+    /// <param name="transform"></param>
     void Renderer::DrawModel(const class Model& model, const struct Transform& transform) const {
         for (auto mesh : model.GetMeshes()) {
             DrawMesh(mesh, transform);
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    /// <param name="string"></param>
     void Renderer::DrawText(float x, float y, std::string string) const {
         SDL_RenderDebugText(m_renderer, x, y, string.c_str());
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="texture"></param>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    /// <param name="angle"></param>
+    /// <param name="scale"></param>
+    /// <param name="flipHorizontal"></param>
+    /// <param name="flipVertical"></param>
     void Renderer::DrawTexture(const Texture& texture, float x, float y, float angle, float scale, bool flipHorizontal, bool flipVertical) const {
         Vector2 size = texture.GetSize();
 

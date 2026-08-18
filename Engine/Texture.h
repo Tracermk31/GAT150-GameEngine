@@ -18,6 +18,10 @@ namespace ChiefEngine {
 
 		bool Load(const std::string& filename, Renderer& renderer);
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		const Vector2 GetSize() const { return m_size; }
 		void SetSize();
 

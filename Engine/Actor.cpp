@@ -9,6 +9,10 @@
 namespace ChiefEngine {
     FACTORY_REGISTER(Actor)
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="other"></param>
     Actor::Actor(const Actor& other) : 
         Object{ other }
         ,m_tag{ other.m_tag } 
@@ -53,6 +57,10 @@ namespace ChiefEngine {
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="value"></param>
     void Actor::Read(const JSON::value_t& value) {
         Object::Read(value);
 
@@ -81,6 +89,10 @@ namespace ChiefEngine {
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="component"></param>
     void Actor::AddComponent(std::unique_ptr<Component> component) {
         component->SetOwner(this);
         m_components.push_back(std::move(component));

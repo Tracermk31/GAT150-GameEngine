@@ -6,6 +6,10 @@
 #include <fmod_errors.h>
 
 namespace ChiefEngine {
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <returns></returns>
 	bool Audio::Initialize() {
 		FMOD_RESULT result = FMOD::System_Create(&m_audio);
 		if (!CheckFMODResult(result))
@@ -23,16 +27,28 @@ namespace ChiefEngine {
 		m_channel_2->setPriority(1);
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
 	void Audio::Shutdown() {
 		FMOD_RESULT result = m_audio->close();
 		CheckFMODResult(result);
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
 	void Audio::Update() {
 		FMOD_RESULT result = m_audio->update();
 		CheckFMODResult(result);
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="name"></param>
+	/// <param name="filepath"></param>
+	/// <returns></returns>
 	bool Audio::AddSound(const std::string& name, const std::string filepath) {
 		if (m_sounds.contains(name)) {
 			std::cerr << "Audio System : name already exists " << name << std::endl;
@@ -50,6 +66,12 @@ namespace ChiefEngine {
 		return true;
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="name"></param>
+	/// <param name="willLoop"></param>
+	/// <returns></returns>
 	bool Audio::setSoundLoop(const std::string& name, bool willLoop) {
 		if (!m_sounds.contains(name)) {
 			std::cerr << "Audio System: name doesn't exist " << name << std::endl;
@@ -65,6 +87,12 @@ namespace ChiefEngine {
 		return true;
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="name"></param>
+	/// <param name="channelToPlayOn"></param>
+	/// <returns></returns>
 	bool Audio::PlaySound(std::string name, FMOD::Channel* channelToPlayOn) {
 		if (!m_sounds.contains(name)) {
 			std::cerr << "Audio System : name doesn't exist " << name << std::endl;
@@ -78,6 +106,11 @@ namespace ChiefEngine {
 		return true;
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="name"></param>
+	/// <returns></returns>
 	bool Audio::PlaySound(std::string name) {
 		if (!m_sounds.contains(name)) {
 			std::cerr << "Audio System : name doesn't exist " << name << std::endl;
@@ -91,6 +124,11 @@ namespace ChiefEngine {
 		return true;
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="result"></param>
+	/// <returns></returns>
 	bool Audio::CheckFMODResult(FMOD_RESULT result) {
 		if (result != FMOD_OK) {
 			std::cerr << FMOD_ErrorString(result) << std::endl;

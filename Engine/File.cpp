@@ -7,6 +7,10 @@
 #include <iostream>
 
 namespace ChiefEngine {
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <returns></returns>
 	std::string GetWorkingDirectory() {
 		std::error_code ec;
 		auto path = std::filesystem::current_path(ec);
@@ -18,6 +22,11 @@ namespace ChiefEngine {
 		return ec ? std::string{} : path.string();
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="path"></param>
+	/// <returns></returns>
 	bool SetWorkingDirectory(const std::string& path) {
 		std::error_code ec;
 		std::filesystem::current_path(path, ec);
@@ -28,21 +37,41 @@ namespace ChiefEngine {
 		return !ec;
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="path"></param>
+	/// <returns></returns>
 	std::string GetFilename(const std::string& path) {
 		// create path object from string, return filename
 		return std::filesystem::path{ path }.filename().string();
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="path"></param>
+	/// <returns></returns>
 	std::string GetFileExtension(const std::string& path) {
 		// create path object from string, return extension
 		return std::filesystem::path{ path }.extension().string();
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="path"></param>
+	/// <returns></returns>
 	std::string GetFilenameNoExtension(const std::string& path) {
 		// create path object from string, return filename no extension
 		return std::filesystem::path{ path }.stem().string();
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="path"></param>
+	/// <returns></returns>
 	bool FileExists(const std::string& path) {
 		std::error_code ec;
 		bool result = std::filesystem::exists(path, ec);
@@ -53,6 +82,11 @@ namespace ChiefEngine {
 		return !ec && result;
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="path"></param>
+	/// <returns></returns>
 	std::vector<std::string> GetFilesInDirectory(const std::string& path) {
 		std::vector<std::string> files;
 		std::error_code ec;
@@ -80,6 +114,11 @@ namespace ChiefEngine {
 		return files;
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="path"></param>
+	/// <returns></returns>
 	std::vector<std::string> GetDirectoriesIn(const std::string& path) {
 		std::vector<std::string> directories;
 		std::error_code ec;
@@ -103,6 +142,12 @@ namespace ChiefEngine {
 		return directories;
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="path"></param>
+	/// <param name="data"></param>
+	/// <returns></returns>
 	bool ReadTextFile(const std::string& path, std::string& data) {
 		// create input file stream
 		std::ifstream file(path);
@@ -120,7 +165,13 @@ namespace ChiefEngine {
 		return true;
 	}
 
-	
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="path"></param>
+	/// <param name="data"></param>
+	/// <param name="append"></param>
+	/// <returns></returns>
 	bool WriteTextFile(const std::string& path, const std::string& data, bool append) {
 		// create input file stream
 		std::ios::openmode mode = append ? std::ios::app : std::ios::out;

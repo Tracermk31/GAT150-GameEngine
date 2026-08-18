@@ -10,6 +10,12 @@
 #include <iostream>
 
 namespace ChiefEngine::JSON {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="filename"></param>
+    /// <param name="document"></param>
+    /// <returns></returns>
     bool Load(const std::string& filename, document_t& document) {
         // read the file into a string
         std::string buffer;
@@ -42,6 +48,14 @@ namespace ChiefEngine::JSON {
         return true;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="name"></param>
+    /// <param name="data"></param>
+    /// <param name="required"></param>
+    /// <returns></returns>
     bool Read(const value_t& value, const std::string& name, int& data, bool required) {
         // check if the value has the "<name>" and the correct data type
         if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsInt()) {
@@ -57,6 +71,14 @@ namespace ChiefEngine::JSON {
         return true;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="name"></param>
+    /// <param name="data"></param>
+    /// <param name="required"></param>
+    /// <returns></returns>
     bool Read(const value_t& value, const std::string& name, short& data, bool required) {
         // check if the value has the "<name>" and the correct data type
         if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsInt()) {
@@ -72,6 +94,14 @@ namespace ChiefEngine::JSON {
         return true;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="name"></param>
+    /// <param name="data"></param>
+    /// <param name="required"></param>
+    /// <returns></returns>
     bool Read(const value_t& value, const std::string& name, bool& data, bool required) {
         // check if the value has the “" and the correct data type 
         if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsBool()) {
@@ -86,6 +116,14 @@ namespace ChiefEngine::JSON {
         return true;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="name"></param>
+    /// <param name="data"></param>
+    /// <param name="required"></param>
+    /// <returns></returns>
     bool Read(const value_t& value, const std::string& name, float& data, bool required) {
         // check if the value has the “" and the correct data type 
         if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsFloat()) {
@@ -100,6 +138,14 @@ namespace ChiefEngine::JSON {
         return true;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="name"></param>
+    /// <param name="data"></param>
+    /// <param name="required"></param>
+    /// <returns></returns>
     bool Read(const value_t& value, const std::string& name, std::string& data, bool required) {
         // check if the value has the “" and the correct data type 
         if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsString()) {
@@ -114,6 +160,14 @@ namespace ChiefEngine::JSON {
         return true;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="name"></param>
+    /// <param name="data"></param>
+    /// <param name="required"></param>
+    /// <returns></returns>
     bool Read(const value_t& value, const std::string& name, Vector2& data, bool required) {
         // check if the value has the "<name>" and is an array with 2 elements
         if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsArray() || value[name.c_str()].Size() != 2) {
@@ -141,6 +195,14 @@ namespace ChiefEngine::JSON {
         return true;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="name"></param>
+    /// <param name="data"></param>
+    /// <param name="required"></param>
+    /// <returns></returns>
     bool Read(const value_t& value, const std::string& name, Vector3& data, bool required) {
         // check if the value has the "<name>" and is an array with 2 elements
         if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsArray() || value[name.c_str()].Size() != 3) {

@@ -14,6 +14,10 @@ namespace ChiefEngine {
 
 		bool Load(const std::string& name, float fontSize);
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		TTF_Font* getFont() {
 			return m_ttfFont;
 		}

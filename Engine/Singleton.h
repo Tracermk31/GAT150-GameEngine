@@ -7,6 +7,10 @@ namespace ChiefEngine {
         Singleton(const Singleton&) = delete;
         Singleton& operator=(const Singleton&) = delete;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         static T& Instance() {
             static T instance;
             return instance;

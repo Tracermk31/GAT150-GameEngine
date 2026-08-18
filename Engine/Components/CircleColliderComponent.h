@@ -11,6 +11,10 @@ namespace ChiefEngine {
 
 		void Read(const JSON::value_t& value) override;
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		inline float GetRadius() const { return m_radius; }
 	protected:
 		float m_radius = 0.0f;

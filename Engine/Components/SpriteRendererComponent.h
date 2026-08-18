@@ -13,6 +13,10 @@ namespace ChiefEngine {
 
 		void Read(const JSON::value_t& value) override;
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		inline const resource_t<Texture> GetTexture() {
 			return m_texture;
 		}

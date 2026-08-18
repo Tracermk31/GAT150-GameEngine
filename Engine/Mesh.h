@@ -14,10 +14,26 @@ namespace ChiefEngine {
 			,m_color{ color } 
 		{ }
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="points"></param>
 		void SetPoints(const std::vector<Vector2>& points) { m_points = points; }
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		const std::vector<Vector2>& GetPoints() const { return m_points; }
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="color"></param>
 		void SetColor(const Color& color) { m_color = color; }
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		const Color& GetColor() const { return m_color; }
 
 		float GetRadius() const;

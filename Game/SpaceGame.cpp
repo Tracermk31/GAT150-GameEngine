@@ -11,6 +11,10 @@ using namespace ChiefEngine;
 
 const float FONT_SIZE = 16.0f;
 
+/// <summary>
+/// 
+/// </summary>
+/// <returns></returns>
 bool SpaceGame::Initialize() {
 	Game::Initialize();
 
@@ -38,6 +42,12 @@ bool SpaceGame::Initialize() {
 	return true;
 }
 
+/// <summary>
+/// 
+/// </summary>
+/// <param name="dt"></param>
+/// <param name="maxX"></param>
+/// <param name="maxY"></param>
 void SpaceGame::Update(float dt, float maxX, float maxY) {
 	switch (m_gameState) {
 	case GameState::Title:
@@ -81,6 +91,12 @@ void SpaceGame::Update(float dt, float maxX, float maxY) {
 	Game::Update(dt, maxX, maxY);
 }
 
+/// <summary>
+/// 
+/// </summary>
+/// <param name="renderer"></param>
+/// <param name="maxX"></param>
+/// <param name="maxY"></param>
 void SpaceGame::Draw(ChiefEngine::Renderer& renderer, float maxX, float maxY) {
 	renderer.DrawTexture(*Resources().Get<Texture>("Textures/Background.jpg", G_Engine().GetRenderer()), maxX/2, maxY/2, 1.0f, 0.5f);
 	switch (m_gameState) {
@@ -107,6 +123,11 @@ void SpaceGame::Draw(ChiefEngine::Renderer& renderer, float maxX, float maxY) {
 	Game::Draw(renderer, maxX, maxY);
 }
 
+/// <summary>
+/// 
+/// </summary>
+/// <param name="maxX"></param>
+/// <param name="maxY"></param>
 void SpaceGame::SpawnEnemy(float maxX, float maxY) {
 	auto enemy = Factory::Instance().Create<Actor>("EnemyPrototype");
 
@@ -117,6 +138,11 @@ void SpaceGame::SpawnEnemy(float maxX, float maxY) {
 	m_scene->AddActor(std::move(enemy));
 }
 
+/// <summary>
+/// 
+/// </summary>
+/// <param name="maxX"></param>
+/// <param name="maxY"></param>
 void SpaceGame::SpawnBoss(float maxX, float maxY) {
 	auto enemy = Factory::Instance().Create<Actor>("EnemyBossPrototype");
 	enemy->SetPosition({ RandomFloat(0, maxX), RandomFloat(0, maxY) });
@@ -126,12 +152,20 @@ void SpaceGame::SpawnBoss(float maxX, float maxY) {
 	m_scene->AddActor(std::move(enemy));
 }
 
+/// <summary>
+/// 
+/// </summary>
+/// <param name="maxX"></param>
+/// <param name="maxY"></param>
 void SpaceGame::SpawnPlayer(float maxX, float maxY) {
 		auto player = Factory::Instance().Create<Actor>("PlayerPrototype");
 		player->SetPosition({ maxX / 2, maxY / 2 });
 		m_scene->AddActor(std::move(player));
 }
 
+/// <summary>
+/// 
+/// </summary>
 void SpaceGame::OnPlayerDeath() {
 	m_lives--;
 	if (m_lives <= 0) {
