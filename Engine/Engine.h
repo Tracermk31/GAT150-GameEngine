@@ -19,6 +19,8 @@
 #include "ParticleSystem.h"
 #include "ResourceManager.h"
 
+#include "Physics\Physics.h"
+
 #include <vector>
 #include <fmod.hpp>
 #include <iostream>
@@ -66,12 +68,19 @@ namespace ChiefEngine {
 		/// </summary>
 		/// <returns></returns>
 		ParticleSystem& GetParticleSystem() { return m_particleSystem; }
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		Physics& GetPhysics() { return m_physics; }
 	private:
 		ParticleSystem m_particleSystem;
 		Time m_time;
 		Input m_input;
 		Renderer m_renderer;
 		Audio m_audioSystem;
+		Physics m_physics;
 	};
 
 	inline Engine& G_Engine() { return Engine::Instance(); }
