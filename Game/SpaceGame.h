@@ -1,9 +1,11 @@
 #pragma once
 
-#include "Font.h"
-#include "Game.h"
-#include "Text.h"
-#include "ResourceManager.h"
+#include "Framework/Game.h"
+
+#include "Renderer/Font.h"
+#include "Renderer/Text.h"
+
+#include "Resources/ResourceManager.h"
 
 class SpaceGame : public ChiefEngine::Game {
 public:

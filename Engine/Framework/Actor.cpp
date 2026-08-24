@@ -2,9 +2,10 @@
 
 #include "Actor.h"
 #include "Engine.h"
-#include "Texture.h"
-#include "EngineMath.h"
+
 #include "Components/SpriteRendererComponent.h"
+
+#include "Renderer/Texture.h"
 
 namespace ChiefEngine {
     FACTORY_REGISTER(Actor)

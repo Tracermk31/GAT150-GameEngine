@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Texture.h"
-#include "Resource.h"
+#include "Renderer/Texture.h"
+#include "Resources/Resource.h"
 #include "RendererComponent.h"
 
 namespace ChiefEngine {

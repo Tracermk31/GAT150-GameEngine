@@ -1,7 +1,8 @@
+#include "Engine.h"
+
 #include "Enemy.h"
 #include "Bullet.h"
 #include "Player.h"
-#include "Engine.h"
 #include "SpaceGame.h"
 
 using namespace ChiefEngine;

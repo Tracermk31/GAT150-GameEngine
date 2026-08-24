@@ -1,9 +1,10 @@
-#include "Input.h"
 #include "Assets.h"
 #include "Bullet.h"
 #include "Engine.h"
 #include "Player.h"
 #include "SpaceGame.h"
+
+#include "Input/Input.h"
 
 using namespace ChiefEngine;
 

@@ -1,10 +1,11 @@
 #pragma once
 
-#include "Vector2.h"
-#include "Vector3.h"
+#include "Math/Vector2.h"
+#include "Math/Vector3.h"
+
+#include <string>
 
 #include <rapidjson/document.h>
-#include <string>
 
 #define JSON_HAS_BY_NAME(value, name) value.HasMember(name)
 #define JSON_HAS_BY_DATA(value, data) value.HasMember(#data)

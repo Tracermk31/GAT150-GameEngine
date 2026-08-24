@@ -1,7 +1,8 @@
 #include "pch.h"
 
 #include "Game.h"
-#include "Renderer.h"
+
+#include "Renderer/Renderer.h"
 
 namespace ChiefEngine {
 	/// <summary>

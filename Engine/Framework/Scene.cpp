@@ -1,9 +1,12 @@
 #include "pch.h"
 
 #include "Scene.h"
-#include "Factory.h"
-#include "Renderer.h"
+
 #include "Components/ColliderComponent.h"
+
+#include "Core/Factory.h"
+
+#include "Renderer/Renderer.h"
 
 namespace ChiefEngine {
 	/// <summary>

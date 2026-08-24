@@ -2,7 +2,8 @@
 
 #include "Renderer.h"
 #include "ParticleSystem.h"
-#include "ResourceManager.h"
+
+#include "Resources/ResourceManager.h"
 
 namespace ChiefEngine{
 	/// <summary>

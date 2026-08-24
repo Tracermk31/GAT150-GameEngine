@@ -1,9 +1,11 @@
 #include "pch.h"
 
-#include "File.h"
 #include "JSON.h"
-#include "Vector2.h"
-#include "Vector3.h"
+
+#include "Core/File.h"
+
+#include "Math/Vector2.h"
+#include "Math/Vector3.h"
 
 namespace ChiefEngine::JSON {
     /// <summary>

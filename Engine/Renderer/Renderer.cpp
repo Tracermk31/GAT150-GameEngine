@@ -3,8 +3,10 @@
 #include "Model.h"
 #include "Texture.h"
 #include "Renderer.h"
-#include "Transform.h"
-#include "EngineMath.h"
+
+#include "Math/Rect.h"
+#include "Math/Transform.h"
+#include "Math/EngineMath.h"
 
 namespace ChiefEngine {
     /// <summary>
@@ -219,6 +221,21 @@ namespace ChiefEngine {
 
         destRect.x = x - (destRect.w * 0.5f);
         destRect.y = y - (destRect.h * 0.5f);
+
+        // https://wiki.libsdl.org/SDL3/SDL_RenderTexture
+        SDL_RenderTextureRotated(m_renderer, texture.m_texture, nullptr, &destRect, angle, nullptr, 
+            (flipHorizontal && flipVertical) ? SDL_FLIP_HORIZONTAL_AND_VERTICAL : (flipHorizontal) ? SDL_FLIP_HORIZONTAL : (flipVertical) ? SDL_FLIP_VERTICAL : SDL_FLIP_NONE);
+    }
+
+    void Renderer::DrawTexture(const Texture& texture, const Rect& source, float angle, float scale, bool flipHorizontal, bool flipVertical) const {
+        Vector2 size = texture.GetSize();
+
+        SDL_FRect destRect;
+        destRect.w = size.x * scale;
+        destRect.h = size.y * scale;
+
+        destRect.x = source.position.x - (destRect.w * 0.5f);
+        destRect.y = source.position.y - (destRect.h * 0.5f);
 
         // https://wiki.libsdl.org/SDL3/SDL_RenderTexture
         SDL_RenderTextureRotated(m_renderer, texture.m_texture, nullptr, &destRect, angle, nullptr, 

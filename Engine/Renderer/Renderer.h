@@ -1,9 +1,10 @@
 #pragma once
 
-#include "Vector2.h"
-#include "Vector3.h"
+#include "Math/Vector2.h"
+#include "Math/Vector3.h"
 
 #include <string>
+
 #include <SDL3/SDL.h>
 #include <SDL3_ttf/SDL_ttf.h>
 #include <SDL3_image/SDL_image.h>
@@ -43,6 +44,7 @@ namespace ChiefEngine {
 
 			void DrawText(float x, float y, std::string string) const;
 			void DrawTexture(const Texture& texture, float x, float y, float angle = 0.0f, float scale = 1.0f, bool flipHorizontal = false, bool flipVertical = false) const;
+			void DrawTexture(const Texture& texture, const class Rect& source, float angle = 0.0f, float scale = 1.0f, bool flipHorizontal = false, bool flipVertical = false) const;
 
 			void DrawMesh(const class Mesh& mesh, const struct Transform& transform) const;
 			void DrawModel(const class Model& model, const struct Transform& transform) const;

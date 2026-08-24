@@ -1,18 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Components">
       <UniqueIdentifier>{d9b24f4f-494b-49f9-a13a-1f2c5b045b41}</UniqueIdentifier>
     </Filter>
@@ -25,9 +13,6 @@
     <Filter Include="Framework">
       <UniqueIdentifier>{c9d23054-b0c5-4309-82ae-31e85e36c257}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Physics">
-      <UniqueIdentifier>{4e8f5f3e-f583-46d3-aa3c-b8a0c13aa2ae}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Components\Headers">
       <UniqueIdentifier>{7736e923-7265-4b8c-9627-ad5c1f624f3e}</UniqueIdentifier>
     </Filter>
@@ -37,36 +22,69 @@
     <Filter Include="Core\Headers">
       <UniqueIdentifier>{57315bb8-1c0b-48f8-b508-0d195a1275cc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Physics\Headers">
-      <UniqueIdentifier>{e6f3cc1a-5878-4a72-b5e6-87868a7f71f6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Physics\SourceFiles">
-      <UniqueIdentifier>{69f8870e-5ab8-4171-a982-47f4b86bff94}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Components\SourceFiles">
       <UniqueIdentifier>{53af4d6d-40a0-442a-b29e-7c8935def2da}</UniqueIdentifier>
     </Filter>
     <Filter Include="Framework\Headers">
       <UniqueIdentifier>{c2b38814-62a1-4c77-acfc-bed67f1b1b26}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{a6dc1bf7-f25b-44bd-b0d8-3d3ff9b63ee3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Serialization">
+      <UniqueIdentifier>{5e00f3bd-96eb-456f-95fb-58bfd6124dbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Sources">
+      <UniqueIdentifier>{3f05b390-03c5-4109-816d-70e83e687ef6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Sources">
+      <UniqueIdentifier>{e9e32902-bd8d-4aad-b830-98a511b9be1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Audio\Sources">
+      <UniqueIdentifier>{2db8e99a-92cc-4dd7-9b9c-927f8397e803}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Serialization\Headers">
+      <UniqueIdentifier>{4eed7880-3776-4ea2-8728-66af841dae22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Serialization\Sources">
+      <UniqueIdentifier>{4eef227d-e4be-4061-9c3c-3c0eab959d50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{27faaa31-fd8c-497d-af82-0af3635ae99b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{29001708-ba12-48a3-a1a4-65a2f9692d07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input\Headers">
+      <UniqueIdentifier>{d633b883-befa-42e2-aa53-e14e3e3943bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input\Sources">
+      <UniqueIdentifier>{82a4e2d4-1d91-4ec1-9ccb-0d51da7e415a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{5f89fce3-2492-4e80-a561-6b9e551438a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer\Headers">
+      <UniqueIdentifier>{d576b1c4-bb0b-48be-a881-8d0768cefaf5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer\Sources">
+      <UniqueIdentifier>{7bfc8b3e-028d-42e8-87dd-8521325f8c4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics">
+      <UniqueIdentifier>{4e8f5f3e-f583-46d3-aa3c-b8a0c13aa2ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Headers">
+      <UniqueIdentifier>{e6f3cc1a-5878-4a72-b5e6-87868a7f71f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Sources">
+      <UniqueIdentifier>{69f8870e-5ab8-4171-a982-47f4b86bff94}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Scene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Components\CircleColliderComponent.h">
       <Filter>Components\Headers</Filter>
     </ClInclude>
     <ClInclude Include="Components\ColliderComponent.h">
-      <Filter>Components\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Component.h">
       <Filter>Components\Headers</Filter>
     </ClInclude>
     <ClInclude Include="Components\RendererComponent.h">
@@ -75,135 +93,103 @@
     <ClInclude Include="Components\SpriteRendererComponent.h">
       <Filter>Components\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Audio.h">
-      <Filter>Audio\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="EngineMath.h">
-      <Filter>Core\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="EngineStrings.h">
-      <Filter>Core\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="EngineTime.h">
-      <Filter>Core\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Factory.h">
-      <Filter>Core\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="File.h">
-      <Filter>Core\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Input.h">
-      <Filter>Core\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="JSON.h">
-      <Filter>Core\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="pch.h">
-      <Filter>Core\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Random.h">
-      <Filter>Core\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Singleton.h">
-      <Filter>Core\Headers</Filter>
-    </ClInclude>
     <ClInclude Include="Framework\framework.h">
       <Filter>Framework\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Actor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Font.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Mesh.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Model.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ResourceManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Text.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Transform.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector3.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Physics\Physics.h">
       <Filter>Physics\Headers</Filter>
     </ClInclude>
+    <ClInclude Include="Math\Rect.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Transform.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vector2.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vector3.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\EngineMath.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\TextureFrames.h">
+      <Filter>Renderer\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\File.h">
+      <Filter>Core\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\EngineStrings.h">
+      <Filter>Core\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\EngineTime.h">
+      <Filter>Core\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Factory.h">
+      <Filter>Core\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Random.h">
+      <Filter>Core\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Singleton.h">
+      <Filter>Core\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Actor.h">
+      <Filter>Framework\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Object.h">
+      <Filter>Framework\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Scene.h">
+      <Filter>Framework\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Game.h">
+      <Filter>Framework\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Font.h">
+      <Filter>Renderer\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Mesh.h">
+      <Filter>Renderer\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Model.h">
+      <Filter>Renderer\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\ParticleSystem.h">
+      <Filter>Renderer\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Renderer.h">
+      <Filter>Renderer\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Text.h">
+      <Filter>Renderer\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Texture.h">
+      <Filter>Renderer\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Audio\Audio.h">
+      <Filter>Audio\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Component.h">
+      <Filter>Components\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\Input.h">
+      <Filter>Input\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Resources\Resource.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Resources\ResourceManager.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Serialization\JSON.h">
+      <Filter>Serialization\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Input.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EngineTime.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Actor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Audio.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="File.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Model.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Mesh.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Font.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Text.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="JSON.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Components\CircleColliderComponent.cpp">
       <Filter>Components\SourceFiles</Filter>
     </ClCompile>
@@ -211,8 +197,57 @@
       <Filter>Components\SourceFiles</Filter>
     </ClCompile>
     <ClCompile Include="Physics\Physics.cpp">
-      <Filter>Physics\SourceFiles</Filter>
+      <Filter>Physics\Sources</Filter>
     </ClCompile>
     <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="Renderer\TextureFrames.cpp">
+      <Filter>Renderer\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\EngineTime.cpp">
+      <Filter>Core\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\File.cpp">
+      <Filter>Core\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Actor.cpp">
+      <Filter>Framework\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Scene.cpp">
+      <Filter>Framework\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Game.cpp">
+      <Filter>Framework\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Texture.cpp">
+      <Filter>Renderer\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Text.cpp">
+      <Filter>Renderer\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Renderer.cpp">
+      <Filter>Renderer\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\ParticleSystem.cpp">
+      <Filter>Renderer\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Model.cpp">
+      <Filter>Renderer\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Mesh.cpp">
+      <Filter>Renderer\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Font.cpp">
+      <Filter>Renderer\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Audio\Audio.cpp">
+      <Filter>Audio\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\Input.cpp">
+      <Filter>Input\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Serialization\JSON.cpp">
+      <Filter>Serialization\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp" />
   </ItemGroup>
 </Project>

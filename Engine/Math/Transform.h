@@ -1,7 +1,7 @@
 #pragma once
 
-#include "JSON.h"
-#include "Vector2.h"
+#include "Serialization/JSON.h"
+#include "Math/Vector2.h"
 
 namespace ChiefEngine {
     struct Transform {

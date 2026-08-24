@@ -1,6 +1,8 @@
 #include "Bullet.h"
-#include "Factory.h"
-#include "EngineMath.h"
+
+#include "Core/Factory.h"
+
+#include "Math/EngineMath.h"
 
 using namespace ChiefEngine;
 

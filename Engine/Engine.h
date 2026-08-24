@@ -1,25 +1,32 @@
 #pragma once
 
-#include "File.h"
-#include "Font.h"
-#include "JSON.h"
-#include "Text.h"
-#include "Actor.h"
-#include "Audio.h"
-#include "Input.h"
-#include "Scene.h"
-#include "Random.h"
-#include "Factory.h"
-#include "Texture.h"
-#include "Renderer.h"
-#include "Singleton.h"
-#include "EngineMath.h"
-#include "EngineTime.h"
-#include "EngineStrings.h"
-#include "ParticleSystem.h"
-#include "ResourceManager.h"
+#include "Audio/Audio.h"
 
-#include "Physics\Physics.h"
+#include "Framework/Actor.h"
+#include "Framework/Scene.h"
+
+#include "Input/Input.h"
+
+#include "Core/File.h"
+#include "Core/Random.h"
+#include "Core/Factory.h"
+#include "Core/Singleton.h"
+#include "Core/EngineTime.h"
+#include "Core/EngineStrings.h"
+
+#include "Math/EngineMath.h"
+
+#include "Physics/Physics.h"
+
+#include "Renderer/Font.h"
+#include "Renderer/Text.h"
+#include "Renderer/Texture.h"
+#include "Renderer/Renderer.h"
+#include "Renderer/ParticleSystem.h"
+
+#include "Resources/ResourceManager.h"
+
+#include "Serialization/JSON.h"
 
 #include <vector>
 #include <fmod.hpp>

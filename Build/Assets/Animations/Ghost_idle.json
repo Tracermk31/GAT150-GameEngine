@@ -1,0 +1,7 @@
+{
+  "textureFame": "Textures/Ghost.png",
+  "columns": 6,
+  "rows": 1,
+  "startFrame": 0,
+  "totalFrames": 6
+}
