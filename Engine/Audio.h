@@ -21,6 +21,11 @@ namespace ChiefEngine {
 		void Shutdown();
 		void Update();
 
+		/// <summary>
+		/// Returns an FMOD Channel based on the provided number
+		/// </summary>
+		/// <param name="channelNumber">The desired channel number</param>
+		/// <returns>An FMOD Channel with the given number, else nullptr</returns>
 		inline FMOD::Channel* GetChannel(unsigned short channelNumber) {
 			switch (channelNumber) {
 			case 1:
@@ -34,7 +39,7 @@ namespace ChiefEngine {
 		bool AddSound(const std::string& name, const std::string filepath);
 
 		/// <summary>
-		/// 
+		/// Clears the vector of sounds, ensuring they're properly deleted.
 		/// </summary>
 		inline void ClearSounds() {
 			m_sounds.clear();

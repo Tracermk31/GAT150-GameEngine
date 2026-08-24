@@ -12,9 +12,9 @@ namespace ChiefEngine {
 		void Read(const JSON::value_t& value) override;
 
 		/// <summary>
-		/// 
+		/// Getter for protected value m_radius that describes the size of the hitbox
 		/// </summary>
-		/// <returns></returns>
+		/// <returns> m_radius member value</returns>
 		inline float GetRadius() const { return m_radius; }
 	protected:
 		float m_radius = 0.0f;

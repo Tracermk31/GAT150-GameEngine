@@ -13,17 +13,17 @@ namespace ChiefEngine {
 		virtual ~Component() = default;
 
 		/// <summary>
-		/// 
+		/// Getter for the m_owner member variable. This is a pointer to the Actor that owns the Component.
 		/// </summary>
-		/// <returns></returns>
+		/// <returns> m_owner member value</returns>
 		inline Actor* GetOwner() const {
 			return m_owner;
 		}
 
 		/// <summary>
-		/// 
+		/// Setter for the m_owner member variable. This describes the Actor that has the Component.
 		/// </summary>
-		/// <param name="owner"></param>
+		/// <param name="owner">a pointer to be set as the m_owner member value</param>
 		inline void SetOwner(Actor* owner) { m_owner = owner; }
 
 		virtual void Start() {}

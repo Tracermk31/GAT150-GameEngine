@@ -2,8 +2,6 @@
 
 #include "EngineTime.h"
 
-#include <SDL3/SDL.h>
-
 namespace ChiefEngine {
 	Time::Time() {
 		Reset();

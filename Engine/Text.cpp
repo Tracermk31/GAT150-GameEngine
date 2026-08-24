@@ -3,9 +3,6 @@
 #include "Text.h"
 #include "Renderer.h"
 
-#include <iostream>
-#include <SDL3_ttf/SDL_ttf.h>
-
 namespace ChiefEngine {
 	/// <summary>
 	/// 

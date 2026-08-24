@@ -2,10 +2,6 @@
 
 #include "File.h"
 
-#include <fstream>
-#include <sstream>
-#include <iostream>
-
 namespace ChiefEngine {
 	/// <summary>
 	/// 

@@ -8,10 +8,10 @@ namespace ChiefEngine {
 	FACTORY_REGISTER(CircleColliderComponent)
 
 	/// <summary>
-	/// 
+	/// Functions that checks whether two CircleColliderComponents have collided. 
 	/// </summary>
-	/// <param name="other"></param>
-	/// <returns></returns>
+	/// <param name="other">Other ColliderComponent to check collision against</param>
+	/// <returns>True if collided, false if not</returns>
 	bool CircleColliderComponent::CheckCollision(const ColliderComponent& other) {
 		const CircleColliderComponent* circleCollider = dynamic_cast<const CircleColliderComponent*>(&other);
 		if (!circleCollider) {
@@ -21,9 +21,9 @@ namespace ChiefEngine {
 	}
 
 	/// <summary>
-	/// 
+	/// Reads radius values from a provided JSON file
 	/// </summary>
-	/// <param name="value"></param>
+	/// <param name="value">JSON value to be read from</param>
 	void CircleColliderComponent::Read(const JSON::value_t& value) {
 		ColliderComponent::Read(value);
 

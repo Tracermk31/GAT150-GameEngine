@@ -6,8 +6,6 @@
 #include "Transform.h"
 #include "EngineMath.h"
 
-#include <iostream>
-
 namespace ChiefEngine {
     /// <summary>
     /// 

@@ -14,9 +14,9 @@ namespace ChiefEngine {
 		void Read(const JSON::value_t& value) override;
 
 		/// <summary>
-		/// 
+		/// Getter for the m_texture member variable that stores the information necessary for a texture
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>m_texture member value</returns>
 		inline const resource_t<Texture> GetTexture() {
 			return m_texture;
 		}

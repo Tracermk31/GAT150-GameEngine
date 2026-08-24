@@ -2,8 +2,6 @@
 
 #include "Input.h"
 
-#include <SDL3/SDL.h>
-
 namespace ChiefEngine {
 	/// <summary>
 	/// 

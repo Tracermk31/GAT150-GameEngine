@@ -3,9 +3,6 @@
 #include "Texture.h"
 #include "Renderer.h"
 
-#include <iostream>
-#include <SDL3_image/SDL_image.h>
-
 namespace ChiefEngine {
     /// <summary>
     /// 

@@ -2,9 +2,6 @@
 
 #include "Font.h"
 
-#include <iostream>
-#include <SDL3_ttf/SDL_ttf.h>
-
 namespace ChiefEngine {
 	Font::~Font() {
 		if (m_ttfFont != nullptr) {
