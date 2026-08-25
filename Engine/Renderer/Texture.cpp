@@ -5,10 +5,9 @@
 
 namespace ChiefEngine {
     /// <summary>
-    /// 
+    /// If texture exists, destroy texture
     /// </summary>
     Texture::~Texture() {
-        // if texture exists, destroy texture
         if (m_texture) {
             SDL_DestroyTexture(m_texture);
         }

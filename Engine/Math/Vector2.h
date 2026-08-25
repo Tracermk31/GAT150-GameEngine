@@ -11,6 +11,10 @@ namespace ChiefEngine {
 		Vector2() = default;
 		Vector2(float v) : x{ v }, y{ v } {}
 		Vector2(float x, float y) : x{ x }, y{ y } {}
+		Vector2(int x, int y) : x{ (float)x}, y{(float)y} {}
+		Vector2(float x, int y) : x{ x}, y{(float)y} {}
+		Vector2(int x, float y) : x{ (float)x}, y{ y} {}
+		Vector2(unsigned int x, unsigned int y) : x{ static_cast<float>(x)}, y{static_cast<float>(y)} {}
 
 		/// <summary>
 		/// 

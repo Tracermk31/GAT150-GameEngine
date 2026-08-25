@@ -5,7 +5,7 @@
       "type": "Actor",
       "prototype": false,
       "tag": "Enemy",
-      "actove": true,
+      "active": true,
       "transform": {
         "position": [
           200,
@@ -16,8 +16,10 @@
       },
       "components": [
         {
-          "type": "SpriteRendererComponent",
-          "texture": "Textures/Bat.png"
+          "type": "SpriteAnimationRendererComponent",
+          "textureFrames": "Animations/Bat_idle.json",
+          "framesPerSecond" : 12.0,
+          "looping": true
         }
       ]
     },
@@ -127,7 +129,6 @@
       "active": true,
       "speed": 200.0,
       "damping": 3.0,
-      "lifespan": 0.075,
       "velocity": [
         0.0,
         0.0

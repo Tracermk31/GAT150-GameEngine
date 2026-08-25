@@ -23,6 +23,7 @@
 #include "Renderer/Texture.h"
 #include "Renderer/Renderer.h"
 #include "Renderer/ParticleSystem.h"
+#include "Renderer/TextureFrames.h"
 
 #include "Resources/ResourceManager.h"
 

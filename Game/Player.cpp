@@ -30,7 +30,7 @@ void Player::Update(float dt, float maxX, float maxY) {
 
         thrusterFlame.color = { 1.0f, 0.0f, 0.0f };
         thrusterFlame.lifespan = RandomFloat(0.5f, 1.0f);
-        thrusterFlame.velocity = Vector2{ RandomFloat(-100.0f, -30.0f), 0 }.Rotate(m_transform.rotation * DEGREE_TO_RADIAN);
+        thrusterFlame.velocity = Vector2{ RandomFloat(-100.0f, -30.0f), 0.0f }.Rotate(m_transform.rotation * DEGREE_TO_RADIAN);
         thrusterFlame.scale = 0.075f;
 
         G_Engine().GetParticleSystem().AddParticleAsTexture(thrusterFlame, "Textures/ThrusterFlame.png", G_Engine().GetRenderer());

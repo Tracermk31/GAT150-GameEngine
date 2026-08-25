@@ -188,6 +188,15 @@
       <Filter>Serialization\Headers</Filter>
     </ClInclude>
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Components\SpriteAnimationRendererComponent.h">
+      <Filter>Components\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\PhysicsComponent.h">
+      <Filter>Components\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\RigidBodyPhysicsComponent.h">
+      <Filter>Components\Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Components\CircleColliderComponent.cpp">
@@ -249,5 +258,14 @@
       <Filter>Serialization\Sources</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp" />
+    <ClCompile Include="Components\SpriteAnimationRendererComponent.cpp">
+      <Filter>Components\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\PhysicsComponent.cpp">
+      <Filter>Components\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\RigidBodyPhysicsComponent.cpp">
+      <Filter>Components\SourceFiles</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

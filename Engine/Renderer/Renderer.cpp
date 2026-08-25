@@ -227,18 +227,71 @@ namespace ChiefEngine {
             (flipHorizontal && flipVertical) ? SDL_FLIP_HORIZONTAL_AND_VERTICAL : (flipHorizontal) ? SDL_FLIP_HORIZONTAL : (flipVertical) ? SDL_FLIP_VERTICAL : SDL_FLIP_NONE);
     }
 
-    void Renderer::DrawTexture(const Texture& texture, const Rect& source, float angle, float scale, bool flipHorizontal, bool flipVertical) const {
+    void Renderer::DrawTexture(const Texture& texture, const Transform& transform, bool flipHorizontal, bool flipVertical) const {
         Vector2 size = texture.GetSize();
 
         SDL_FRect destRect;
-        destRect.w = size.x * scale;
-        destRect.h = size.y * scale;
+        destRect.w = size.x * transform.scale;
+        destRect.h = size.y * transform.scale;
 
-        destRect.x = source.position.x - (destRect.w * 0.5f);
-        destRect.y = source.position.y - (destRect.h * 0.5f);
+        destRect.x = transform.position.x - (destRect.w * 0.5f);
+        destRect.y = transform.position.y - (destRect.h * 0.5f);
 
         // https://wiki.libsdl.org/SDL3/SDL_RenderTexture
-        SDL_RenderTextureRotated(m_renderer, texture.m_texture, nullptr, &destRect, angle, nullptr, 
+        SDL_RenderTextureRotated(m_renderer, texture.m_texture, nullptr, &destRect, transform.rotation, nullptr, 
+            (flipHorizontal && flipVertical) ? SDL_FLIP_HORIZONTAL_AND_VERTICAL : (flipHorizontal) ? SDL_FLIP_HORIZONTAL : (flipVertical) ? SDL_FLIP_VERTICAL : SDL_FLIP_NONE);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="texture"></param>
+    /// <param name="source"></param>
+    /// <param name="angle"></param>
+    /// <param name="scale"></param>
+    /// <param name="flipHorizontal"></param>
+    /// <param name="flipVertical"></param>
+    void Renderer::DrawTexture(const Texture& texture, const Rect& source, float x, float y, float angle, float scale, bool flipHorizontal, bool flipVertical) const {
+        Vector2 size = texture.GetSize();
+
+        SDL_FRect sourceRect;
+        sourceRect.x = source.position.x;
+        sourceRect.y = source.position.y;
+
+        sourceRect.w = source.size.x;
+        sourceRect.h = source.size.y;
+
+        SDL_FRect destRect;
+        destRect.w = sourceRect.w * scale;
+        destRect.h = sourceRect.h * scale;
+
+        destRect.x = x - (destRect.w * 0.5f);
+        destRect.y = y - (destRect.h * 0.5f);
+
+        // https://wiki.libsdl.org/SDL3/SDL_RenderTexture
+        SDL_RenderTextureRotated(m_renderer, texture.m_texture, &sourceRect, &destRect, angle, nullptr,
+            (flipHorizontal && flipVertical) ? SDL_FLIP_HORIZONTAL_AND_VERTICAL : (flipHorizontal) ? SDL_FLIP_HORIZONTAL : (flipVertical) ? SDL_FLIP_VERTICAL : SDL_FLIP_NONE);
+    }
+
+    void Renderer::DrawTexture(const Texture& texture, const Rect& source, const Transform& transform, bool flipHorizontal, bool flipVertical) const {
+        Vector2 size = texture.GetSize();
+
+        SDL_FRect sourceRect;
+        sourceRect.x = source.position.x;
+        sourceRect.y = source.position.y;
+
+        sourceRect.w = source.size.x;
+        sourceRect.h = source.size.y;
+
+        SDL_FRect destRect;
+        destRect.w = sourceRect.w * transform.scale;
+        destRect.h = sourceRect.h * transform.scale;
+
+        destRect.x = transform.position.x - (destRect.w * 0.5f);
+        destRect.y = transform.position.y - (destRect.h * 0.5f);
+
+        // https://wiki.libsdl.org/SDL3/SDL_RenderTexture
+        SDL_RenderTextureRotated(m_renderer, texture.m_texture, &sourceRect, &destRect, transform.rotation, nullptr,
             (flipHorizontal && flipVertical) ? SDL_FLIP_HORIZONTAL_AND_VERTICAL : (flipHorizontal) ? SDL_FLIP_HORIZONTAL : (flipVertical) ? SDL_FLIP_VERTICAL : SDL_FLIP_NONE);
     }
 }

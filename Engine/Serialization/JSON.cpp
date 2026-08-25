@@ -69,6 +69,21 @@ namespace ChiefEngine::JSON {
         return true;
     }
 
+    bool Read(const value_t& value, const std::string& name, unsigned int& data, bool required) {
+        // check if the value has the "<name>" and the correct data type
+        if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsUint()) {
+            if (required) {
+                std::cerr << "Could not read JSON value (unsigned int):" << name << std::endl;
+            }
+            return false;
+        }
+
+        // get the data
+        data = value[name.c_str()].GetUint();
+
+        return true;
+    }
+
     /// <summary>
     /// 
     /// </summary>
@@ -81,13 +96,28 @@ namespace ChiefEngine::JSON {
         // check if the value has the "<name>" and the correct data type
         if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsInt()) {
             if (required) {
-                std::cerr << "Could not read JSON value (int):" << name << std::endl;
+                std::cerr << "Could not read JSON value (short):" << name << std::endl;
             }
             return false;
         }
 
         // get the data
         data = (short)value[name.c_str()].GetInt();
+
+        return true;
+    }
+
+    bool Read(const value_t& value, const std::string& name, unsigned short& data, bool required) {
+        // check if the value has the "<name>" and the correct data type
+        if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsUint()) {
+            if (required) {
+                std::cerr << "Could not read JSON value (unsigned short):" << name << std::endl;
+            }
+            return false;
+        }
+
+        // get the data
+        data = (short)value[name.c_str()].GetUint();
 
         return true;
     }

@@ -1,5 +1,7 @@
 #include "pch.h"
 
+#include "Engine.h"
+
 #include "Texture.h"
 #include "TextureFrames.h"
 
@@ -15,8 +17,7 @@ namespace ChiefEngine {
 		}
 
 		std::string textureName;
-
-		JSON_READ_BY_DATA_REQUIRED(document, textureName);
+		JSON_READ_MEMBER_REQUIRED(document, "textureName", textureName);
 
 		if (textureName.empty()) {
 			std::cerr << "Could not read Texture Frames from document\n";
@@ -41,7 +42,7 @@ namespace ChiefEngine {
 		}
 
 		Vector2 textureSize = m_texture->GetSize();
-		m_frameSize = textureSize / Vector2{ (float)m_numberOfColumns, (float)m_numberOfRows };
+		m_frameSize = textureSize / Vector2{ (m_numberOfColumns), (m_numberOfRows) };
 
 		return true;
 	}
@@ -51,6 +52,7 @@ namespace ChiefEngine {
 			std::cerr << "Provided frame value is outside of the animations scope\n";
 			frame = 0;
 		}
+
 		short currentFrame = m_startFrame + frame;
 		short column = currentFrame % m_numberOfColumns;
 		short row = currentFrame / m_numberOfColumns;
