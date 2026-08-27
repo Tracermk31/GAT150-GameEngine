@@ -9,20 +9,35 @@
 
 namespace ChiefEngine {
     FACTORY_REGISTER(Actor)
-
     /// <summary>
     /// 
     /// </summary>
     /// <param name="other"></param>
-    Actor::Actor(const Actor& other) : 
+        Actor::Actor(const Actor& other) :
         Object{ other }
-        ,m_tag{ other.m_tag } 
-        ,m_damping{ other.m_damping } 
-        ,m_lifespan{ other.m_lifespan} 
-        ,m_transform{ other.m_transform } {
+        , m_tag{ other.m_tag }
+        , m_lifespan{ other.m_lifespan }
+        , m_transform{ other.m_transform } {
         for (const auto& component : other.m_components) {
             auto clone = std::unique_ptr<Component>(dynamic_cast<Component*>(component->Clone().release()));
             AddComponent(move(clone));
+        }
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    void Actor::Start() {
+        for (auto& component : m_components) {
+            component->Start();
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    void Actor::OnDestroy() {
+        for (auto& component : m_components) {
+            component->OnDestroy();
         }
     }
 
@@ -40,9 +55,6 @@ namespace ChiefEngine {
         for (auto& component : m_components) {
             component->Update(dt);
         }
-
-        m_transform.position += (m_velocity * dt);
-        m_velocity *= (1.0f/(1.0f + (m_damping * dt)));
     }
 
     /// <summary>
@@ -70,10 +82,7 @@ namespace ChiefEngine {
         }
 
         JSON_READ_MEMBER(value, "tag", m_tag);
-        JSON_READ_MEMBER(value, "damping", m_damping);
-        JSON_READ_MEMBER(value, "velocity", m_velocity);
         JSON_READ_MEMBER(value, "lifespan", m_lifespan);
-        JSON_READ_MEMBER(value, "destroyed", m_destroyed);
 
         if (JSON_HAS_BY_NAME(value, "components")) {
             for (auto& componentValue : JSON_GET_BY_NAME(value, "components").GetArray()) {

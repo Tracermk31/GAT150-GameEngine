@@ -187,7 +187,6 @@
     <ClInclude Include="Serialization\JSON.h">
       <Filter>Serialization\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="pch.h" />
     <ClInclude Include="Components\SpriteAnimationRendererComponent.h">
       <Filter>Components\Headers</Filter>
     </ClInclude>
@@ -197,6 +196,7 @@
     <ClInclude Include="Components\RigidBodyPhysicsComponent.h">
       <Filter>Components\Headers</Filter>
     </ClInclude>
+    <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Components\CircleColliderComponent.cpp">

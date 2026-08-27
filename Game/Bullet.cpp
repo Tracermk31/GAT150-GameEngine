@@ -4,6 +4,8 @@
 
 #include "Math/EngineMath.h"
 
+#include "Components/PhysicsComponent.h"
+
 using namespace ChiefEngine;
 
 FACTORY_REGISTER(Bullet)
@@ -15,10 +17,13 @@ FACTORY_REGISTER(Bullet)
 /// <param name="maxX"></param>
 /// <param name="maxY"></param>
 void Bullet::Update(float dt, float maxX, float maxY) {
-	Vector2 forward{ 1.0f, 0.0f };
-	Vector2 velocity = forward.Rotate(m_transform.rotation * DEGREE_TO_RADIAN) * m_speed;
+	auto physicsComponent = GetComponent<PhysicsComponent>();
+	if (physicsComponent) {
+		Vector2 forward{ 1.0f, 0.0f };
+		Vector2 force = forward.Rotate(m_transform.rotation * DEGREE_TO_RADIAN) * m_speed;
 
-	AddVelocity(velocity);
+		physicsComponent->SetVelocity(force);
+	}
 
 	Actor::Update(dt, maxX, maxY);
 

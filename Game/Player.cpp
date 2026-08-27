@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "SpaceGame.h"
 
+#include "Components/PhysicsComponent.h"
 #include "Input/Input.h"
 
 using namespace ChiefEngine;
@@ -67,14 +68,17 @@ void Player::Update(float dt, float maxX, float maxY) {
     }
 
     float rotate = 0.0f;
-    if (G_Engine().GetInput().GetKeyDown(SDL_SCANCODE_A)) rotate = -180.0f;
-    if (G_Engine().GetInput().GetKeyDown(SDL_SCANCODE_D)) rotate = +180.0f;
+    if (G_Engine().GetInput().GetKeyDown(SDL_SCANCODE_A)) rotate = -360.0f;
+    if (G_Engine().GetInput().GetKeyDown(SDL_SCANCODE_D)) rotate = +360.0f;
 
-    SetRotation(m_transform.rotation + (rotate * dt));
+    auto physicsComponent = GetComponent<PhysicsComponent>();
+    if (physicsComponent) {
+        Vector2 forward{ 1.0f, 0.0f };
+        Vector2 force = forward.Rotate(m_transform.rotation * DEGREE_TO_RADIAN) * thrust;
 
-    Vector2 forward{ 1.0f, 0.0f };
-    Vector2 velocity = forward.Rotate(m_transform.rotation * DEGREE_TO_RADIAN) * thrust;
-    AddVelocity(velocity * dt);
+        physicsComponent->ApplyForce(force);
+        physicsComponent->ApplyTorque(rotate);
+    }
 
     //Shoot bullets
     m_shootDelay -= dt;

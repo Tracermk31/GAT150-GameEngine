@@ -18,7 +18,53 @@
         {
           "type": "SpriteAnimationRendererComponent",
           "textureFrames": "Animations/Bat_idle.json",
-          "framesPerSecond" : 12.0,
+          "framesPerSecond": 12.0,
+          "looping": true
+        }
+      ]
+    },
+    {
+      "name": "Coin",
+      "type": "Actor",
+      "prototype": false,
+      "tag": "Enemy",
+      "active": true,
+      "transform": {
+        "position": [
+          200,
+          300
+        ],
+        "rotation": 0.0,
+        "scale": 2.0
+      },
+      "components": [
+        {
+          "type": "SpriteAnimationRendererComponent",
+          "textureFrames": "Animations/Coin_idle.json",
+          "framesPerSecond": 12.0,
+          "looping": true
+        }
+      ]
+    },
+    {
+      "name": "Ghost",
+      "type": "Actor",
+      "prototype": false,
+      "tag": "Enemy",
+      "active": true,
+      "transform": {
+        "position": [
+          200,
+          400
+        ],
+        "rotation": 0.0,
+        "scale": 2.0
+      },
+      "components": [
+        {
+          "type": "SpriteAnimationRendererComponent",
+          "textureFrames": "Animations/Ghost_idle.json",
+          "framesPerSecond": 12.0,
           "looping": true
         }
       ]
@@ -30,12 +76,7 @@
       "tag": "PlayerCharacter",
       "active": true,
       "speed": 2000.0,
-      "damping": 3.0,
       "shoot delay": 0.8,
-      "velocity": [
-        0.0,
-        0.0
-      ],
       "transform": {
         "position": [
           0,
@@ -50,6 +91,11 @@
           "texture": "Textures/Player.png"
         },
         {
+          "type": "RigidBodyPhysicsComponent",
+          "damping": 3.0,
+          "angular_damping": 4.0
+        },
+        {
           "type": "CircleColliderComponent",
           "radius": 24.0
         }
@@ -62,13 +108,8 @@
       "tag": "Enemy",
       "active": true,
       "speed": 1000.0,
-      "damping": 3.0,
       "point value": 100,
       "shoot delay": 1.5,
-      "velocity": [
-        0.0,
-        0.0
-      ],
       "transform": {
         "position": [
           0,
@@ -83,6 +124,11 @@
           "texture": "Textures/Enemy.png"
         },
         {
+          "type": "RigidBodyPhysicsComponent",
+          "damping": 3.0,
+          "angular_damping": 4.0
+        },
+        {
           "type": "CircleColliderComponent",
           "radius": 28.0
         }
@@ -95,13 +141,8 @@
       "tag": "EnemyBoss",
       "active": true,
       "speed": 1500.0,
-      "damping": 3.0,
       "point value": 500,
       "shoot delay": 1.0,
-      "velocity": [
-        0.0,
-        0.0
-      ],
       "transform": {
         "position": [
           0,
@@ -116,6 +157,11 @@
           "texture": "Textures/Enemy.png"
         },
         {
+          "type": "RigidBodyPhysicsComponent",
+          "damping": 3.0,
+          "angular_damping": 4.0
+        },
+        {
           "type": "CircleColliderComponent",
           "radius": 48.0
         }
@@ -127,12 +173,7 @@
       "prototype": true,
       "tag": "Bullet",
       "active": true,
-      "speed": 200.0,
-      "damping": 3.0,
-      "velocity": [
-        0.0,
-        0.0
-      ],
+      "speed": 1500.0,
       "transform": {
         "position": [
           0,
@@ -145,6 +186,11 @@
         {
           "type": "SpriteRendererComponent",
           "texture": "Textures/Laser.png"
+        },
+        {
+          "type": "RigidBodyPhysicsComponent",
+          "damping": 0.0,
+          "angular_damping": 0.0
         },
         {
           "type": "CircleColliderComponent",

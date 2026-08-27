@@ -46,8 +46,6 @@ namespace ChiefEngine {
         Actor(const ActorDesc& actorDesc) :
             m_tag{ actorDesc.tag },
             m_transform{ actorDesc.transform },
-            m_velocity{ actorDesc.velocity },
-            m_damping{ actorDesc.damping },
             m_lifespan{ actorDesc.lifespan }
         { };
 
@@ -57,6 +55,9 @@ namespace ChiefEngine {
 
         virtual void Update(float dt, float maxY, float maxX);
         virtual void Draw(const class Renderer& renderer) const;
+
+        virtual void Start();
+        virtual void OnDestroy();
 
         virtual void OnCollision(Actor* other) {}
 
@@ -72,12 +73,6 @@ namespace ChiefEngine {
         void SetScale(float scale) { m_transform.scale = scale; }
 
         void BeDestroyed() { m_destroyed = true; }
-
-        inline const Vector2& GetVelocity() const { return m_velocity; }
-        void SetVelocity(const Vector2& velocity) { m_velocity = velocity; }
-        void AddVelocity(const Vector2& velocity) { m_velocity += velocity; }
-
-        inline float GetDamping() const { return m_damping; }
 
         std::string GetTag() { return m_tag; }
         Scene* GetScene() { return m_scene; }
@@ -102,8 +97,6 @@ namespace ChiefEngine {
         std::vector<std::unique_ptr<Component>> m_components;
 
         Transform m_transform;
-        Vector2 m_velocity{ 0.0f };
-        float m_damping{ 0.0f };
         float m_lifespan{ -1.0f };
         bool m_destroyed{ false };
 

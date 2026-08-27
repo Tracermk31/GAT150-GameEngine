@@ -27,7 +27,7 @@ namespace ChiefEngine {
 		inline void SetOwner(Actor* owner) { m_owner = owner; }
 
 		virtual void Start() {}
-		virtual void Destroyed() {}
+		virtual void OnDestroy() {}
 
 		virtual void Update(float dt) {}
 	protected:
