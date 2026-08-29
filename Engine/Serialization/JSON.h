@@ -4,6 +4,7 @@
 #include "Math/Vector3.h"
 
 #include <string>
+#include <vector>
 
 #include <rapidjson/document.h>
 
@@ -35,4 +36,5 @@ namespace ChiefEngine::JSON {
 	bool Read(const value_t& value, const std::string& name, std::string& data, bool required = false);
 	bool Read(const value_t& value, const std::string& name, Vector2& data, bool required = false);
 	bool Read(const value_t& value, const std::string& name, Vector3& data, bool required = false);
+	bool Read(const value_t& value, const std::string& name, std::vector<int>& data, bool required = false);
 }

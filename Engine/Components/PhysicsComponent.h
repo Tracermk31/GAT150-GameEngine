@@ -7,7 +7,7 @@ namespace ChiefEngine {
 	public:
 		virtual void ApplyForce(const Vector2& force) = 0;
 		virtual void SetVelocity(const Vector2& velocity) = 0;
-		virtual Vector2 GetVelocity() = 0;
+		virtual Vector2 GetVelocity() const = 0;
 
 		virtual void ApplyTorque(float torque) = 0;
 		virtual void SetAngularVelocity(float angularVelocity) = 0;
@@ -15,6 +15,9 @@ namespace ChiefEngine {
 
 		virtual void SetPosition(const Vector2& position) = 0;
 		virtual Vector2 GetPosition() const = 0;
+
+		virtual void SetRotation(float rotation) = 0;
+		virtual float GetRotation() const = 0;
 
 		virtual void Read(const JSON::value_t& value);
 

@@ -6,6 +6,7 @@
       "prototype": false,
       "tag": "Enemy",
       "active": true,
+      "persistent": true,
       "transform": {
         "position": [
           200,
@@ -20,6 +21,27 @@
           "textureFrames": "Animations/Bat_idle.json",
           "framesPerSecond": 12.0,
           "looping": true
+        }
+      ]
+    },
+    {
+      "name": "Tilemap",
+      "type": "Actor",
+      "prototype": false,
+      "tag": "Ground",
+      "active": true,
+      "transform": {
+        "position": [
+          30,
+          30
+        ],
+        "rotation": 0.0,
+        "scale": 3.75
+      },
+      "components": [
+        {
+          "type": "TilemapRendererComponent",
+          "tilemapName": "Tilemaps/World.JSON"
         }
       ]
     },
@@ -75,7 +97,7 @@
       "prototype": true,
       "tag": "PlayerCharacter",
       "active": true,
-      "speed": 2000.0,
+      "speed": 500.0,
       "shoot delay": 0.8,
       "transform": {
         "position": [
@@ -91,9 +113,11 @@
           "texture": "Textures/Player.png"
         },
         {
-          "type": "RigidBodyPhysicsComponent",
-          "damping": 3.0,
-          "angular_damping": 4.0
+          "type": "Box2DPhysicsComponent",
+          "linear_damping": 2.0,
+          "angular_damping": 2.0,
+          "size": [ 48, 48 ],
+          "gravity_scale": 0
         },
         {
           "type": "CircleColliderComponent",
@@ -107,7 +131,7 @@
       "prototype": true,
       "tag": "Enemy",
       "active": true,
-      "speed": 1000.0,
+      "speed": 50.0,
       "point value": 100,
       "shoot delay": 1.5,
       "transform": {
@@ -124,9 +148,11 @@
           "texture": "Textures/Enemy.png"
         },
         {
-          "type": "RigidBodyPhysicsComponent",
-          "damping": 3.0,
-          "angular_damping": 4.0
+          "type": "Box2DPhysicsComponent",
+          "linear_damping": 2.0,
+          "angular_damping": 2.0,
+          "size": [ 48, 48 ],
+          "gravity_scale": 0
         },
         {
           "type": "CircleColliderComponent",
@@ -140,7 +166,7 @@
       "prototype": true,
       "tag": "EnemyBoss",
       "active": true,
-      "speed": 1500.0,
+      "speed": 75.0,
       "point value": 500,
       "shoot delay": 1.0,
       "transform": {
@@ -157,9 +183,11 @@
           "texture": "Textures/Enemy.png"
         },
         {
-          "type": "RigidBodyPhysicsComponent",
-          "damping": 3.0,
-          "angular_damping": 4.0
+          "type": "Box2DPhysicsComponent",
+          "linear_damping": 2.0,
+          "angular_damping": 2.0,
+          "size": [ 48, 48 ],
+          "gravity_scale": 0
         },
         {
           "type": "CircleColliderComponent",
@@ -173,7 +201,7 @@
       "prototype": true,
       "tag": "Bullet",
       "active": true,
-      "speed": 1500.0,
+      "speed": 80.0,
       "transform": {
         "position": [
           0,
@@ -188,9 +216,12 @@
           "texture": "Textures/Laser.png"
         },
         {
-          "type": "RigidBodyPhysicsComponent",
-          "damping": 0.0,
-          "angular_damping": 0.0
+          "type": "Box2DPhysicsComponent",
+          "linear_damping" : 0.0,
+          "angular_damping": 0.0,
+          "size": [ 48, 48 ],
+          "gravity_scale": 0,
+          "is_sensor" :  true
         },
         {
           "type": "CircleColliderComponent",

@@ -18,18 +18,6 @@ namespace ChiefEngine {
     class Texture;
 
     /// <summary>
-    /// Struct used to contain the information to build an Actor.
-    /// </summary>
-    struct ActorDesc {
-        std::string name;
-        std::string tag;
-        Transform transform;
-        Vector2 velocity = 0.0f;
-        float damping = 0.0f;
-        float lifespan = -1.0f;
-    };
-
-    /// <summary>
     /// Parent class for all actors inside of a Scene.
     /// </summary>
     class Actor : public Object {
@@ -38,16 +26,6 @@ namespace ChiefEngine {
         /// Default constructor for the Actor class.
         /// </summary>
         Actor() = default;
-
-        /// <summary>
-        /// Utilizes the predefined ActorDesc struct to assign all necessary variables to create an Actor
-        /// </summary>
-        /// <param name="actorDesc"> Predefined struct containing all info to create an Actor</param>
-        Actor(const ActorDesc& actorDesc) :
-            m_tag{ actorDesc.tag },
-            m_transform{ actorDesc.transform },
-            m_lifespan{ actorDesc.lifespan }
-        { };
 
         Actor(const Actor& other);
 
@@ -73,6 +51,10 @@ namespace ChiefEngine {
         void SetScale(float scale) { m_transform.scale = scale; }
 
         void BeDestroyed() { m_destroyed = true; }
+        bool IsDestroyed() const { return m_destroyed; }
+
+        bool SetPersistent(bool persistent) { m_persistent = persistent; }
+        bool IsPersistent() const { return m_persistent; }
 
         std::string GetTag() { return m_tag; }
         Scene* GetScene() { return m_scene; }
@@ -99,6 +81,7 @@ namespace ChiefEngine {
         Transform m_transform;
         float m_lifespan{ -1.0f };
         bool m_destroyed{ false };
+        bool m_persistent{ false };
 
         Scene* m_scene{ nullptr };
     };

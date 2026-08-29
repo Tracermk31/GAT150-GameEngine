@@ -2,18 +2,9 @@
 
 #include "Framework/Scene.h"
 
-struct BulletDesc : public ChiefEngine::ActorDesc {
-	float speed;
-};
-
 class Bullet : public ChiefEngine::Actor {
 public:
 	Bullet() = default;
-
-	Bullet(BulletDesc BulletDesc) :
-		Actor{ BulletDesc },
-		m_speed{ BulletDesc.speed }
-	{}
 
 	CLASS_PROTOTYPE(Bullet)
 

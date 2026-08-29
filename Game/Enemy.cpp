@@ -20,16 +20,21 @@ FACTORY_REGISTER(Enemy);
 void Enemy::Update(float dt, float maxX, float maxY) {
     Actor* player = m_scene->GetActorByTag("PlayerCharacter");
     if (player) {
-        Vector2 direction = player->GetTransform().position - m_transform.position;
-        float rotation = direction.Angle();
-        SetRotation(rotation * RADIAN_TO_DEGREE);
-
         auto physicsComponent = GetComponent<PhysicsComponent>();
         if (physicsComponent) {
             Vector2 forward{ 1.0f, 0.0f };
             Vector2 force = forward.Rotate(m_transform.rotation * DEGREE_TO_RADIAN) * m_speed;
 
+            Vector2 direction = player->GetTransform().position - m_transform.position;
+            float rotation = direction.Angle();
+            physicsComponent->SetRotation(rotation);
+
             physicsComponent->ApplyForce(force);
+
+            Vector2 position = physicsComponent->GetPosition();
+            Wrap(0.0f, maxX, position.x);
+            Wrap(0.0f, maxY, position.y);
+            physicsComponent->SetPosition(position);
         }
     }
 
@@ -50,7 +55,6 @@ void Enemy::Update(float dt, float maxX, float maxY) {
 
         bullet->SetRotation(m_transform.rotation);
         bullet->SetScale(m_transform.scale * 2.0f);
-        bullet->SetSpeed(750);
 
         bullet->SetTag("EnemyBullet");
 

@@ -15,6 +15,7 @@ const float FONT_SIZE = 16.0f;
 /// </summary>
 /// <returns></returns>
 bool SpaceGame::Initialize() {
+	FACTORY_REGISTER(Box2DPhysicsComponent)
 	Game::Initialize();
 
 	G_Engine().GetAudio().AddSound("Laser", "audio/laser.wav");
@@ -60,7 +61,7 @@ void SpaceGame::Update(float dt, float maxX, float maxY) {
 		m_gameState = GameState::StartLevel;
 		break;
 	case GameState::StartLevel:
-		m_scene->DeleteActors();
+		m_scene->DeleteActors(true);
 		SpawnPlayer(maxX, maxY);
 		SpawnEnemy(maxX, maxY);
 		m_spawnTimer = 3.0f;
@@ -81,7 +82,7 @@ void SpaceGame::Update(float dt, float maxX, float maxY) {
 		}
 		break;
 	case GameState::GameOver:
-		m_scene->DeleteActors();
+		m_scene->DeleteActors(true);
 		if (G_Engine().GetInput().GetKeyPressed(SDL_SCANCODE_SPACE)) {
 			m_gameState = GameState::Title;
 		}

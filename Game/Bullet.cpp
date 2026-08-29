@@ -23,6 +23,11 @@ void Bullet::Update(float dt, float maxX, float maxY) {
 		Vector2 force = forward.Rotate(m_transform.rotation * DEGREE_TO_RADIAN) * m_speed;
 
 		physicsComponent->SetVelocity(force);
+
+		Vector2 position = physicsComponent->GetPosition();
+		Clamp(0.0f, maxX, position.x);
+		Clamp(0.0f, maxY, position.y);
+		physicsComponent->SetPosition(position);
 	}
 
 	Actor::Update(dt, maxX, maxY);

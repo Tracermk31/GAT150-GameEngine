@@ -2,18 +2,9 @@
 
 #include "Framework/Scene.h"
 
-struct PlayerDesc : public ChiefEngine::ActorDesc {
-	float speed;
-};
-
 class Player : public ChiefEngine::Actor {
 public:
 	Player() = default;
-
-	Player(PlayerDesc playerDesc) :
-		Actor{ playerDesc },
-		m_speed { playerDesc.speed }
-	{ };
 
 	CLASS_PROTOTYPE(Player)
 

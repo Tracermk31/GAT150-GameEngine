@@ -17,7 +17,7 @@ namespace ChiefEngine {
 		m_velocity = velocity;
 	}
 
-	Vector2 RigidBodyPhysicsComponent::GetVelocity() {
+	Vector2 RigidBodyPhysicsComponent::GetVelocity() const {
 		return m_velocity;
 	}
 
@@ -39,6 +39,14 @@ namespace ChiefEngine {
 
 	Vector2 RigidBodyPhysicsComponent::GetPosition() const {
 		return GetOwner()->GetTransform().position;
+	}
+
+	void RigidBodyPhysicsComponent::SetRotation(float rotation) {
+		GetOwner()->SetPosition(rotation);
+	}
+
+	float RigidBodyPhysicsComponent::GetRotation() const {
+		return GetOwner()->GetTransform().rotation;
 	}
 
 	void RigidBodyPhysicsComponent::Update(float dt) {

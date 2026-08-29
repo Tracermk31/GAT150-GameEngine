@@ -197,6 +197,18 @@
       <Filter>Components\Headers</Filter>
     </ClInclude>
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Physics\PhysicsBody.h">
+      <Filter>Physics\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Tilemap.h">
+      <Filter>Renderer\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\TilemapRendererComponent.h">
+      <Filter>Components\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Box2DPhysicsComponent.h">
+      <Filter>Components\Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Components\CircleColliderComponent.cpp">
@@ -265,6 +277,18 @@
       <Filter>Components\SourceFiles</Filter>
     </ClCompile>
     <ClCompile Include="Components\RigidBodyPhysicsComponent.cpp">
+      <Filter>Components\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\PhysicsBody.cpp">
+      <Filter>Physics\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Tilemap.cpp">
+      <Filter>Renderer\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\TilemapRendererComponent.cpp">
+      <Filter>Components\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Box2DPhysicsComponent.cpp">
       <Filter>Components\SourceFiles</Filter>
     </ClCompile>
   </ItemGroup>

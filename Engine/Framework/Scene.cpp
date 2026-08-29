@@ -108,8 +108,12 @@ namespace ChiefEngine {
 	/// <summary>
 	/// 
 	/// </summary>
-	void Scene::DeleteActors() {
-		m_actors.clear();
+	void Scene::DeleteActors(bool force) {
+		if (force) {
+			m_actors.clear();
+		} else {
+			std::erase_if(m_actors, [](auto& actor) { return !actor->IsPersistent(); });
+		}
 	}
 
 	/// <summary>

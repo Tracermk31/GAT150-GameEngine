@@ -183,6 +183,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Audio\Audio.h" />
+    <ClInclude Include="Components\Box2DPhysicsComponent.h" />
     <ClInclude Include="Components\CircleColliderComponent.h" />
     <ClInclude Include="Components\ColliderComponent.h" />
     <ClInclude Include="Components\Component.h" />
@@ -191,6 +192,7 @@
     <ClInclude Include="Components\RigidBodyPhysicsComponent.h" />
     <ClInclude Include="Components\SpriteAnimationRendererComponent.h" />
     <ClInclude Include="Components\SpriteRendererComponent.h" />
+    <ClInclude Include="Components\TilemapRendererComponent.h" />
     <ClInclude Include="Core\EngineStrings.h" />
     <ClInclude Include="Core\EngineTime.h" />
     <ClInclude Include="Core\Factory.h" />
@@ -211,6 +213,7 @@
     <ClInclude Include="Math\Vector3.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Physics\Physics.h" />
+    <ClInclude Include="Physics\PhysicsBody.h" />
     <ClInclude Include="Renderer\Font.h" />
     <ClInclude Include="Renderer\Mesh.h" />
     <ClInclude Include="Renderer\Model.h" />
@@ -219,17 +222,20 @@
     <ClInclude Include="Renderer\Text.h" />
     <ClInclude Include="Renderer\Texture.h" />
     <ClInclude Include="Renderer\TextureFrames.h" />
+    <ClInclude Include="Renderer\Tilemap.h" />
     <ClInclude Include="Resources\Resource.h" />
     <ClInclude Include="Resources\ResourceManager.h" />
     <ClInclude Include="Serialization\JSON.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Audio\Audio.cpp" />
+    <ClCompile Include="Components\Box2DPhysicsComponent.cpp" />
     <ClCompile Include="Components\CircleColliderComponent.cpp" />
     <ClCompile Include="Components\PhysicsComponent.cpp" />
     <ClCompile Include="Components\RigidBodyPhysicsComponent.cpp" />
     <ClCompile Include="Components\SpriteAnimationRendererComponent.cpp" />
     <ClCompile Include="Components\SpriteRendererComponent.cpp" />
+    <ClCompile Include="Components\TilemapRendererComponent.cpp" />
     <ClCompile Include="Core\EngineTime.cpp" />
     <ClCompile Include="Core\File.cpp" />
     <ClCompile Include="Engine.cpp" />
@@ -239,6 +245,7 @@
     <ClCompile Include="Input\Input.cpp" />
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="Physics\Physics.cpp" />
+    <ClCompile Include="Physics\PhysicsBody.cpp" />
     <ClCompile Include="Renderer\Font.cpp" />
     <ClCompile Include="Renderer\Mesh.cpp" />
     <ClCompile Include="Renderer\Model.cpp" />
@@ -247,6 +254,7 @@
     <ClCompile Include="Renderer\Text.cpp" />
     <ClCompile Include="Renderer\Texture.cpp" />
     <ClCompile Include="Renderer\TextureFrames.cpp" />
+    <ClCompile Include="Renderer\Tilemap.cpp" />
     <ClCompile Include="Serialization\JSON.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

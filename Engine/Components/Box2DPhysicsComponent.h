@@ -2,11 +2,19 @@
 
 #include "PhysicsComponent.h"
 
-namespace ChiefEngine {
-	class RigidBodyPhysicsComponent : public PhysicsComponent {
-	public:
-		CLASS_PROTOTYPE(RigidBodyPhysicsComponent)
+#include "Physics/PhysicsBody.h"
 
+namespace ChiefEngine {
+	class Box2DPhysicsComponent : public PhysicsComponent {
+	public:
+		CLASS_PROTOTYPE(Box2DPhysicsComponent)
+
+		Box2DPhysicsComponent() = default;
+		Box2DPhysicsComponent(const Box2DPhysicsComponent& other);
+
+		void Start() override;
+		void Update(float dt) override;
+		
 		virtual void ApplyForce(const Vector2& force) override;
 		virtual void SetVelocity(const Vector2& velocity) override;
 		virtual Vector2 GetVelocity() const override;
@@ -21,13 +29,12 @@ namespace ChiefEngine {
 		virtual void SetRotation(float rotation) override;
 		virtual float GetRotation() const override;
 
-		void Update(float dt);
-		void Read(const JSON::value_t& value) override;
+		virtual void Read(const JSON::value_t& value) override;
 	private:
-		Vector2 m_acceleration{ 0.0f };
-		float m_angularAcceleration{ 0.0f };
+		Vector2 m_size{ 1 };
+		Vector2 m_scale{ 1 };
 
-		Vector2 m_velocity{ 0.0f };
-		float m_angularVelocity{ 0.0f };
+		PhysicsBody::PhysicsBodyDef m_bodyDef;
+		std::unique_ptr<PhysicsBody> m_physicsBody;
 	};
 }

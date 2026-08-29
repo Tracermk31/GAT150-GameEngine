@@ -2,18 +2,9 @@
 
 #include "Framework/Scene.h"
 
-struct EnemyDesc : public ChiefEngine::ActorDesc {
-float speed;
-};
-
 class Enemy : public ChiefEngine::Actor {
 public:
 	Enemy() = default;
-
-	Enemy(EnemyDesc enemyDesc) :
-		Actor{ enemyDesc },
-		m_speed{ enemyDesc.speed }
-	{}
 
 	CLASS_PROTOTYPE(Enemy)
 

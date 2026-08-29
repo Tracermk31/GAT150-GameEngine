@@ -83,6 +83,7 @@ namespace ChiefEngine {
 
         JSON_READ_MEMBER(value, "tag", m_tag);
         JSON_READ_MEMBER(value, "lifespan", m_lifespan);
+        JSON_READ_MEMBER(value, "persistent", m_persistent);
 
         if (JSON_HAS_BY_NAME(value, "components")) {
             for (auto& componentValue : JSON_GET_BY_NAME(value, "components").GetArray()) {

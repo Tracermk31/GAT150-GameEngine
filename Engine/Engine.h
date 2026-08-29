@@ -14,6 +14,9 @@
 #include "Core/EngineTime.h"
 #include "Core/EngineStrings.h"
 
+#include "Components/Box2DPhysicsComponent.h"
+#include "Components/TilemapRendererComponent.h"
+
 #include "Math/EngineMath.h"
 
 #include "Physics/Physics.h"
@@ -21,6 +24,7 @@
 #include "Renderer/Font.h"
 #include "Renderer/Text.h"
 #include "Renderer/Texture.h"
+#include "Renderer/Tilemap.h"
 #include "Renderer/Renderer.h"
 #include "Renderer/ParticleSystem.h"
 #include "Renderer/TextureFrames.h"
