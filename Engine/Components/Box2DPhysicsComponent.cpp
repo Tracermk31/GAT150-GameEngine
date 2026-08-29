@@ -76,13 +76,13 @@ namespace ChiefEngine {
 
 	void Box2DPhysicsComponent::Read(const JSON::value_t& value) {
 		PhysicsComponent::Read(value);
+		m_bodyDef.gravityScale = m_gravityScale;
+		m_bodyDef.angularDamping = m_angularDamping;
 
 		JSON_READ_MEMBER(value, "size", m_size);
 		JSON_READ_MEMBER(value, "scale", m_scale);
 
-		JSON_READ_MEMBER(value, "gravity_scale", m_bodyDef.gravityScale);
 		JSON_READ_MEMBER(value, "linear_damping", m_bodyDef.linearDamping);
-		JSON_READ_MEMBER(value, "angular_damping", m_bodyDef.angularDamping);
 		JSON_READ_MEMBER(value, "constraint_angle", m_bodyDef.constrainAngle);
 		JSON_READ_MEMBER(value, "is_dynamic", m_bodyDef.isDynamic);
 		JSON_READ_MEMBER(value, "friction", m_bodyDef.friction);

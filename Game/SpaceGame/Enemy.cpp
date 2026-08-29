@@ -55,6 +55,7 @@ void Enemy::Update(float dt, float maxX, float maxY) {
 
         bullet->SetRotation(m_transform.rotation);
         bullet->SetScale(m_transform.scale * 2.0f);
+        bullet->SetSpeed(50);
 
         bullet->SetTag("EnemyBullet");
 

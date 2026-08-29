@@ -127,6 +127,7 @@ void Player::OnCollision(Actor* other) {
     if (other->GetTag() == "Enemy" || other->GetTag() == "EnemyBoss" || other->GetTag() == "EnemyBullet") {
         //G_Engine().GetAudio().PlaySound("Explosion", G_Engine().GetAudio().GetChannel(2));
         BeDestroyed();
+        other->BeDestroyed();
         ((SpaceGame*)m_scene->GetGame())->OnPlayerDeath();
     }
 }

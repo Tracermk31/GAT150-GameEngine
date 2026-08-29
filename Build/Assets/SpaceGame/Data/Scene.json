@@ -97,7 +97,7 @@
       "prototype": true,
       "tag": "PlayerCharacter",
       "active": true,
-      "speed": 200.0,
+      "speed": 250.0,
       "shoot delay": 0.8,
       "transform": {
         "position": [
@@ -114,10 +114,13 @@
         },
         {
           "type": "Box2DPhysicsComponent",
-          "linear_damping": 2.0,
+          "linear_damping": 1.5,
           "angular_damping": 4.0,
           "gravity_scale": 0.0,
-          "size": [ 48, 48 ]
+          "size": [
+            48,
+            48
+          ]
         }
       ]
     },
@@ -147,8 +150,11 @@
           "type": "Box2DPhysicsComponent",
           "linear_damping": 10.0,
           "angular_damping": 2.0,
-          "size": [ 24, 24 ],
-          "gravity_scale": 0.0
+          "gravity_scale": 0.0,
+          "size": [
+            24,
+            24
+          ]
         }
       ]
     },
@@ -178,8 +184,11 @@
           "type": "Box2DPhysicsComponent",
           "linear_damping": 2.0,
           "angular_damping": 2.0,
-          "size": [ 48, 48 ],
-          "gravity_scale": 0.0
+          "gravity_scale": 0.0,
+          "size": [
+            48,
+            48
+          ]
         }
       ]
     },
@@ -207,13 +216,12 @@
           "type": "Box2DPhysicsComponent",
           "linear_damping": 0.0,
           "angular_damping": 0.0,
-          "size": [ 12, 12 ],
           "gravity_scale": 0.0,
+          "size": [
+            12,
+            12
+          ],
           "is_sensor": true
-        },
-        {
-          "type": "CircleColliderComponent",
-          "radius": 8.0
         }
       ]
     }

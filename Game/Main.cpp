@@ -2,9 +2,6 @@
 
 #include "Assets.h"
 
-#include "SpaceGame/Enemy.h"
-#include "SpaceGame/Bullet.h"
-#include "SpaceGame/Player.h"
 #include "SpaceGame/SpaceGame.h"
 
 #include "SpriteGame/SpriteGame.h"
