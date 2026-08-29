@@ -11,7 +11,7 @@ namespace ChiefEngine {
 	/// <returns></returns>
 	bool Physics::Initialize() {
 		b2WorldDef worldDef = b2DefaultWorldDef();
-		worldDef.gravity = b2Vec2{ 0.0f, 0.0f };
+		worldDef.gravity = b2Vec2{ 0.0f, 9.8f };
 		m_worldId = b2CreateWorld(&worldDef);
 
 		return true;
@@ -38,6 +38,7 @@ namespace ChiefEngine {
 	/// </summary>
 	void Physics::ProcessCollisionEvents() {
 		auto contactEvents = b2World_GetContactEvents(m_worldId);
+
 		for (int index = 0; index < contactEvents.beginCount; index++) {
 			auto contactEvent = contactEvents.beginEvents + index;
 			if (!b2Shape_IsValid(contactEvent->shapeIdA) || !b2Shape_IsValid(contactEvent->shapeIdB)) {

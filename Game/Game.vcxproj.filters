@@ -1,18 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Assets">
-      <UniqueIdentifier>{caf43d25-7726-4d3f-96e6-23428b41ac4a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Assets\Scenes">
-      <UniqueIdentifier>{aecb31b4-fba0-4231-83d1-1a49211e42e1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Assets\Animations">
-      <UniqueIdentifier>{4c22e43b-0019-4c68-9b3b-22a578560a54}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Assets\Tilemaps">
-      <UniqueIdentifier>{c858ac26-efc0-4d52-880d-15c8cb1f9150}</UniqueIdentifier>
-    </Filter>
     <Filter Include="SpaceGame">
       <UniqueIdentifier>{49460bbd-d619-49c3-ac7e-69a5cffce23f}</UniqueIdentifier>
     </Filter>
@@ -31,10 +19,28 @@
     <Filter Include="SpriteGame\Sources">
       <UniqueIdentifier>{5d5d8e1d-b0b0-438d-800f-e3fe6a068980}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SpriteGame\Assets">
+      <UniqueIdentifier>{caf43d25-7726-4d3f-96e6-23428b41ac4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SpriteGame\Assets\Scenes">
+      <UniqueIdentifier>{aecb31b4-fba0-4231-83d1-1a49211e42e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SpriteGame\Assets\Animations">
+      <UniqueIdentifier>{4c22e43b-0019-4c68-9b3b-22a578560a54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SpriteGame\Assets\Tilemaps">
+      <UniqueIdentifier>{c858ac26-efc0-4d52-880d-15c8cb1f9150}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SpaceGame\Assets">
+      <UniqueIdentifier>{59d26e8f-0987-4df9-925a-f905a8aae694}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SpaceGame\Assets\Scenes">
+      <UniqueIdentifier>{74c4740b-1e9f-465b-ba0e-3bde967de0ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Assets.cpp">
-      <Filter>Assets</Filter>
+      <Filter>SpriteGame\Assets</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="SpaceGame\Bullet.cpp">
@@ -55,7 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets.h">
-      <Filter>Assets</Filter>
+      <Filter>SpriteGame\Assets</Filter>
     </ClInclude>
     <ClInclude Include="SpaceGame\SpaceGame.h">
       <Filter>SpaceGame\Headers</Filter>
@@ -74,20 +80,8 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Build\Assets\Animations\Coin_idle.json">
-      <Filter>Assets\Animations</Filter>
-    </None>
-    <None Include="..\Build\Assets\Animations\Ghost_idle.json">
-      <Filter>Assets\Animations</Filter>
-    </None>
-    <None Include="..\Build\Assets\Animations\Bat_idle.json">
-      <Filter>Assets\Animations</Filter>
-    </None>
-    <None Include="..\Build\Assets\Data\Scene.json">
-      <Filter>Assets\Scenes</Filter>
-    </None>
-    <None Include="..\Build\Assets\Tilemaps\World.json">
-      <Filter>Assets\Tilemaps</Filter>
+    <None Include="..\Build\Assets\SpaceGame\Data\Scene.json">
+      <Filter>SpaceGame\Assets\Scenes</Filter>
     </None>
   </ItemGroup>
 </Project>
