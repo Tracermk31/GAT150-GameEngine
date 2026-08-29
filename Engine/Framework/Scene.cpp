@@ -28,7 +28,7 @@ namespace ChiefEngine {
 		for (auto& actor : m_actors) {
 			actor->Update(dt, maxX, maxY);
 		}
-		UpdateCollisions();
+		//UpdateCollisions();
 
 		for (auto& actor : m_actors) {
 			if (actor->m_destroyed) {
@@ -54,56 +54,56 @@ namespace ChiefEngine {
 		}
 	}
 
-	/// <summary>
-	/// 
-	/// </summary>
-	void Scene::UpdateCollisions() {
-		for (auto& thisActor : m_actors) {
-			for (auto& otherActor : m_actors) {
-				if (thisActor == otherActor || thisActor->m_destroyed || otherActor->m_destroyed) {
-					continue;
-				}
-				auto thisCollider = thisActor->GetComponent<ColliderComponent>();
-				auto otherCollider = otherActor->GetComponent<ColliderComponent>();
+	///// <summary>
+	///// 
+	///// </summary>
+	//void Scene::UpdateCollisions() {
+	//	for (auto& thisActor : m_actors) {
+	//		for (auto& otherActor : m_actors) {
+	//			if (thisActor == otherActor || thisActor->m_destroyed || otherActor->m_destroyed) {
+	//				continue;
+	//			}
+	//			auto thisCollider = thisActor->GetComponent<ColliderComponent>();
+	//			auto otherCollider = otherActor->GetComponent<ColliderComponent>();
 
-				if (!thisCollider || !otherCollider) {
-					continue;
-				}
+	//			if (!thisCollider || !otherCollider) {
+	//				continue;
+	//			}
 
-				if (thisCollider->CheckCollision(*otherCollider)) {
-					thisActor->OnCollision(otherActor.get());
-					otherActor->OnCollision(thisActor.get());
-				}
-			}
-		}
-	}
+	//			if (thisCollider->CheckCollision(*otherCollider)) {
+	//				thisActor->OnCollision(otherActor.get());
+	//				otherActor->OnCollision(thisActor.get());
+	//			}
+	//		}
+	//	}
+	//}
 
 	/// <summary>
 	/// 
 	/// </summary>
 	/// <param name="thisCollider"></param>
 	/// <returns></returns>
-	bool Scene::CheckActorPlacement(const ColliderComponent* thisCollider) {
-		for (auto& other : m_actors) {
-			auto otherCollider = other->GetComponent<ColliderComponent>();
-			if (!thisCollider || !otherCollider) {
-				continue;
-			}
-			if (otherCollider->CheckCollision(*thisCollider)) {
-				return false;
-			}
-		}
-		for (auto& other : m_pendingActors) {
-			auto otherCollider = other->GetComponent<ColliderComponent>();
-			if (!thisCollider || !otherCollider) {
-				continue;
-			}
-			if (otherCollider->CheckCollision(*thisCollider)) {
-				return false;
-			}
-		}
-		return true;
-	}
+	//bool Scene::CheckActorPlacement(const ColliderComponent* thisCollider) {
+	//	for (auto& other : m_actors) {
+	//		auto otherCollider = other->GetComponent<ColliderComponent>();
+	//		if (!thisCollider || !otherCollider) {
+	//			continue;
+	//		}
+	//		if (otherCollider->CheckCollision(*thisCollider)) {
+	//			return false;
+	//		}
+	//	}
+	//	for (auto& other : m_pendingActors) {
+	//		auto otherCollider = other->GetComponent<ColliderComponent>();
+	//		if (!thisCollider || !otherCollider) {
+	//			continue;
+	//		}
+	//		if (otherCollider->CheckCollision(*thisCollider)) {
+	//			return false;
+	//		}
+	//	}
+	//	return true;
+	//}
 
 	/// <summary>
 	/// 

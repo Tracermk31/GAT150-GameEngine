@@ -24,10 +24,10 @@ namespace ChiefEngine {
 		bool Load(const std::string& sceneName);
 
 		void Update(float dt, float maxX, float maxY);
-		void UpdateCollisions();
 		void Draw(const class Renderer& renderer);
 
-		bool CheckActorPlacement(const ColliderComponent* thisCollider);
+		//void UpdateCollisions();
+		//bool CheckActorPlacement(const ColliderComponent* thisCollider);
 
 		void SetGame(Game* game) { m_game = game; }
 		Game* GetGame() { return m_game; }

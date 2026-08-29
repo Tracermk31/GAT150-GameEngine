@@ -41,8 +41,6 @@ namespace ChiefEngine {
 
         virtual void Read(const JSON::value_t& value) override;
 
-        float GetRadius() const;
-
         const Transform& GetTransform() const { return this->m_transform; }
         void SetTransform(const Transform& transform) { m_transform = transform; }
 

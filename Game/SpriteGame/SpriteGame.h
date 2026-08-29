@@ -7,7 +7,9 @@
 
 #include "Resources/ResourceManager.h"
 
-class SpaceGame : public ChiefEngine::Game {
+#include <memory>
+
+class SpriteGame : public ChiefEngine::Game {
 public:
 	enum class GameState {
 		Title,
@@ -17,10 +19,7 @@ public:
 		GameOver
 	};
 
-	SpaceGame() = default;
-	SpaceGame(ChiefEngine::Scene* scene) :
-		Game(scene)
-	{ }
+	SpriteGame();
 
 	bool Initialize() override;
 

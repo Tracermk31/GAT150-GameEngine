@@ -1,28 +1,27 @@
 #include "Engine.h"
 
-#include "Enemy.h"
-#include "Assets.h"
-#include "Bullet.h"
-#include "Player.h"
-#include "SpaceGame.h"
+#include "../Assets.h"
+
+#include "SpriteGame.h"
 
 using namespace ChiefEngine;
 
 const float FONT_SIZE = 16.0f;
 
+SpriteGame::SpriteGame() = default;
+
 /// <summary>
 /// 
 /// </summary>
 /// <returns></returns>
-bool SpaceGame::Initialize() {
-	FACTORY_REGISTER(Box2DPhysicsComponent)
+bool SpriteGame::Initialize() {
+	SetWorkingDirectory("SpriteGame");
+
 	Game::Initialize();
 
 	G_Engine().GetAudio().AddSound("Laser", "audio/laser.wav");
 	G_Engine().GetAudio().AddSound("Explosion", "audio/explosion.wav");
 
-	m_scene = new Scene();
-	m_scene->SetGame(this);
 	m_scene->Load("Data/Scene.json");
 
 	m_font = Resources().Get<Font>("Fonts/ArcadeNormal.ttf", 16.0f);
@@ -48,7 +47,7 @@ bool SpaceGame::Initialize() {
 /// <param name="dt"></param>
 /// <param name="maxX"></param>
 /// <param name="maxY"></param>
-void SpaceGame::Update(float dt, float maxX, float maxY) {
+void SpriteGame::Update(float dt, float maxX, float maxY) {
 	switch (m_gameState) {
 	case GameState::Title:
 		if (G_Engine().GetInput().GetKeyPressed(SDL_SCANCODE_SPACE)) {
@@ -97,7 +96,7 @@ void SpaceGame::Update(float dt, float maxX, float maxY) {
 /// <param name="renderer"></param>
 /// <param name="maxX"></param>
 /// <param name="maxY"></param>
-void SpaceGame::Draw(ChiefEngine::Renderer& renderer, float maxX, float maxY) {
+void SpriteGame::Draw(ChiefEngine::Renderer& renderer, float maxX, float maxY) {
 	renderer.DrawTexture(*Resources().Get<Texture>("Textures/Background.jpg", G_Engine().GetRenderer()), maxX/2, maxY/2, 1.0f, 0.5f);
 	switch (m_gameState) {
 	case GameState::Title:
@@ -128,13 +127,13 @@ void SpaceGame::Draw(ChiefEngine::Renderer& renderer, float maxX, float maxY) {
 /// </summary>
 /// <param name="maxX"></param>
 /// <param name="maxY"></param>
-void SpaceGame::SpawnEnemy(float maxX, float maxY) {
+void SpriteGame::SpawnEnemy(float maxX, float maxY) {
 	auto enemy = Factory::Instance().Create<Actor>("EnemyPrototype");
 
 	enemy->SetPosition({ RandomFloat(0, maxX), RandomFloat(0, maxY) });
-	while (!m_scene->CheckActorPlacement(enemy->GetComponent<ColliderComponent>())) {
-		enemy->SetPosition({ RandomFloat(0, maxX), RandomFloat(0, maxY) });
-	}
+	//while (!m_scene->CheckActorPlacement(enemy->GetComponent<ColliderComponent>())) {
+	//	enemy->SetPosition({ RandomFloat(0, maxX), RandomFloat(0, maxY) });
+	//}
 	m_scene->AddActor(std::move(enemy));
 }
 
@@ -143,12 +142,12 @@ void SpaceGame::SpawnEnemy(float maxX, float maxY) {
 /// </summary>
 /// <param name="maxX"></param>
 /// <param name="maxY"></param>
-void SpaceGame::SpawnBoss(float maxX, float maxY) {
+void SpriteGame::SpawnBoss(float maxX, float maxY) {
 	auto enemy = Factory::Instance().Create<Actor>("EnemyBossPrototype");
 	enemy->SetPosition({ RandomFloat(0, maxX), RandomFloat(0, maxY) });
-	while (!m_scene->CheckActorPlacement(enemy->GetComponent<ColliderComponent>())) {
-		enemy->SetPosition({ RandomFloat(0, maxX), RandomFloat(0, maxY) });
-	}
+	//while (!m_scene->CheckActorPlacement(enemy->GetComponent<ColliderComponent>())) {
+	//	enemy->SetPosition({ RandomFloat(0, maxX), RandomFloat(0, maxY) });
+	//}
 	m_scene->AddActor(std::move(enemy));
 }
 
@@ -157,7 +156,7 @@ void SpaceGame::SpawnBoss(float maxX, float maxY) {
 /// </summary>
 /// <param name="maxX"></param>
 /// <param name="maxY"></param>
-void SpaceGame::SpawnPlayer(float maxX, float maxY) {
+void SpriteGame::SpawnPlayer(float maxX, float maxY) {
 		auto player = Factory::Instance().Create<Actor>("PlayerPrototype");
 		player->SetPosition({ maxX / 2, maxY / 2 });
 		m_scene->AddActor(std::move(player));
@@ -166,7 +165,7 @@ void SpaceGame::SpawnPlayer(float maxX, float maxY) {
 /// <summary>
 /// 
 /// </summary>
-void SpaceGame::OnPlayerDeath() {
+void SpriteGame::OnPlayerDeath() {
 	m_lives--;
 	if (m_lives <= 0) {
 		m_gameState = GameState::GameOver;

@@ -1,10 +1,15 @@
 #include "Engine.h"
 
-#include "Enemy.h"
 #include "Assets.h"
-#include "Bullet.h"
-#include "Player.h"
-#include "SpaceGame.h"
+
+#include "SpaceGame/Enemy.h"
+#include "SpaceGame/Bullet.h"
+#include "SpaceGame/Player.h"
+#include "SpaceGame/SpaceGame.h"
+
+#include "SpriteGame/SpriteGame.h"
+
+#include <memory>
 
 using namespace ChiefEngine;
 
@@ -12,15 +17,17 @@ const float SCREEN_WIDTH = 1920.0f;
 const float SCREEN_HEIGHT = 1200.0f;
 
 int main() {
+    FACTORY_REGISTER(Box2DPhysicsComponent)
+
     SetWorkingDirectory("Assets");
 
     SeedRandom((unsigned int)time(nullptr));
 
     // INITIALIZATION
     G_Engine().Initialize(SCREEN_WIDTH, SCREEN_HEIGHT);
-    
-    SpaceGame* spaceGame = new SpaceGame(new Scene);
-    spaceGame->Initialize();
+
+    std::unique_ptr<Game> game = std::make_unique<SpriteGame>();
+    game->Initialize();
 
     // MAIN LOOP
     SDL_Event event;
@@ -41,18 +48,19 @@ int main() {
 
         G_Engine().Update();
 
-        spaceGame->Update(dt, SCREEN_WIDTH, SCREEN_HEIGHT);
+        game->Update(dt, SCREEN_WIDTH, SCREEN_HEIGHT);
 
         // RENDER
         G_Engine().GetRenderer().SetColor(0, 0, 0); // Set render draw color to black
         G_Engine().GetRenderer().Clear(); // Clear the renderer 
 
-        spaceGame->Draw(G_Engine().GetRenderer(), SCREEN_WIDTH, SCREEN_HEIGHT);
+        game->Draw(G_Engine().GetRenderer(), SCREEN_WIDTH, SCREEN_HEIGHT);
         G_Engine().GetParticleSystem().Draw(G_Engine().GetRenderer());
 
         G_Engine().GetRenderer().Present(); // Render the screen
     }
     // SHUTDOWN
+    game.reset();
     G_Engine().Shutdown();
 
     return 0;
