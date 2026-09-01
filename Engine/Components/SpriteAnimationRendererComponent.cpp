@@ -6,6 +6,21 @@
 namespace ChiefEngine {
 	FACTORY_REGISTER(SpriteAnimationRendererComponent)
 
+	void SpriteAnimationRendererComponent::Start() {
+		if (m_textureFramesName.empty()) {
+			std::cerr << "Invalid data";
+			return;
+		}
+		m_textureFrames = Resources().Get<TextureFrames>(m_textureFramesName, G_Engine().GetRenderer());
+		if (!m_textureFrames) {
+			std::cerr << "could not load data from " << m_textureFramesName << std::endl;
+		} else {
+			m_sourceRectangle = m_textureFrames->GetFrameRect(0);
+			m_size = Vector2{ m_sourceRectangle.size.x, m_sourceRectangle.size.y };
+			m_texture = m_textureFrames->GetTexture();
+		}
+	}
+
 	void SpriteAnimationRendererComponent::Update(float dt) {
 		m_frameTimer += dt;
 		float frameTime = 1.0f/m_framesPerSecond;
@@ -23,35 +38,16 @@ namespace ChiefEngine {
 
 			m_frameTimer -= frameTime;
 		}
-	}
 
-	void SpriteAnimationRendererComponent::Draw(const Renderer& renderer) const {
-		if (!m_textureFrames) {
-			std::cerr << "TextureFrames not available to draw: " << m_textureFrames << std::endl;
-			return;
-		}
-
-		auto transform = GetOwner()->GetTransform();
-		renderer.DrawTexture(
-			*m_textureFrames->GetTexture(),
-			m_textureFrames->GetFrameRect(m_currentFrame),
-			transform);
+		m_sourceRectangle = m_textureFrames->GetFrameRect(m_currentFrame);
 	}
 
 	void SpriteAnimationRendererComponent::Read(const JSON::value_t& value) {
-		RendererComponent::Read(value);
+		SpriteRendererComponent::Read(value);
 
 		JSON_READ_MEMBER_REQUIRED(value, "framesPerSecond", m_framesPerSecond);
 		JSON_READ_MEMBER(value, "looping", m_looping);
 
-		std::string textureFrames;
-		JSON_READ_BY_DATA_REQUIRED(value, textureFrames);
-
-		if (textureFrames.empty()) {
-			std::cerr << "Invalid data";
-			return;
-		}
-
-		m_textureFrames = Resources().Get<TextureFrames>(textureFrames, G_Engine().GetRenderer());
+		JSON_READ_MEMBER_REQUIRED(value, "textureFrames", m_textureFramesName);
 	}
 }

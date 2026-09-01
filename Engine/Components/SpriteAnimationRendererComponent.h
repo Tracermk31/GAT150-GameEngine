@@ -1,15 +1,18 @@
 #pragma once
 
-#include "RendererComponent.h"
+#include "SpriteRendererComponent.h"
+
 #include "Resources/ResourceManager.h"
 
 namespace ChiefEngine {
-	class SpriteAnimationRendererComponent : public RendererComponent {
+	class SpriteAnimationRendererComponent : public SpriteRendererComponent {
 	public:
 		CLASS_PROTOTYPE(SpriteAnimationRendererComponent)
 
-		virtual void Draw(const class Renderer& renderer) const override;
+		void Start() override;
+
 		void Update(float dt) override;
+
 		void Read(const JSON::value_t& value) override;
 	private:
 		unsigned short m_currentFrame;
@@ -18,6 +21,7 @@ namespace ChiefEngine {
 
 		float m_frameTimer = 0;
 
+		std::string m_textureFramesName;
 		resource_t<class TextureFrames> m_textureFrames;
 	};
 }

@@ -23,7 +23,7 @@ bool SpaceGame::Initialize() {
 	G_Engine().GetAudio().AddSound("Laser", "audio/laser.wav");
 	G_Engine().GetAudio().AddSound("Explosion", "audio/explosion.wav");
 
-	m_scene->Load("Data/Scene.json");
+	m_scene->Load("Scenes/Scene.json");
 
 	m_font = Resources().Get<Font>("Fonts/ArcadeNormal.ttf", 16.0f);
 	m_titleText = new Text(m_font);

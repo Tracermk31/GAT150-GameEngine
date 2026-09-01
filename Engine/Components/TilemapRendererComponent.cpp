@@ -52,7 +52,7 @@ namespace ChiefEngine {
 				Vector2 size{ sourceRect.size.x, sourceRect.size.y };
 
 				// create physics body and add to physics bodies container 
-				auto physicsBody = std::make_unique<PhysicsBody>(transform, size, bodyDef, Engine::Get().GetPhysics());
+				auto physicsBody = std::make_unique<PhysicsBody>(transform, size, bodyDef, G_Engine().GetPhysics());
 				m_physicsBodies.push_back(std::move(physicsBody));
 			}
 		}

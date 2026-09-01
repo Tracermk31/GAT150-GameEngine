@@ -81,9 +81,11 @@ void Player::Update(float dt, float maxX, float maxY) {
         physicsComponent->ApplyTorque(rotate * DEGREE_TO_RADIAN);
 
         Vector2 position = physicsComponent->GetPosition();
-        Wrap(0.0f, maxX, position.x);
-        Wrap(0.0f, maxY, position.y);
-        physicsComponent->SetPosition(position);
+        //Wrap(0.0f, maxX, position.x);
+        //Wrap(0.0f, maxY, position.y);
+        //physicsComponent->SetPosition(position);
+
+        G_Engine().GetRenderer().SetCamera(position);
     }
 
     //Shoot bullets

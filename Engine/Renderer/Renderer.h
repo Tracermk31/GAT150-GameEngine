@@ -62,11 +62,16 @@ namespace ChiefEngine {
 			/// <returns></returns>
 			float getWindowHeight() const { return m_window_size.GetY(); }
 
+			void SetCamera(const Vector2& camera) { m_camera = camera; }
+			void EnableCamera(bool enable = true) { m_cameraEnabled = enable; }
+
 			friend Texture;
 		private:
 			SDL_Window* m_window = nullptr;
 			SDL_Renderer* m_renderer = nullptr;
-			Vector2 m_window_size = { 0.0 };
+			Vector2 m_window_size = { 0.0f };
 
+			bool m_cameraEnabled = false;
+			Vector2 m_camera = { 0.0f };
 	};
 }

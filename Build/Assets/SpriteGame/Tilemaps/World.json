@@ -29,7 +29,7 @@
          "opacity":1,
          "properties":[
                 {
-                 "name":"has_Collision",
+                 "name":"hasCollision",
                  "type":"bool",
                  "value":true
                 }, 

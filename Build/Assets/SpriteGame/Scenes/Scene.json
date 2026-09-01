@@ -1,0 +1,100 @@
+{
+  "actors": [
+    {
+      "name": "PlayerPrototype",
+      "type": "PlayerController",
+      "prototype": true,
+      "tag": "PlayerCharacter",
+      "active": true,
+      "speed": 250.0,
+      "transform": {
+        "position": [
+          960,
+          600
+        ],
+        "rotation": 0.0,
+        "scale": 2.0
+      },
+      "components": [
+        {
+          "type": "SpriteAnimatorRendererComponent",
+          "defaultAnimation": "idle",
+          "animations": [
+            {
+              "name": "idle",
+              "textureFrames": "Animations/Goblin_idle.json",
+              "framesPerSecond": 8.0,
+              "looping": true
+            },
+            {
+              "name": "run",
+              "textureFrames": "Animations/Goblin_run.json",
+              "framesPerSecond": 4.0,
+              "looping": true
+            }
+          ]
+        },
+        {
+          "type": "Box2DPhysicsComponent",
+          "linear_damping": 2.0,
+          "angular_damping": 2.0,
+          "gravityScale": 1.0,
+          "shape": "capsule",
+          "constrain_angle": true,
+          "size": [
+            48,
+            48
+          ]
+        }
+      ]
+    },
+    {
+      "name": "EnemyPrototype",
+      "type": "EnemyController",
+      "prototype": true,
+      "tag": "Enemy",
+      "active": true,
+      "speed": 250.0,
+      "transform": {
+        "position": [
+          60,
+          0
+        ],
+        "rotation": 0.0,
+        "scale": 2.0
+      },
+      "components": [
+        {
+          "type": "SpriteAnimatorRendererComponent",
+          "defaultAnimation": "idle",
+          "animations": [
+            {
+              "name": "idle",
+              "textureFrames": "Animations/Goblin_idle.json",
+              "framesPerSecond": 8.0,
+              "looping": true
+            },
+            {
+              "name": "run",
+              "textureFrames": "Animations/Goblin_run.json",
+              "framesPerSecond": 4.0,
+              "looping": true
+            }
+          ]
+        },
+        {
+          "type": "Box2DPhysicsComponent",
+          "linear_damping": 2.0,
+          "angular_damping": 2.0,
+          "gravityScale": 1.0,
+          "shape": "capsule",
+          "constrain_angle": true,
+          "size": [
+            48,
+            48
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -7,17 +7,40 @@ namespace ChiefEngine {
 	FACTORY_REGISTER(SpriteRendererComponent)
 
 	/// <summary>
+	/// 
+	/// </summary>
+	void SpriteRendererComponent::Start() {
+		if (!m_textureName.empty()) {
+			m_texture = Resources().Get<Texture>(m_textureName, G_Engine().GetRenderer());
+			if (m_texture) {
+				m_size = m_texture->GetSize();
+			}
+		}
+	}
+
+	/// <summary>
 	/// Function to draw the texture onto a screen using a provided renderer. Retrieves all necessary texture
 	/// information from the m_texture member variable and position and size information from the m_owner member variable.
 	/// </summary>
 	/// <param name="renderer">The Renderer used to draw the texture</param>
 	void SpriteRendererComponent::Draw(const Renderer& renderer) const {
 		if (m_texture) {
-			renderer.DrawTexture(*m_texture,
-				GetOwner()->GetTransform().position.x,
-				GetOwner()->GetTransform().position.y,
-				GetOwner()->GetTransform().rotation,
-				GetOwner()->GetTransform().scale);
+			if (m_sourceRectangle.size.x > 0 && m_sourceRectangle.size.y > 0) {
+				renderer.DrawTexture(*m_texture,
+					m_sourceRectangle,
+					GetOwner()->GetTransform().position.x,
+					GetOwner()->GetTransform().position.y,
+					GetOwner()->GetTransform().rotation,
+					GetOwner()->GetTransform().scale,
+					m_flipHorizontal);
+			} else {
+				renderer.DrawTexture(*m_texture,
+					GetOwner()->GetTransform().position.x,
+					GetOwner()->GetTransform().position.y,
+					GetOwner()->GetTransform().rotation,
+					GetOwner()->GetTransform().scale,
+					m_flipHorizontal);
+			}
 		}
 	}
 
@@ -28,10 +51,7 @@ namespace ChiefEngine {
 	void SpriteRendererComponent::Read(const JSON::value_t& value) {
 		RendererComponent::Read(value);
 
-		std::string textureName;
-		JSON_READ_MEMBER(value, "texture", textureName);
-		if (!textureName.empty()) {
-			m_texture = Resources().Get<Texture>(textureName, G_Engine().GetRenderer());
-		}
+		JSON_READ_MEMBER(value, "texture", m_textureName);
+		JSON_READ_MEMBER(value, "flipHorizontal", m_flipHorizontal);
 	}
 }

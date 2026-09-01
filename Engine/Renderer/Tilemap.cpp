@@ -5,6 +5,7 @@
 #include "Renderer.h"
 
 #include "Core/EngineStrings.h"
+
 #include "Serialization/JSON.h"
 
 namespace ChiefEngine {
@@ -43,10 +44,10 @@ namespace ChiefEngine {
 
 							layer.texture = Resources().Get<Texture>(value, renderer);
 							if (!layer.texture) {
-								std::cerr << "Could not read tilemap layer texure " << value << std::endl;
+								std::cerr << "Could not read tilemap layer texture " << value << std::endl;
 							}
 						}
-						else if (EqualsIgnoreCase(name, "collision")) {
+						else if (EqualsIgnoreCase(name, "hasCollision")) {
 							JSON_READ_MEMBER(propertyValue, "value", layer.hasCollision);
 						}
 					}

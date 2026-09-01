@@ -34,6 +34,12 @@
     <Filter Include="SpaceGame\Assets">
       <UniqueIdentifier>{59d26e8f-0987-4df9-925a-f905a8aae694}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SpaceGame\Assets\Tilemaps">
+      <UniqueIdentifier>{22b5699e-e98b-4abe-9a6c-6a597b31ebef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SpaceGame\Assets\Animations">
+      <UniqueIdentifier>{2dbddb2d-6f3a-4cb5-9a78-b5a593b5db2c}</UniqueIdentifier>
+    </Filter>
     <Filter Include="SpaceGame\Assets\Scenes">
       <UniqueIdentifier>{74c4740b-1e9f-465b-ba0e-3bde967de0ee}</UniqueIdentifier>
     </Filter>
@@ -58,6 +64,12 @@
     <ClCompile Include="SpriteGame\SpriteGame.cpp">
       <Filter>SpriteGame\Sources</Filter>
     </ClCompile>
+    <ClCompile Include="SpriteGame\PlayerController.cpp">
+      <Filter>SpriteGame\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteGame\EnemyController.cpp">
+      <Filter>SpriteGame\Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets.h">
@@ -78,12 +90,42 @@
     <ClInclude Include="SpriteGame\SpriteGame.h">
       <Filter>SpriteGame\Headers</Filter>
     </ClInclude>
+    <ClInclude Include="SpriteGame\PlayerController.h">
+      <Filter>SpriteGame\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteGame\EnemyController.h">
+      <Filter>SpriteGame\Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Build\Assets\SpaceGame\Data\Scene.json">
+    <None Include="..\Build\Assets\SpaceGame\Scenes\Scene.json">
       <Filter>SpaceGame\Assets\Scenes</Filter>
     </None>
-    <None Include="..\Build\Assets\SpriteGame\Data\Scene.json">
+    <None Include="..\Build\Assets\SpriteGame\Scenes\Scene.json">
+      <Filter>SpriteGame\Assets\Scenes</Filter>
+    </None>
+    <None Include="..\Build\Assets\SpriteGame\Animations\Goblin_attack.json">
+      <Filter>SpriteGame\Assets\Animations</Filter>
+    </None>
+    <None Include="..\Build\Assets\SpriteGame\Animations\Goblin_attack2.json">
+      <Filter>SpriteGame\Assets\Animations</Filter>
+    </None>
+    <None Include="..\Build\Assets\SpriteGame\Animations\Goblin_death.json">
+      <Filter>SpriteGame\Assets\Animations</Filter>
+    </None>
+    <None Include="..\Build\Assets\SpriteGame\Animations\Goblin_idle.json">
+      <Filter>SpriteGame\Assets\Animations</Filter>
+    </None>
+    <None Include="..\Build\Assets\SpriteGame\Animations\Goblin_run.json">
+      <Filter>SpriteGame\Assets\Animations</Filter>
+    </None>
+    <None Include="..\Build\Assets\SpriteGame\Animations\Goblin_takeHit.json">
+      <Filter>SpriteGame\Assets\Animations</Filter>
+    </None>
+    <None Include="..\Build\Assets\SpriteGame\Tilemaps\World.json">
+      <Filter>SpriteGame\Assets\Tilemaps</Filter>
+    </None>
+    <None Include="..\Build\Assets\SpriteGame\Scenes\Level.json">
       <Filter>SpriteGame\Assets\Scenes</Filter>
     </None>
   </ItemGroup>

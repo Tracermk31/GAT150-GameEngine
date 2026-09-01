@@ -19,15 +19,12 @@ namespace ChiefEngine {
 		Game* m_game = nullptr;
 	public:
 		void AddActor(std::unique_ptr <Actor> actor);
-		void DeleteActors(bool force);
+		void DeleteActors(bool force = false);
 
 		bool Load(const std::string& sceneName);
 
 		void Update(float dt, float maxX, float maxY);
 		void Draw(const class Renderer& renderer);
-
-		//void UpdateCollisions();
-		//bool CheckActorPlacement(const ColliderComponent* thisCollider);
 
 		void SetGame(Game* game) { m_game = game; }
 		Game* GetGame() { return m_game; }

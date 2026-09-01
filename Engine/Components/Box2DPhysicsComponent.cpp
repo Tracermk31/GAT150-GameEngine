@@ -83,7 +83,7 @@ namespace ChiefEngine {
 		JSON_READ_MEMBER(value, "scale", m_scale);
 
 		JSON_READ_MEMBER(value, "linear_damping", m_bodyDef.linearDamping);
-		JSON_READ_MEMBER(value, "constraint_angle", m_bodyDef.constrainAngle);
+		JSON_READ_MEMBER(value, "constrain_angle", m_bodyDef.constrainAngle);
 		JSON_READ_MEMBER(value, "is_dynamic", m_bodyDef.isDynamic);
 		JSON_READ_MEMBER(value, "friction", m_bodyDef.friction);
 		JSON_READ_MEMBER(value, "restitution", m_bodyDef.restitution);
