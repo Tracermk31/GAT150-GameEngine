@@ -75,7 +75,7 @@ namespace ChiefEngine {
 	}
 
 	void PlayerController::OnCollision(Actor* other) {
-		if (EqualsIgnoreCase(other->GetTag(), "EnemyDamager")) {
+		if (EqualsIgnoreCase(other->GetTag(), "EnemyDamager") || EqualsIgnoreCase(other->GetTag(), "EnemyFireDamager")) {
 			Damager* damager = dynamic_cast<Damager*>(other);
 			if (damager) {
 				m_health -= damager->GetDamage();
