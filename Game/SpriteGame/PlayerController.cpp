@@ -2,6 +2,7 @@
 
 #include "Engine.h"
 #include "Damager.h"
+#include "SpriteGame.h"
 
 #include "Components/PhysicsComponent.h"
 #include "Components/SpriteAnimatorRendererComponent.h"
@@ -19,11 +20,14 @@ namespace ChiefEngine {
 	}
 
 	void PlayerController::Update(float dt, float maxX, float maxY) {
+		m_jumpTimer -= dt;
 		Vector2 velocity = m_physicsComponent->GetVelocity();
 		switch (m_state) {
 		case CharacterBase::State::MOVE: {
-			if (G_Engine().GetInput().GetKeyPressed(SDL_SCANCODE_SPACE)) {
+			if (G_Engine().GetInput().GetKeyPressed(SDL_SCANCODE_SPACE) && m_jumpTimer <= 0) {
+				m_jumpTimer = 2.0f;
 				velocity.y = -500.0f;
+				G_Engine().GetAudio().PlaySound("Jump");
 			}
 			short direction = 0;
 			if (G_Engine().GetInput().GetKeyDown(SDL_SCANCODE_A)) {
@@ -44,6 +48,7 @@ namespace ChiefEngine {
 			if (G_Engine().GetInput().GetKeyDown(SDL_SCANCODE_LCTRL)) {
 				m_state = State::ATTACK;
 				m_spriteAnimatorRendererComponent->Play("Attack");
+				G_Engine().GetAudio().PlaySound("Swing");
 
 				auto damager = Factory::Instance().Create<Actor>("DamagerPrototype");
 				float startingX = (m_spriteAnimatorRendererComponent->IsFlipHorizontal()) ? -50.0f : 50.0f;
@@ -74,10 +79,12 @@ namespace ChiefEngine {
 			Damager* damager = dynamic_cast<Damager*>(other);
 			if (damager) {
 				m_health -= damager->GetDamage();
+				G_Engine().GetAudio().PlaySound("Grunt");
 			}
 			if (m_health <= 0) {
 				m_state = State::DEATH;
 				m_spriteAnimatorRendererComponent->Play("Death");
+				((SpriteGame*)m_scene->GetGame())->OnPlayerDeath();
 			}
 			else {
 				m_state = State::HIT;

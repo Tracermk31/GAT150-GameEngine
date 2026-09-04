@@ -20,7 +20,10 @@ bool SpriteGame::Initialize() {
 
 	Game::Initialize();
 
-	G_Engine().GetAudio().AddSound("Laser", "audio/laser.wav");
+	G_Engine().GetAudio().AddSound("Fire", "audio/Fire.wav");
+	G_Engine().GetAudio().AddSound("Grunt", "audio/Grunt.wav");
+	G_Engine().GetAudio().AddSound("Swing", "audio/Swing.wav");
+	G_Engine().GetAudio().AddSound("Jump", "audio/Jump.wav");
 
 	m_scene->Load("Scenes/Scene.json");
 
@@ -36,7 +39,7 @@ bool SpriteGame::Initialize() {
 	m_scoreText->Create(G_Engine().GetRenderer(), "SCORE: " + std::to_string(m_score), {1.0f, 1.0f, 1.0f});
 	m_livesText->Create(G_Engine().GetRenderer(), "LIVES: " + std::to_string(m_lives), {1.0f, 1.0f, 1.0f});
 	m_gameOverText->Create(G_Engine().GetRenderer(), "YOU DIED", {1.0f, 1.0f, 1.0f});
-	m_controlsText->Create(G_Engine().GetRenderer(), "CONTROLS SPACE: SHOOT | X: BULLET TIME | WA: Thrust Forward/Backwards | SD: Rotate Left/Right", {1.0f, 1.0f, 1.0f});
+	m_controlsText->Create(G_Engine().GetRenderer(), "CONTROLS LCTRL: ATTACK | SPACE: JUMP| AD: MOVE LEFT/RIGHT", {1.0f, 1.0f, 1.0f});
 	m_pressSpaceText->Create(G_Engine().GetRenderer(), "Press Space", {1.0f, 1.0f, 1.0f});
 	return true;
 }
@@ -99,7 +102,7 @@ void SpriteGame::Update(float dt, float maxX, float maxY) {
 /// <param name="maxY"></param>
 void SpriteGame::Draw(ChiefEngine::Renderer& renderer, float maxX, float maxY) {
 	renderer.EnableCamera(false);
-	renderer.DrawTexture(*Resources().Get<Texture>("Textures/Background.jpg", G_Engine().GetRenderer()), maxX/2, maxY/2, 1.0f, 0.5f);
+	renderer.DrawTexture(*Resources().Get<Texture>("Textures/Background.jpg", G_Engine().GetRenderer()), maxX/2, maxY/2, 0.0f, 2.0f);
 
 	renderer.EnableCamera(true);
 	Game::Draw(renderer, maxX, maxY);
@@ -134,7 +137,7 @@ void SpriteGame::Draw(ChiefEngine::Renderer& renderer, float maxX, float maxY) {
 /// <param name="maxX"></param>
 /// <param name="maxY"></param>
 void SpriteGame::SpawnEnemy(float maxX, float maxY) {
-auto enemy = Factory::Instance().Create<Actor>("EnemyPrototype");
+	auto enemy = Factory::Instance().Create<Actor>("EnemyPrototype");
 	enemy->SetPosition({ RandomFloat(0, maxX), maxY - 280 });
 	m_scene->AddActor(std::move(enemy));
 }
@@ -146,7 +149,7 @@ auto enemy = Factory::Instance().Create<Actor>("EnemyPrototype");
 /// <param name="maxY"></param>
 void SpriteGame::SpawnBoss(float maxX, float maxY) {
 	auto enemy = Factory::Instance().Create<Actor>("EnemyBossPrototype");
-	enemy->SetPosition({ RandomFloat(0, maxX), RandomFloat(0, maxY - 280) });
+	enemy->SetPosition({ RandomFloat(0, maxX), maxY - 280 });
 	m_scene->AddActor(std::move(enemy));
 }
 
@@ -164,5 +167,5 @@ void SpriteGame::SpawnPlayer(float maxX, float maxY) {
 /// 
 /// </summary>
 void SpriteGame::OnPlayerDeath() {
-		m_gameState = GameState::GameOver;
+	m_gameState = GameState::GameOver;
 }

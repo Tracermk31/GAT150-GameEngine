@@ -19,8 +19,8 @@ public:
 
 	short GetHealth() const { return m_health; }
 protected:
-	float m_speed = 0.0f;
 	State m_state = State::MOVE;
+	float m_speed = 0.0f;
 	float m_stateTimer = 0.0f;
 	short m_health = 10;
 };

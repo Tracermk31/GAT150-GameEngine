@@ -16,6 +16,8 @@ namespace ChiefEngine {
     protected:
         class PhysicsComponent* m_physicsComponent = nullptr;
         class SpriteAnimatorRendererComponent* m_spriteAnimatorRendererComponent = nullptr;
+
+        float m_jumpTimer = 0.0f;
     };
 }
 
