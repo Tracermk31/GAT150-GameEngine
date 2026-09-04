@@ -82,13 +82,13 @@ namespace ChiefEngine {
 		JSON_READ_MEMBER(value, "size", m_size);
 		JSON_READ_MEMBER(value, "scale", m_scale);
 
-		JSON_READ_MEMBER(value, "linear_damping", m_bodyDef.linearDamping);
-		JSON_READ_MEMBER(value, "constrain_angle", m_bodyDef.constrainAngle);
-		JSON_READ_MEMBER(value, "is_dynamic", m_bodyDef.isDynamic);
+		JSON_READ_MEMBER(value, "linearDamping", m_bodyDef.linearDamping);
+		JSON_READ_MEMBER(value, "constrainAngle", m_bodyDef.constrainAngle);
+		JSON_READ_MEMBER(value, "isDynamic", m_bodyDef.isDynamic);
 		JSON_READ_MEMBER(value, "friction", m_bodyDef.friction);
 		JSON_READ_MEMBER(value, "restitution", m_bodyDef.restitution);
 		JSON_READ_MEMBER(value, "density", m_bodyDef.density);
-		JSON_READ_MEMBER(value, "is_sensor", m_bodyDef.isSensor);
+		JSON_READ_MEMBER(value, "isSensor", m_bodyDef.isSensor);
 
 		std::string shapeName;
 		JSON_READ_MEMBER(value, "shape", shapeName);

@@ -30,6 +30,17 @@ namespace ChiefEngine {
 		bool IsPaused() const {
 			return m_pause;
 		}
+
+		unsigned short GetFrame() const { 
+			return m_currentFrame; 
+		}
+		bool IsAnimationDone() const { 
+			return m_currentFrame == m_spriteAnimation.textureFrames->GetTotalFrames() - 1; 
+		}
+
+		const std::string& GetAnimationName() const {
+			return m_spriteAnimation.name;
+		}
 	private:
 		unsigned short m_currentFrame = 0;
 		float m_frameTimer = 0;

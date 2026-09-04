@@ -70,6 +70,12 @@
     <ClCompile Include="SpriteGame\EnemyController.cpp">
       <Filter>SpriteGame\Sources</Filter>
     </ClCompile>
+    <ClCompile Include="SpriteGame\CharacterBase.cpp">
+      <Filter>SpriteGame\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteGame\Damager.cpp">
+      <Filter>SpriteGame\Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets.h">
@@ -96,6 +102,12 @@
     <ClInclude Include="SpriteGame\EnemyController.h">
       <Filter>SpriteGame\Headers</Filter>
     </ClInclude>
+    <ClInclude Include="SpriteGame\CharacterBase.h">
+      <Filter>SpriteGame\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteGame\Damager.h">
+      <Filter>SpriteGame\Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Build\Assets\SpaceGame\Scenes\Scene.json">
@@ -104,10 +116,46 @@
     <None Include="..\Build\Assets\SpriteGame\Scenes\Scene.json">
       <Filter>SpriteGame\Assets\Scenes</Filter>
     </None>
-    <None Include="..\Build\Assets\SpriteGame\Animations\Goblin_attack.json">
+    <None Include="..\Build\Assets\SpriteGame\Tilemaps\World.json">
+      <Filter>SpriteGame\Assets\Tilemaps</Filter>
+    </None>
+    <None Include="..\Build\Assets\SpriteGame\Scenes\Level.json">
+      <Filter>SpriteGame\Assets\Scenes</Filter>
+    </None>
+    <None Include="..\Build\Assets\SpriteGame\Animations\hero_attack.json">
       <Filter>SpriteGame\Assets\Animations</Filter>
     </None>
-    <None Include="..\Build\Assets\SpriteGame\Animations\Goblin_attack2.json">
+    <None Include="..\Build\Assets\SpriteGame\Animations\hero_death.json">
+      <Filter>SpriteGame\Assets\Animations</Filter>
+    </None>
+    <None Include="..\Build\Assets\SpriteGame\Animations\hero_idle.json">
+      <Filter>SpriteGame\Assets\Animations</Filter>
+    </None>
+    <None Include="..\Build\Assets\SpriteGame\Animations\hero_jump.json">
+      <Filter>SpriteGame\Assets\Animations</Filter>
+    </None>
+    <None Include="..\Build\Assets\SpriteGame\Animations\hero_run.json">
+      <Filter>SpriteGame\Assets\Animations</Filter>
+    </None>
+    <None Include="..\Build\Assets\SpriteGame\Animations\eye_attack.json">
+      <Filter>SpriteGame\Assets\Animations</Filter>
+    </None>
+    <None Include="..\Build\Assets\SpriteGame\Animations\eye_hit.json">
+      <Filter>SpriteGame\Assets\Animations</Filter>
+    </None>
+    <None Include="..\Build\Assets\SpriteGame\Animations\eye_idle.json">
+      <Filter>SpriteGame\Assets\Animations</Filter>
+    </None>
+    <None Include="..\Build\Assets\SpriteGame\Animations\enemy_attack.json">
+      <Filter>SpriteGame\Assets\Animations</Filter>
+    </None>
+    <None Include="..\Build\Assets\SpriteGame\Animations\enemy_hit.json">
+      <Filter>SpriteGame\Assets\Animations</Filter>
+    </None>
+    <None Include="..\Build\Assets\SpriteGame\Animations\enemy_idle.json">
+      <Filter>SpriteGame\Assets\Animations</Filter>
+    </None>
+    <None Include="..\Build\Assets\SpriteGame\Animations\enemy_run.json">
       <Filter>SpriteGame\Assets\Animations</Filter>
     </None>
     <None Include="..\Build\Assets\SpriteGame\Animations\Goblin_death.json">
@@ -122,11 +170,8 @@
     <None Include="..\Build\Assets\SpriteGame\Animations\Goblin_takeHit.json">
       <Filter>SpriteGame\Assets\Animations</Filter>
     </None>
-    <None Include="..\Build\Assets\SpriteGame\Tilemaps\World.json">
-      <Filter>SpriteGame\Assets\Tilemaps</Filter>
-    </None>
-    <None Include="..\Build\Assets\SpriteGame\Scenes\Level.json">
-      <Filter>SpriteGame\Assets\Scenes</Filter>
+    <None Include="..\Build\Assets\SpriteGame\Animations\Goblin_attack.json">
+      <Filter>SpriteGame\Assets\Animations</Filter>
     </None>
   </ItemGroup>
 </Project>

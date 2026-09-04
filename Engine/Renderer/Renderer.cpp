@@ -46,7 +46,7 @@ namespace ChiefEngine {
         }
 
         SDL_SetDefaultTextureScaleMode(m_renderer, SDL_SCALEMODE_PIXELART);
-        SDL_SetRenderVSync(m_renderer, -1);
+        SDL_SetRenderVSync(m_renderer, 1);
 
         return true;
     }
@@ -213,7 +213,7 @@ namespace ChiefEngine {
     /// <param name="scale"></param>
     /// <param name="flipHorizontal"></param>
     /// <param name="flipVertical"></param>
-    void Renderer::DrawTexture(const Texture& texture, float x, float y, float angle, float scale, bool flipHorizontal, bool flipVertical) const {
+    void Renderer::DrawTexture(const Texture& texture, float x, float y, float angle, float scale, bool flipHorizontal, bool flipVertical, const Vector2& origin) const {
         Vector2 size = texture.GetSize();
 
         float cameraX = (m_cameraEnabled) ? m_camera.x - m_window_size.x * 0.5f : 0.0f;
@@ -223,15 +223,15 @@ namespace ChiefEngine {
         destRect.w = size.x * scale;
         destRect.h = size.y * scale;
         
-        destRect.x = x - cameraX - (destRect.w * 0.5f);
-        destRect.y = y - cameraY - (destRect.h * 0.5f);
+        destRect.x = x - cameraX - (destRect.w * origin.x);
+        destRect.y = y - cameraY - (destRect.h * origin.y);
 
         // https://wiki.libsdl.org/SDL3/SDL_RenderTexture
         SDL_RenderTextureRotated(m_renderer, texture.m_texture, nullptr, &destRect, angle, nullptr, 
             (flipHorizontal && flipVertical) ? SDL_FLIP_HORIZONTAL_AND_VERTICAL : (flipHorizontal) ? SDL_FLIP_HORIZONTAL : (flipVertical) ? SDL_FLIP_VERTICAL : SDL_FLIP_NONE);
     }
 
-    void Renderer::DrawTexture(const Texture& texture, const Transform& transform, bool flipHorizontal, bool flipVertical) const {
+    void Renderer::DrawTexture(const Texture& texture, const Transform& transform, bool flipHorizontal, bool flipVertical, const Vector2& origin) const {
         Vector2 size = texture.GetSize();
 
         float cameraX = (m_cameraEnabled) ? m_camera.x - m_window_size.x * 0.5f : 0.0f;
@@ -241,8 +241,8 @@ namespace ChiefEngine {
         destRect.w = size.x * transform.scale;
         destRect.h = size.y * transform.scale;
 
-        destRect.x = transform.position.x - cameraX - (destRect.w * 0.5f);
-        destRect.y = transform.position.y - cameraY - (destRect.h * 0.5f);
+        destRect.x = transform.position.x - cameraX - (destRect.w * origin.x);
+        destRect.y = transform.position.y - cameraY - (destRect.h * origin.y);
 
         // https://wiki.libsdl.org/SDL3/SDL_RenderTexture
         SDL_RenderTextureRotated(m_renderer, texture.m_texture, nullptr, &destRect, transform.rotation, nullptr, 
@@ -258,7 +258,7 @@ namespace ChiefEngine {
     /// <param name="scale"></param>
     /// <param name="flipHorizontal"></param>
     /// <param name="flipVertical"></param>
-    void Renderer::DrawTexture(const Texture& texture, const Rect& source, float x, float y, float angle, float scale, bool flipHorizontal, bool flipVertical) const {
+    void Renderer::DrawTexture(const Texture& texture, const Rect& source, float x, float y, float angle, float scale, bool flipHorizontal, bool flipVertical, const Vector2& origin) const {
         Vector2 size = texture.GetSize();
 
         float cameraX = (m_cameraEnabled) ? m_camera.x - m_window_size.x * 0.5f : 0.0f;
@@ -275,15 +275,15 @@ namespace ChiefEngine {
         destRect.w = sourceRect.w * scale;
         destRect.h = sourceRect.h * scale;
 
-        destRect.x = x - cameraX - (destRect.w * 0.5f);
-        destRect.y = y - cameraY - (destRect.h * 0.5f);
+        destRect.x = x - cameraX - (destRect.w * origin.x);
+        destRect.y = y - cameraY - (destRect.h * origin.y);
 
         // https://wiki.libsdl.org/SDL3/SDL_RenderTexture
         SDL_RenderTextureRotated(m_renderer, texture.m_texture, &sourceRect, &destRect, angle, nullptr,
             (flipHorizontal && flipVertical) ? SDL_FLIP_HORIZONTAL_AND_VERTICAL : (flipHorizontal) ? SDL_FLIP_HORIZONTAL : (flipVertical) ? SDL_FLIP_VERTICAL : SDL_FLIP_NONE);
     }
 
-    void Renderer::DrawTexture(const Texture& texture, const Rect& source, const Transform& transform, bool flipHorizontal, bool flipVertical) const {
+    void Renderer::DrawTexture(const Texture& texture, const Rect& source, const Transform& transform, bool flipHorizontal, bool flipVertical, const Vector2& origin) const {
         Vector2 size = texture.GetSize();
 
         float cameraX = (m_cameraEnabled) ? m_camera.x - m_window_size.x * 0.5f : 0.0f;
@@ -300,8 +300,8 @@ namespace ChiefEngine {
         destRect.w = sourceRect.w * transform.scale;
         destRect.h = sourceRect.h * transform.scale;
 
-        destRect.x = transform.position.x - cameraX - (destRect.w * 0.5f);
-        destRect.y = transform.position.y - cameraY - (destRect.h * 0.5f);
+        destRect.x = transform.position.x - cameraX - (destRect.w * origin.x);
+        destRect.y = transform.position.y - cameraY - (destRect.h * origin.y);
 
         // https://wiki.libsdl.org/SDL3/SDL_RenderTexture
         SDL_RenderTextureRotated(m_renderer, texture.m_texture, &sourceRect, &destRect, transform.rotation, nullptr,

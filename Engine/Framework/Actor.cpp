@@ -53,7 +53,9 @@ namespace ChiefEngine {
         }
 
         for (auto& component : m_components) {
-            component->Update(dt);
+            if (component->IsActive()) {
+                component->Update(dt);
+            }
         }
     }
 
@@ -65,7 +67,9 @@ namespace ChiefEngine {
         for (auto& component : m_components) {
             auto rendererComponent = dynamic_cast<RendererComponent*>(component.get());
             if (rendererComponent) {
-                rendererComponent->Draw(renderer);
+                if (rendererComponent->IsActive()) {
+                    rendererComponent->Draw(renderer);
+                }
             }
         }
     }

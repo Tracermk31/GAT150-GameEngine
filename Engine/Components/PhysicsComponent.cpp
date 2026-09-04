@@ -8,8 +8,8 @@ namespace ChiefEngine {
 
 		JSON_READ_MEMBER(value, "mass", m_mass);
 		JSON_READ_MEMBER(value, "damping", m_damping);
-		JSON_READ_MEMBER(value, "angular_damping", m_angularDamping);
-		JSON_READ_MEMBER(value, "gravity_scale", m_gravityScale);
+		JSON_READ_MEMBER(value, "angularDamping", m_angularDamping);
+		JSON_READ_MEMBER(value, "gravityScale", m_gravityScale);
 	}
 }
 

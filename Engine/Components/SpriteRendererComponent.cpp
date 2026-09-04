@@ -32,14 +32,18 @@ namespace ChiefEngine {
 					GetOwner()->GetTransform().position.y,
 					GetOwner()->GetTransform().rotation,
 					GetOwner()->GetTransform().scale,
-					m_flipHorizontal);
+					m_flipHorizontal,
+					false,
+					m_origin);
 			} else {
 				renderer.DrawTexture(*m_texture,
 					GetOwner()->GetTransform().position.x,
 					GetOwner()->GetTransform().position.y,
 					GetOwner()->GetTransform().rotation,
 					GetOwner()->GetTransform().scale,
-					m_flipHorizontal);
+					m_flipHorizontal,
+					false,
+					m_origin);
 			}
 		}
 	}
@@ -53,5 +57,6 @@ namespace ChiefEngine {
 
 		JSON_READ_MEMBER(value, "texture", m_textureName);
 		JSON_READ_MEMBER(value, "flipHorizontal", m_flipHorizontal);
+		JSON_READ_MEMBER(value, "origin", m_origin);
 	}
 }

@@ -44,6 +44,7 @@ namespace ChiefEngine {
 		std::string m_textureName;
 		Rect m_sourceRectangle;
 		Vector2 m_size{ 0.0f };
+		Vector2 m_origin{ 0.5f };
 		bool m_flipHorizontal = false;
 
 		resource_t<Texture> m_texture;

@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Framework\Actor.h"
+#include "CharacterBase.h"
 
 namespace ChiefEngine {
-    class EnemyController : public Actor {
+    class EnemyController : public CharacterBase {
     public:
         CLASS_PROTOTYPE(EnemyController)
 
@@ -16,5 +16,7 @@ namespace ChiefEngine {
     protected:
         class PhysicsComponent* m_physicsComponent = nullptr;
         class SpriteAnimatorRendererComponent* m_spriteAnimatorRendererComponent = nullptr;
+
+        short m_pointValue = 0;
     };
 }

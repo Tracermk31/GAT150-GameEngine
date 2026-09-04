@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Framework\Actor.h"
+#include "CharacterBase.h"
 
 namespace ChiefEngine {
-    class PlayerController : public Actor {
+    class PlayerController : public CharacterBase {
     public:
         CLASS_PROTOTYPE(PlayerController)
 

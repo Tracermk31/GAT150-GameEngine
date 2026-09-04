@@ -46,6 +46,6 @@ namespace ChiefEngine {
 		inline void SetName(const std::string& name) { m_name = name; }
 
 		std::string m_name = "[DEFAULT]";
-		bool m_active = false;
+		bool m_active = true;
 	};
 }

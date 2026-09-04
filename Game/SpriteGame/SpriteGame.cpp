@@ -3,6 +3,7 @@
 #include "../Assets.h"
 
 #include "SpriteGame.h"
+#include "PlayerController.h"
 
 using namespace ChiefEngine;
 
@@ -20,7 +21,6 @@ bool SpriteGame::Initialize() {
 	Game::Initialize();
 
 	G_Engine().GetAudio().AddSound("Laser", "audio/laser.wav");
-	G_Engine().GetAudio().AddSound("Explosion", "audio/explosion.wav");
 
 	m_scene->Load("Scenes/Scene.json");
 
@@ -100,6 +100,11 @@ void SpriteGame::Update(float dt, float maxX, float maxY) {
 void SpriteGame::Draw(ChiefEngine::Renderer& renderer, float maxX, float maxY) {
 	renderer.EnableCamera(false);
 	renderer.DrawTexture(*Resources().Get<Texture>("Textures/Background.jpg", G_Engine().GetRenderer()), maxX/2, maxY/2, 1.0f, 0.5f);
+
+	renderer.EnableCamera(true);
+	Game::Draw(renderer, maxX, maxY);
+
+	renderer.EnableCamera(false);
 	switch (m_gameState) {
 	case GameState::Title:
 		m_titleText->Draw(renderer, maxX/2 - 180 / 2, 100.0f);
@@ -107,13 +112,12 @@ void SpriteGame::Draw(ChiefEngine::Renderer& renderer, float maxX, float maxY) {
 		m_pressSpaceText->Draw(renderer, maxX/2 - 100, 1000.0f);
 		break;
 	case GameState::StartGame:
-		break;
 	case GameState::StartLevel:
 		break;
 	case GameState::GamePlay:
 		m_scoreText->Create(G_Engine().GetRenderer(), "SCORE: " + std::to_string(m_score), { 1.0f, 1.0f, 1.0f });
 		m_scoreText->Draw(renderer, 40, 40);
-		m_livesText->Create(G_Engine().GetRenderer(), "LIVES: " + std::to_string(m_lives), { 1.0f, 1.0f, 1.0f });
+		m_livesText->Create(G_Engine().GetRenderer(), "Health: " + std::to_string(dynamic_cast<PlayerController*>(m_scene->GetActorByTag("PlayerCharacter"))->GetHealth()), { 1.0f, 1.0f, 1.0f });
 		m_livesText->Draw(renderer, 40, 80);
 		break;
 	case GameState::GameOver:
@@ -122,7 +126,6 @@ void SpriteGame::Draw(ChiefEngine::Renderer& renderer, float maxX, float maxY) {
 		break;
 	}
 	renderer.EnableCamera(true);
-	Game::Draw(renderer, maxX, maxY);
 }
 
 /// <summary>
@@ -131,10 +134,9 @@ void SpriteGame::Draw(ChiefEngine::Renderer& renderer, float maxX, float maxY) {
 /// <param name="maxX"></param>
 /// <param name="maxY"></param>
 void SpriteGame::SpawnEnemy(float maxX, float maxY) {
-	auto enemy = Factory::Instance().Create<Actor>("EnemyPrototype");
-
-	//enemy->SetPosition({ RandomFloat(0, maxX), RandomFloat(0, maxY) });
-	//m_scene->AddActor(std::move(enemy));
+auto enemy = Factory::Instance().Create<Actor>("EnemyPrototype");
+	enemy->SetPosition({ RandomFloat(0, maxX), maxY - 280 });
+	m_scene->AddActor(std::move(enemy));
 }
 
 /// <summary>
@@ -144,8 +146,8 @@ void SpriteGame::SpawnEnemy(float maxX, float maxY) {
 /// <param name="maxY"></param>
 void SpriteGame::SpawnBoss(float maxX, float maxY) {
 	auto enemy = Factory::Instance().Create<Actor>("EnemyBossPrototype");
-	//enemy->SetPosition({ RandomFloat(0, maxX), RandomFloat(0, maxY) });
-	//m_scene->AddActor(std::move(enemy));
+	enemy->SetPosition({ RandomFloat(0, maxX), RandomFloat(0, maxY - 280) });
+	m_scene->AddActor(std::move(enemy));
 }
 
 /// <summary>
@@ -154,19 +156,13 @@ void SpriteGame::SpawnBoss(float maxX, float maxY) {
 /// <param name="maxX"></param>
 /// <param name="maxY"></param>
 void SpriteGame::SpawnPlayer(float maxX, float maxY) {
-		auto player = Factory::Instance().Create<Actor>("PlayerPrototype");
-		player->SetPosition({ maxX / 2, maxY / 2 });
-		m_scene->AddActor(std::move(player));
+	auto player = Factory::Instance().Create<Actor>("PlayerPrototype");
+	m_scene->AddActor(std::move(player));
 }
 
 /// <summary>
 /// 
 /// </summary>
 void SpriteGame::OnPlayerDeath() {
-	m_lives--;
-	if (m_lives <= 0) {
 		m_gameState = GameState::GameOver;
-	} else {
-		m_gameState = GameState::StartLevel;
-	}
 }
